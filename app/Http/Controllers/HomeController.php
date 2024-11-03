@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Product;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -10,14 +11,17 @@ class HomeController extends Controller
     {
         $this->middleware('auth');
     }
- 
+
     public function index()
     {
         return view('home');
     }
- 
+
     public function adminHome()
     {
-        return view('dashboard');
+        $jumlahMobil = Product::count();
+        $mobilTersewa = Product::jumlahTersewa();
+
+        return view('dashboard', compact('jumlahMobil', 'mobilTersewa'));
     }
 }
