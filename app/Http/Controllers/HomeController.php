@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Penyewaan;
 use App\Models\Product;
 use Illuminate\Http\Request;
 
@@ -21,7 +22,11 @@ class HomeController extends Controller
     {
         $jumlahMobil = Product::count();
         $mobilTersewa = Product::jumlahTersewa();
+        $mobilTersedia = Product::jumlahTersedia();
 
-        return view('dashboard', compact('jumlahMobil', 'mobilTersewa'));
+        $penyewaan = Penyewaan::all();
+
+
+        return view('dashboard', compact('jumlahMobil', 'mobilTersewa', 'mobilTersedia', 'penyewaan'));
     }
 }

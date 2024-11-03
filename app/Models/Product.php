@@ -27,4 +27,9 @@ class Product extends Model
     {
         return self::where('status', 'rented')->count();
     }
+
+    public static function jumlahTersedia()
+    {
+        return self::where('status', 'available')->count();
+    }
 }
