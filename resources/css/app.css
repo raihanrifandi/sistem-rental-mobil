@@ -1,0 +1,39 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.swiper-container {
+    width: calc(100% - 30px); 
+    max-width: 1200px; 
+    margin: 0 auto; 
+    height: 100%;
+    position: relative;
+    overflow: hidden;
+    /* border: 1px solid red; */
+}
+
+.swiper-slide {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.swiper-container::before,
+.swiper-container::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    width: 30%; 
+    height: 100%;
+    z-index: 1; 
+}
+
+.swiper-container::before {
+    left: 0; /* Fade di sisi kiri */
+    background: linear-gradient(to right, white, transparent);
+}
+
+.swiper-container::after {
+    right: 0; /* Fade di sisi kanan */
+    background: linear-gradient(to left, white, transparent);
+}
