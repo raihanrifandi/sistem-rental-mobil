@@ -11,6 +11,8 @@ class Product extends Model
 
     protected $table = 'mobil';
 
+    protected $primaryKey = 'id_mobil';
+
     protected $fillable = [
         'merk',
         'model',
@@ -23,10 +25,12 @@ class Product extends Model
 
     public $timestamps = true;
 
+  
     public static function jumlahTersewa()
     {
         return self::where('status', 'rented')->count();
     }
+
 
     public static function jumlahTersedia()
     {
