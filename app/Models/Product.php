@@ -20,6 +20,7 @@ class Product extends Model
         'plat',
         'harga_sewa',
         'status',
+        'gambar',
         'deskripsi',
     ];
 

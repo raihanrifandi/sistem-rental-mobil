@@ -26,10 +26,11 @@
 
     <!-- Table Produk -->
     <div class="bg-white shadow-lg rounded-lg overflow-hidden">
-        <table class="min-w-full bg-white border">
+        <table class="min-w-full bg-white border ">
             <thead>
                 <tr class="bg-gray-100 border-b">
-                    <th class="py-3 px-4 text-left text-gray-600 font-semibold text-sm uppercase tracking-wider border">ID Mobil</th>
+                    <th class="py-3 px-4 text-left text-gray-600 font-semibold text-sm uppercase tracking-wider border">ID</th>
+                    <th class="py-3 px-4 text-left text-gray-600 font-semibold text-sm uppercase tracking-wider border">Gambar</th>
                     <th class="py-3 px-4 text-left text-gray-600 font-semibold text-sm uppercase tracking-wider border">Merk</th>
                     <th class="py-3 px-4 text-left text-gray-600 font-semibold text-sm uppercase tracking-wider border">Model</th>
                     <th class="py-3 px-4 text-left text-gray-600 font-semibold text-sm uppercase tracking-wider border">Tahun</th>
@@ -39,24 +40,42 @@
                     <th class="py-3 px-4 text-center text-gray-600 font-semibold text-sm uppercase tracking-wider border">Aksi</th>
                 </tr>
             </thead>
-            <tbody class="text-gray-700">
+            <tbody class="text-gray-700 ">
                 @foreach ($products as $product)
                 <tr class="hover:bg-gray-50 transition duration-200">
                     <td class="py-4 px-4 border">{{ $product->id_mobil }}</td>
+                    <!-- Kolom Gambar -->
+                
+                    <td class="py-4 px-4 border ">
+                        @if ($product->gambar)
+                        <img src="{{ asset( $product->gambar) }}" alt="Gambar Produk" class="w-24 h-24 object-cover rounded">
+                        @else
+                        <span class="text-gray-500">Tidak ada gambar</span>
+                        @endif
+                    </td>
+
                     <td class="py-4 px-4 border">{{ $product->merk }}</td>
                     <td class="py-4 px-4 border">{{ $product->model }}</td>
                     <td class="py-4 px-4 border">{{ $product->tahun }}</td>
                     <td class="py-4 px-4 border">{{ $product->plat }}</td>
                     <td class="py-4 px-4 border">Rp {{ number_format($product->harga_sewa, 0, ',', '.') }}</td>
                     <td class="py-4 px-4 border">
-                        <span class="px-3 py-1 text-sm font-medium rounded-full {{ $product->status === 'available' ? 'bg-green-100 text-green-700' : 'bg-red-100 text-red-700' }}">
-                            {{ $product->status === 'available' ? 'Tersedia' : 'Disewa' }}
+                        <span class="px-3 py-1 text-sm font-medium rounded-full 
+                            {{ 
+                                $product->status === 'available' ? 'bg-green-100 text-green-700' : 
+                                ($product->status === 'rented' ? 'bg-red-100 text-red-700' : 
+                                'bg-yellow-100 text-yellow-700') 
+                            }}">
+                            {{ 
+                                $product->status === 'available' ? 'Tersedia' : 
+                                ($product->status === 'rented' ? 'Disewa' : 
+                                'Pemeliharaan') 
+                            }}
                         </span>
                     </td>
-                    <td class="py-4 px-4 border flex items-center justify-center space-x-2">
-                        <!-- Tombol Edit dengan Modal -->
-                        <button
-                            onclick="openEditModal(this)"
+
+                    <td class="py-4 px-4 border flex items-center justify-center space-x-4">
+                        <button onclick="openEditModal(this)"
                             data-id_mobil="{{ $product->id_mobil }}"
                             data-merk="{{ $product->merk }}"
                             data-model="{{ $product->model }}"
@@ -64,7 +83,7 @@
                             data-plat="{{ $product->plat }}"
                             data-harga_sewa="{{ $product->harga_sewa }}"
                             class="bg-blue-500 text-white px-4 py-1 rounded-lg hover:bg-blue-600 transition duration-200 shadow">
-                            Edit Produk
+                            Edit
                         </button>
                         <form action="{{ route('products.destroy', $product->id_mobil) }}" method="POST" onsubmit="return confirm('Apakah Anda yakin ingin menghapus produk ini?');">
                             @csrf
@@ -82,14 +101,24 @@
 </div>
 
 <!-- Modal Edit Produk -->
-<div id="editModal" class="fixed inset-0 bg-gray-800 bg-opacity-50 flex items-center justify-center hidden">
-    <div class="bg-white p-8 rounded-lg shadow-lg w-full max-w-md">
+<div id="editModal" class="fixed inset-0 bg-gray-800 bg-opacity-50 flex items-center justify-center p-4">
+    <div class="bg-white p-6 rounded-lg shadow-lg w-full max-w-xl" style="overflow-y: auto; max-height: 80vh;">
         <h2 class="text-2xl font-semibold mb-6 text-gray-800">Edit Produk Mobil</h2>
-        <form id="editForm" method="POST">
+        <form id="editForm" method="POST" enctype="multipart/form-data">
             @csrf
             @method('PUT')
 
             <input type="hidden" id="productId" name="id_mobil">
+
+            <!-- Input Gambar -->
+            <div class="mb-4">
+                <label for="gambar" class="block text-sm font-medium text-gray-700">Gambar</label>
+                <div class="mt-1">
+                    <input type="file" id="gambar" name="gambar" class="p-2 w-full border rounded">
+                </div>
+            </div>
+
+            <!-- Input lainnya -->
             <div class="mb-4">
                 <label for="merk" class="block text-sm font-medium text-gray-700">Merk</label>
                 <input type="text" id="merk" name="merk" class="mt-1 p-2 w-full border rounded" required>
@@ -129,7 +158,7 @@
         <div class="col-span-3"></div>
         <div class="col-span-6 bg-white p-8 rounded-lg shadow-lg max-h-[90vh] overflow-y-auto">
             <h2 class="text-2xl font-semibold mb-6 text-gray-800">Tambah Produk Mobil</h2>
-            <form action="{{ route('products.store') }}" method="POST">
+            <form action="{{ route('products.store') }}" method="POST" enctype="multipart/form-data">
                 @csrf
 
                 <div class="mb-4">
@@ -162,6 +191,12 @@
                     <textarea id="addDeskripsi" name="deskripsi" rows="4" class="mt-1 p-2 w-full border rounded" required></textarea>
                 </div>
 
+                <!-- Input Gambar -->
+                <div class="mb-4">
+                    <label for="addGambar" class="block text-sm font-medium text-gray-700">Gambar</label>
+                    <input type="file" id="addGambar" name="gambar" class="mt-1 p-2 w-full border rounded" accept="image/*">
+                </div>
+
                 <div class="flex justify-end space-x-3 sticky bottom-0 bg-white pt-4">
                     <button type="button" onclick="closeAddModal()" class="bg-gray-400 text-white px-4 py-2 rounded">Batal</button>
                     <button type="submit" class="bg-blue-600 text-white px-4 py-2 rounded">Tambah</button>
@@ -174,6 +209,7 @@
 
 <script>
     let isAddModalOpen = false;
+    let isEditModalOpen = false;
 
     function openAddModal() {
         document.getElementById('addModal').classList.remove('hidden');
@@ -186,6 +222,8 @@
     }
 
     function openEditModal(button) {
+        isEditModalOpen = true;
+
         // Ambil nilai dari atribut data- pada tombol yang diklik
         const product = {
             id_mobil: button.getAttribute('data-id_mobil'),
@@ -210,11 +248,16 @@
 
     function closeModal() {
         document.getElementById('editModal').classList.add('hidden');
+        isEditModalOpen = false;
     }
 
-    window.addEventListener('load', function () {
+    window.addEventListener('load', function() {
         if (!isAddModalOpen) {
             document.getElementById('addModal').classList.add('hidden');
+        }
+
+        if (!isEditModalOpen) {
+            document.getElementById('editModal').classList.add('hidden');
         }
     });
 </script>
