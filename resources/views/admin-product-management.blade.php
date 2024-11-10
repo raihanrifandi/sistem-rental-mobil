@@ -19,7 +19,7 @@
     <!-- Header -->
     <div class="flex justify-between items-center mb-8">
         <h1 class="text-3xl font-semibold text-gray-800">Manajemen Produk Mobil</h1>
-        <a href="{{ route('products.create') }}" class="bg-blue-600 text-white px-5 py-2 rounded-lg hover:bg-blue-700 transition duration-200 shadow-lg">
+        <a href="javascript:void(0)" onclick="openAddModal()" class="bg-blue-600 text-white px-5 py-2 rounded-lg hover:bg-blue-700 transition duration-200 shadow-lg">
             + Tambah Produk
         </a>
     </div>
@@ -123,7 +123,68 @@
     </div>
 </div>
 
+<!-- Modal Tambah Produk -->
+<div id="addModal" class="fixed inset-0 bg-gray-800 bg-opacity-50 flex items-center justify-center overflow-y-auto">
+    <div class="grid grid-cols-12 w-full h-full items-start mt-10">
+        <div class="col-span-3"></div>
+        <div class="col-span-6 bg-white p-8 rounded-lg shadow-lg max-h-[90vh] overflow-y-auto">
+            <h2 class="text-2xl font-semibold mb-6 text-gray-800">Tambah Produk Mobil</h2>
+            <form action="{{ route('products.store') }}" method="POST">
+                @csrf
+
+                <div class="mb-4">
+                    <label for="addMerk" class="block text-sm font-medium text-gray-700">Merk</label>
+                    <input type="text" id="addMerk" name="merk" class="mt-1 p-2 w-full border rounded" required>
+                </div>
+
+                <div class="mb-4">
+                    <label for="addModel" class="block text-sm font-medium text-gray-700">Model</label>
+                    <input type="text" id="addModel" name="model" class="mt-1 p-2 w-full border rounded" required>
+                </div>
+
+                <div class="mb-4">
+                    <label for="addTahun" class="block text-sm font-medium text-gray-700">Tahun</label>
+                    <input type="number" id="addTahun" name="tahun" class="mt-1 p-2 w-full border rounded" required>
+                </div>
+
+                <div class="mb-4">
+                    <label for="addPlat" class="block text-sm font-medium text-gray-700">Plat</label>
+                    <input type="text" id="addPlat" name="plat" class="mt-1 p-2 w-full border rounded" required>
+                </div>
+
+                <div class="mb-4">
+                    <label for="addHargaSewa" class="block text-sm font-medium text-gray-700">Harga Sewa</label>
+                    <input type="number" id="addHargaSewa" name="harga_sewa" class="mt-1 p-2 w-full border rounded" required>
+                </div>
+
+                <div class="mb-4">
+                    <label for="addDeskripsi" class="block text-sm font-medium text-gray-700">Deskripsi</label>
+                    <textarea id="addDeskripsi" name="deskripsi" rows="4" class="mt-1 p-2 w-full border rounded" required></textarea>
+                </div>
+
+                <div class="flex justify-end space-x-3 sticky bottom-0 bg-white pt-4">
+                    <button type="button" onclick="closeAddModal()" class="bg-gray-400 text-white px-4 py-2 rounded">Batal</button>
+                    <button type="submit" class="bg-blue-600 text-white px-4 py-2 rounded">Tambah</button>
+                </div>
+            </form>
+        </div>
+        <div class="col-span-3"></div>
+    </div>
+</div>
+
 <script>
+    let isAddModalOpen = false;
+
+    function openAddModal() {
+        document.getElementById('addModal').classList.remove('hidden');
+        isAddModalOpen = true;
+    }
+
+    function closeAddModal() {
+        document.getElementById('addModal').classList.add('hidden');
+        isAddModalOpen = false;
+    }
+
     function openEditModal(button) {
         // Ambil nilai dari atribut data- pada tombol yang diklik
         const product = {
@@ -144,12 +205,17 @@
         document.getElementById('plat').value = product.plat;
         document.getElementById('harga_sewa').value = product.harga_sewa;
 
-        // Tampilkan modal
         document.getElementById('editModal').classList.remove('hidden');
     }
 
     function closeModal() {
         document.getElementById('editModal').classList.add('hidden');
     }
+
+    window.addEventListener('load', function () {
+        if (!isAddModalOpen) {
+            document.getElementById('addModal').classList.add('hidden');
+        }
+    });
 </script>
 @endsection
