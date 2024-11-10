@@ -3,7 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\HomeController;
-// use App\Http\Controllers\AdminController;
+use App\Http\Controllers\AdminController;
 
 Route::get('/', function () {
     return view('home');
@@ -24,3 +24,7 @@ Route::middleware(['auth', 'user-access:user'])->group(function() {
 Route::middleware(['auth', 'user-access:admin'])->group(function() {
     Route::get('/admin/home', [HomeController::class, 'adminHome'])->name('admin/home');
 });
+
+Route::resource('admin/products', AdminController::class);
+Route::get('products/{product}/edit', [AdminController::class, 'edit'])->name('products.edit');
+Route::put('/products/{id}', [AdminController::class, 'update']);
