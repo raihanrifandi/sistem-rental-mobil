@@ -12,9 +12,10 @@
 <body>
     <section class="h-screen flex">
         <!-- Bagian Gambar -->
-        <div class="hidden md:flex w-1/2 h-full">
-            <img src="https://i.pinimg.com/564x/73/5a/70/735a70b1abc4bfed1c0f86539fc3fa9c.jpg" alt="Gambar Login" class="w-full h-full object-cover">
+        <div class="hidden md:flex w-[300px] h-[150px]">
+            <img src="assets/img/login-img.png" alt="Gambar Login" class="object-cover" >
         </div>
+        
 
         <!-- Bagian Login -->
         <div class="flex flex-col items-center justify-center w-full md:w-1/2 px-6 py-8 mx-auto lg:py-0">
@@ -63,7 +64,7 @@
                             </div>
                             <a href="#" class="text-sm font-medium text-primary-600 hover:underline dark:text-primary-500">Forgot password?</a>
                         </div>
-                        <button type="submit" class="w-full bg-indigo-600 hover:bg-indigo-500 text-white font-semibold py-2 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-400">Sign in</button>
+                        <button type="submit" class="w-full bg-blue-600 hover:bg-indigo-500 text-white font-semibold py-2 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-400">Sign in</button>
                         <p class="text-sm font-light text-gray-500 dark:text-gray-400">
                             Don’t have an account yet? <a href="{{ route('register') }}" class="font-medium text-primary-600 hover:underline dark:text-primary-500">Sign up</a>
                         </p>

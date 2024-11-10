@@ -23,7 +23,7 @@
                     <p class="text-gray-1000 font-regular mb-8">
                         Lebih dari sekedar rental mobil. Kami hadir untuk <br> memastikan setiap langkah perjalanan Anda aman <br> dan nyaman, layaknya diiringi dengan doa ibu.
                     </p>
-                    <button class="bg-gradient-to-b from-[#65BAFF] to-[#038EFF] text-white px-8 py-3 rounded-[16px] hover:shadow-lg transition duration-300 w-[200px] h-[52px]">
+                    <button class="bg-gradient-to-b from-[#65BAFF] to-[#038EFF] text-white px-8 py-3 rounded-[16px] hover:shadow-lg transition duration-300 kkkjjj">
                         Sewa Sekarang! 
                     </button>
                 </div>
