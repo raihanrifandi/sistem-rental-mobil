@@ -17,6 +17,10 @@ class AdminController extends Controller
     {
         return view('products.create');
     }
+    public function metode_pembayaran()
+    {
+        return view('metode_pembayaran');
+    }
 
     public function store(Request $request)
     {

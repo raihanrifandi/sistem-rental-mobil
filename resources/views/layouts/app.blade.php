@@ -7,53 +7,86 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>@yield('title')</title>
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.0.0/dist/tailwind.min.css" rel="stylesheet">
+    <!-- SweetAlert2 CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
 
-<body class="h-screen flex bg-gray-100">
+<body class="h-screen flex bg-gray-50">
+
     <!-- Sidebar with Header Elements -->
-    <aside class="bg-gray-800 text-white w-20 flex flex-col items-center pt-4 space-y-4">
+    <aside class="bg-gray-800 text-white w-20 flex flex-col items-center pt-6 space-y-8">
         <!-- Profile Picture -->
-        <div class="flex flex-col items-center">
+        <div class="flex flex-col items-center space-y-2">
             <img src="https://i.pinimg.com/736x/a0/1e/6f/a01e6fa95f54f561303a558adf40a721.jpg" alt="Profile"
-                class="w-10 h-10 rounded-full border-2 border-white shadow-md">
+                class="w-12 h-12 rounded-full border-2 border-white shadow-xl">
         </div>
 
         <!-- Navigation Links -->
         <div class="flex flex-col space-y-4 items-center">
-            <a href="{{ route('admin/home') }}" class="text-white hover:bg-gray-700 p-2 rounded-full w-full flex flex-col items-center">
+            <a href="{{ route('admin/home') }}" class="text-white hover:bg-gray-700 p-3 rounded-full w-16 flex flex-col items-center transition duration-300 ease-in-out transform hover:scale-110">
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                        d="M3 12l2-2m0 0l7-7 7 7m-9-2v8m4 4h6a2 2 0 002-2v-5a2 2 0 00-.586-1.414L13 3a2 2 0 00-2.828 0L3.586 9.586A2 2 0 003 11v1m9 4h2" />
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7m-9-2v8m4 4h6a2 2 0 002-2v-5a2 2 0 00-.586-1.414L13 3a2 2 0 00-2.828 0L3.586 9.586A2 2 0 003 11v1m9 4h2" />
                 </svg>
                 <span class="text-xs hidden md:block">Home</span>
             </a>
-            <a href="{{ route('products.index') }}" class="text-white hover:bg-gray-700 p-2 rounded-full w-full flex flex-col items-center">
+            <a href="{{ route('products.index') }}" class="text-white hover:bg-gray-700 p-3 rounded-full w-16 flex flex-col items-center transition duration-300 ease-in-out transform hover:scale-110">
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                        d="M3 7h2a1 1 0 011 1v11a1 1 0 001 1h10a1 1 0 001-1V8a1 1 0 011-1h2M16 3H8a1 1 0 00-1 1v2a1 1 0 001 1h8a1 1 0 001-1V4a1 1 0 00-1-1z" />
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 7h2a1 1 0 011 1v11a1 1 0 001 1h10a1 1 0 001-1V8a1 1 0 011-1h2M16 3H8a1 1 0 00-1 1v2a1 1 0 001 1h8a1 1 0 001-1V4a1 1 0 00-1-1z" />
                 </svg>
                 <span class="text-xs hidden md:block">Products</span>
             </a>
-            <!-- Logout link with confirmation -->
-            <a href="{{ route('logout') }}" onclick="return confirmLogout()" class="text-white hover:bg-gray-700 p-2 rounded-full w-full flex flex-col items-center">
+            <a href="/metode_pembayaran" class="text-white hover:bg-gray-700 p-3 rounded-full w-16 flex flex-col items-center transition duration-300 ease-in-out transform hover:scale-110">
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                        d="M17 16l4-4m0 0l-4-4m4 4H7m6 4V4" />
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 6h18M3 6c0 4 18 4 18 0M3 6v12m18 0V6m0 12c0 4-18 4-18 0" />
+                </svg>
+                <span class="text-xs text-center hidden md:block">Metode Pembayaran</span>
+            <a href="/pembayaran" class="text-white hover:bg-gray-700 p-3 rounded-full w-16 flex flex-col items-center transition duration-300 ease-in-out transform hover:scale-110">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 2C7.03 2 3 6.03 3 11s4.03 9 9 9 9-4.03 9-9-4.03-9-9-9zm-1 12v-4h2v4h-2zm0-6V7h2v1h-2z"/>
+                </svg>
+                <span class="text-xs text-center hidden md:block">Pembayaran</span>
+            </a>
+            <!-- Logout link with SweetAlert2 confirmation -->
+            <a href="#" onclick="confirmLogout(event)" class="text-white hover:bg-red-600 p-3 rounded-full w-16 flex flex-col items-center transition duration-300 ease-in-out transform hover:scale-110">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4V4" />
                 </svg>
                 <span class="text-xs hidden md:block">Logout</span>
             </a>
         </div>
     </aside>
 
-    <!-- Main Content -->
-    <main class="flex-1 p-6 overflow-y-auto">
-        <div>@yield('contents')</div>
-    </main>
+    <!-- Main Content Area -->
+    <div class="flex flex-col w-full">
+        <!-- Top Bar with Title -->
+        <header class="bg-gray-800 text-white p-4 flex items-center justify-between">
+            <h1 class="text-xl font-bold">SISTEM RENTAL</h1>
+        </header>
+
+        <!-- Main Content -->
+        <main class="flex-1 p-6 overflow-y-auto">
+            <div>@yield('contents')</div>
+        </main>
+    </div>
 
     <script>
-        // Function to show logout confirmation dialog
-        function confirmLogout() {
-            return confirm('Are you sure you want to logout?');
+        // Function to show SweetAlert2 logout confirmation dialog
+        function confirmLogout(event) {
+            event.preventDefault(); // Prevent default anchor behavior
+            Swal.fire({
+                title: 'Are you sure?',
+                text: "You will be logged out!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Yes, logout!',
+                cancelButtonText: 'Cancel'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    window.location.href = "{{ route('logout') }}";
+                }
+            });
         }
     </script>
 </body>
