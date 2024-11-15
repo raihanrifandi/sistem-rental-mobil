@@ -20,6 +20,7 @@ class AdminController extends Controller
 
     public function store(Request $request)
     {
+        
         // Cek jika ada file gambar yang diupload
         if ($request->hasFile('gambar')) {
             $file = $request->file('gambar');
@@ -35,6 +36,9 @@ class AdminController extends Controller
             'harga_sewa' => $request->input('harga_sewa'),
             'gambar' => isset($filename) ? 'uploads/' . $filename : null,
             'deskripsi' => $request->input('deskripsi'),
+            'transmisi' => $request->input('transmisi'),
+            'kapasitas' => $request->input('kapasitas'),
+            'status' => 'available', // Status default
         ]);
 
         return redirect()->route('products.index')->with('success', 'Produk berhasil ditambahkan');
@@ -65,17 +69,18 @@ class AdminController extends Controller
 
         // Update kolom-kolom lain di produk
         $product->merk = $request->input('merk');
-        //$product->model = $request->input('model');
+        $product->model = $request->input('model');
         $product->tahun = $request->input('tahun');
         $product->plat = $request->input('plat');
         $product->harga_sewa = $request->input('harga_sewa');
         $product->deskripsi = $request->input('deskripsi');
+        $product->transmisi = $request->input('transmisi');
+        $product->kapasitas = $request->input('kapasitas');
 
         $product->save();
 
         return redirect()->route('products.index')->with('success', 'Produk berhasil diperbarui');
     }
-
 
     public function destroy($id)
     {

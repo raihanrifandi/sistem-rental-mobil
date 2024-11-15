@@ -11,6 +11,7 @@
 </head>
 <body>
     <section class="h-screen flex">
+        
         <!-- Bagian Gambar -->
         <div class="hidden md:flex w-[300px] h-[150px]">
             <img src="assets/img/login-img.png" alt="Gambar Login" class="object-cover" >
