@@ -13,6 +13,8 @@ Route::get('/', function () {
     return view('home');
 });
 
+
+
 Route::controller(AuthController::class)->group(function() {
     Route::get('register','register')->name('register');
     Route::post('register', 'registerSave')->name('register.save');
@@ -47,6 +49,5 @@ Route::prefix('pembayaran')->name('pembayaran.')->group(function() {
     Route::get('/create', [PembayaranController::class, 'create'])->name('create');
     Route::post('/', [PembayaranController::class, 'store'])->name('store');
 });
-
 
 

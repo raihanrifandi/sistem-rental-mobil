@@ -12,11 +12,10 @@
 <body>
     <section class="h-screen flex">
         <!-- Bagian Gambar -->
-        <div class="hidden md:flex w-[300px] h-[150px]">
-            <img src="assets/img/login-img.png" alt="Gambar Login" class="object-cover" >
+        <div class="hidden md:flex w-1/2 h-full items-center justify-center">
+            <img src="assets/img/login-img.png" alt="Gambar Login" class="object-cover w-150 h-150">
         </div>
         
-
         <!-- Bagian Form Register -->
         <div class="flex flex-col items-center justify-center w-full md:w-1/2 px-6 py-8 mx-auto lg:py-0">
             <div class="flex items-center mb-6 text-2xl font-semibold text-gray-900 dark:text-white">

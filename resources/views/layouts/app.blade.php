@@ -13,81 +13,90 @@
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
 
-<body>
-    <header class="px-4 py-2 shadow">
-        <div class="flex justify-between">
-            <div class="flex items-center">
-                <button data-menu class="p-4 -ml-3 focus:outline-none" type="button">
-                    <svg class="fill-current w-5" viewBox="0 -21 384 384">
-                        <path d="M362.668 0H21.332C9.578 0 0 9.578 0 21.332V64c0 11.754 9.578 21.332 21.332 21.332h341.336C374.422 85.332 384 75.754 384 64V21.332C384 9.578 374.422 0 362.668 0zm0 0M362.668 128H21.332C9.578 128 0 137.578 0 149.332V192c0 11.754 9.578 21.332 21.332 21.332h341.336c11.754 0 21.332-9.578 21.332-21.332v-42.668c0-11.754-9.578-21.332-21.332-21.332zm0 0M362.668 256H21.332C9.578 256 0 265.578 0 277.332V320c0 11.754 9.578 21.332 21.332 21.332h341.336c11.754 0 21.332-9.578 21.332-21.332v-42.668c0-11.754-9.578-21.332-21.332-21.332zm0 0" />
-                    </svg>
-                </button>
+<body class="h-screen flex bg-gray-50">
 
-                <button data-search class="p-4 md:hidden focus:outline-none" type="button">
-                    <svg data-search-icon class="fill-current w-4" viewBox="0 0 512 512" style="top: 0.7rem; left: 1rem;">
-                        <path d="M225.474 0C101.151 0 0 101.151 0 225.474c0 124.33 101.151 225.474 225.474 225.474 124.33 0 225.474-101.144 225.474-225.474C450.948 101.151 349.804 0 225.474 0zm0 409.323c-101.373 0-183.848-82.475-183.848-183.848S124.101 41.626 225.474 41.626s183.848 82.475 183.848 183.848-82.475 183.849-183.848 183.849z" />
-                        <path d="M505.902 476.472L386.574 357.144c-8.131-8.131-21.299-8.131-29.43 0-8.131 8.124-8.131 21.306 0 29.43l119.328 119.328A20.74 20.74 0 00491.187 512a20.754 20.754 0 0014.715-6.098c8.131-8.124 8.131-21.306 0-29.43z" />
-                    </svg>
-                </button>
+    <!-- Sidebar with Header Elements -->
+    <aside class="bg-gray-800 text-white w-20 flex flex-col items-center pt-6 space-y-8">
+        <!-- Profile Picture -->
+        <div class="flex flex-col items-center space-y-2">
+            <img src="https://i.pinimg.com/736x/a0/1e/6f/a01e6fa95f54f561303a558adf40a721.jpg" alt="Profile"
+                class="w-12 h-12 rounded-full border-2 border-white shadow-xl">
+        </div>
 
-            </div>
-
-            <button data-dropdown class="flex items-center px-3 py-2 focus:outline-none hover:bg-gray-200 hover:rounded-md" type="button" x-data="{ open: false }" @click="open = true" :class="{ 'bg-gray-200 rounded-md': open }">
-                <img src="https://i.pinimg.com/736x/a0/1e/6f/a01e6fa95f54f561303a558adf40a721.jpg" alt="Profle" class="h-8 w-8 rounded-full">
-
-                <span class="ml-4 text-sm hidden md:inline-block">Admin</span>
-                <svg class="fill-current w-3 ml-4" viewBox="0 0 407.437 407.437">
-                    <path d="M386.258 91.567l-182.54 181.945L21.179 91.567 0 112.815 203.718 315.87l203.719-203.055z" />
+        <!-- Navigation Links -->
+        <div class="flex flex-col space-y-4 items-center">
+            <a href="{{ route('admin/home') }}" class="text-white hover:bg-gray-700 p-3 rounded-full w-16 flex flex-col items-center transition duration-300 ease-in-out transform hover:scale-110">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7m-9-2v8m4 4h6a2 2 0 002-2v-5a2 2 0 00-.586-1.414L13 3a2 2 0 00-2.828 0L3.586 9.586A2 2 0 003 11v1m9 4h2" />
                 </svg>
-
-                <div data-dropdown-items class="text-sm text-left absolute top-0 right-0 mt-16 mr-4 bg-white rounded border border-gray-400 shadow" x-show="open" @click.away="open = false">
-                    <ul>
-                        <li class="px-4 py-3 hover:bg-gray-200"><a href="{{ route('logout') }}">Log out</a></li>
-                    </ul>
-                </div>
-            </button>
+                <span class="text-xs hidden md:block">Home</span>
+            </a>
+            <a href="{{ route('products.index') }}" class="text-white hover:bg-gray-700 p-3 rounded-full w-16 flex flex-col items-center transition duration-300 ease-in-out transform hover:scale-110">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 11l1.5-4.5a2 2 0 012-1.5h7a2 2 0 012 1.5L19 11m-14 0h14m-14 0l-.5 4.5a2 2 0 002 2h11a2 2 0 002-2L19 11M5 11h14M6 16h.01M18 16h.01" />
+                </svg>
+                <span class="text-xs hidden md:block">Products</span>
+            </a>
+            <a href="/metode_pembayaran" class="text-white hover:bg-gray-700 p-3 rounded-full w-16 flex flex-col items-center transition duration-300 ease-in-out transform hover:scale-110">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 6h18M3 6c0 4 18 4 18 0M3 6v12m18 0V6m0 12c0 4-18 4-18 0" />
+                </svg>
+                <span class="text-xs text-center hidden md:block">Metode Pembayaran</span>
+            <a href="/pembayaran" class="text-white hover:bg-gray-700 p-3 rounded-full w-16 flex flex-col items-center transition duration-300 ease-in-out transform hover:scale-110">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 2C7.03 2 3 6.03 3 11s4.03 9 9 9 9-4.03 9-9-4.03-9-9-9zm-1 12v-4h2v4h-2zm0-6V7h2v1h-2z"/>
+                </svg>
+                <span class="text-xs text-center hidden md:block">Pembayaran</span>
+            </a>
+            <a href="/penyewaan" class="text-white hover:bg-gray-700 p-3 rounded-full w-16 flex flex-col items-center transition duration-300 ease-in-out transform hover:scale-110">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 11l7-7 7 7M5 19h14" />
+                </svg>
+                <span class="text-xs hidden md:block">Penyewaan</span>
+            </a>
+            <!-- Logout link with SweetAlert2 confirmation -->
+            <a href="#" onclick="confirmLogout(event)" class="text-white hover:bg-red-600 p-3 rounded-full w-16 flex flex-col items-center transition duration-300 ease-in-out transform hover:scale-110">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4V4" />
+                </svg>
+                <span class="text-xs hidden md:block">Logout</span>
+            </a>
         </div>
-        </div>
-    </header>
+    </aside>
 
-    <div class="flex flex-row">
-        <div class="flex flex-col w-64 h-screen overflow-y-auto bg-gray-900 border-r rtl:border-r-0 rtl:border-l dark:bg-gray-900 dark:border-gray-700">
-            <div class="sidebar text-center bg-gray-900">
-                <div class="text-gray-100 text-xl">
-                    <div class="p-2.5 mt-1 flex items-center">
-                        <i class="bi bi-app-indicator px-2 py-1 rounded-md bg-blue-600"></i>
-                        <h1 class="font-bold text-gray-200 text-[15px] ml-3">Dahboard</h1>
-                    </div>
-                    <div class="my-2 bg-gray-600 h-[1px]"></div>
-                </div>
+    <!-- Main Content Area -->
+    <div class="flex flex-col w-full">
+        <!-- Top Bar with Title -->
+        <header class="bg-gray-800 text-white p-4 flex items-center justify-between">
+            <h1 class="text-xl font-bold">SISTEM RENTAL</h1>
+        </header>
 
-                <a href="{{ route('admin/home') }}">
-                    <div class="p-2.5 mt-3 flex items-center rounded-md px-4 duration-300 cursor-pointer hover:bg-blue-600 text-white">
-                        <i class="bi bi-house-door-fill"></i>
-                        <span class="text-[15px] ml-4 text-gray-200 font-bold">Home</span>
-                    </div>
-                </a>
-
-                <a href="{{ route('products.index') }}">
-                    <div class="p-2.5 mt-3 flex items-center rounded-md px-4 duration-300 cursor-pointer hover:bg-blue-600 text-white">
-                        <i class="bi bi-car-front-fill"></i>
-                        <span class="text-[15px] ml-4 text-gray-200 font-bold">Product</span>
-                    </div>
-                </a>
-
-                <a href="{{ route('logout') }}">
-                    <div class="my-4 bg-gray-600 h-[1px]"></div>
-                    <div class="p-2.5 mt-3 flex items-center rounded-md px-4 duration-300 cursor-pointer hover:bg-blue-600 text-white">
-                        <i class="bi bi-box-arrow-in-right"></i>
-                        <span class="text-[15px] ml-4 text-gray-200 font-bold">Logout</span>
-                    </div>
-                </a>
-            </div>
-        </div>
-        <div class="flex flex-col w-full h-screen px-4 py-8">
+        <!-- Main Content -->
+        <main class="flex-1 p-6 overflow-y-auto">
             <div>@yield('contents')</div>
-        </div>
+        </main>
     </div>
+
+    <script>
+        // Function to show SweetAlert2 logout confirmation dialog
+        function confirmLogout(event) {
+            event.preventDefault(); // Prevent default anchor behavior
+            Swal.fire({
+                title: 'Are you sure?',
+                text: "You will be logged out!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Yes, logout!',
+                cancelButtonText: 'Cancel'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    window.location.href = "{{ route('logout') }}";
+                }
+            });
+        }
+    </script>
 </body>
 
 </html>
