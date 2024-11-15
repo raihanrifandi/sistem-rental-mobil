@@ -31,7 +31,7 @@
             </a>
             <a href="{{ route('products.index') }}" class="text-white hover:bg-gray-700 p-3 rounded-full w-16 flex flex-col items-center transition duration-300 ease-in-out transform hover:scale-110">
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 7h2a1 1 0 011 1v11a1 1 0 001 1h10a1 1 0 001-1V8a1 1 0 011-1h2M16 3H8a1 1 0 00-1 1v2a1 1 0 001 1h8a1 1 0 001-1V4a1 1 0 00-1-1z" />
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 11l1.5-4.5a2 2 0 012-1.5h7a2 2 0 012 1.5L19 11m-14 0h14m-14 0l-.5 4.5a2 2 0 002 2h11a2 2 0 002-2L19 11M5 11h14M6 16h.01M18 16h.01" />
                 </svg>
                 <span class="text-xs hidden md:block">Products</span>
             </a>
@@ -45,6 +45,12 @@
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 2C7.03 2 3 6.03 3 11s4.03 9 9 9 9-4.03 9-9-4.03-9-9-9zm-1 12v-4h2v4h-2zm0-6V7h2v1h-2z"/>
                 </svg>
                 <span class="text-xs text-center hidden md:block">Pembayaran</span>
+            </a>
+            <a href="/penyewaan" class="text-white hover:bg-gray-700 p-3 rounded-full w-16 flex flex-col items-center transition duration-300 ease-in-out transform hover:scale-110">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 11l7-7 7 7M5 19h14" />
+                </svg>
+                <span class="text-xs hidden md:block">Penyewaan</span>
             </a>
             <!-- Logout link with SweetAlert2 confirmation -->
             <a href="#" onclick="confirmLogout(event)" class="text-white hover:bg-red-600 p-3 rounded-full w-16 flex flex-col items-center transition duration-300 ease-in-out transform hover:scale-110">
