@@ -10,8 +10,17 @@ module.exports = {
         fontFamily: {
             sans: ['Manrope', 'sans-serif'], 
         },
+        backgroundImage: {
+          'gradient-button': 'linear-gradient(to bottom, #038EFF, #65BAFF)',
+        },
+        colors: {
+          'checkbox-bg': '#F6F8F9',
+          'checkbox-border': '#B0BABF',
+        },
     },
   },
-  plugins: [],
+  plugins: [
+    require('@tailwindcss/forms'),
+  ],
 }
 

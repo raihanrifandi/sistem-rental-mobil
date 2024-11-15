@@ -3,7 +3,8 @@
 
 @section('contents')
 <div class="container mx-auto">
-
+    <div id="toastContainer" class="fixed top-5 right-5 space-y-4 z-50"></div> 
+    
     @if(session('error'))
     <div class="alert alert-danger bg-red-500 text-white p-3 rounded mb-4">
         {{ session('error') }}
@@ -35,6 +36,8 @@
                     <th class="py-3 px-4 text-left text-gray-600 font-semibold text-sm uppercase tracking-wider border">Model</th>
                     <th class="py-3 px-4 text-left text-gray-600 font-semibold text-sm uppercase tracking-wider border">Tahun</th>
                     <th class="py-3 px-4 text-left text-gray-600 font-semibold text-sm uppercase tracking-wider border">Plat</th>
+                    <th class="py-3 px-4 text-left text-gray-600 font-semibold text-sm uppercase tracking-wider border">Transmisi</th>
+                    <th class="py-3 px-4 text-left text-gray-600 font-semibold text-sm uppercase tracking-wider border">Kapasitas</th>
                     <th class="py-3 px-4 text-left text-gray-600 font-semibold text-sm uppercase tracking-wider border">Harga Sewa</th>
                     <th class="py-3 px-4 text-left text-gray-600 font-semibold text-sm uppercase tracking-wider border">Status</th>
                     <th class="py-3 px-4 text-center text-gray-600 font-semibold text-sm uppercase tracking-wider border">Aksi</th>
@@ -45,7 +48,6 @@
                 <tr class="hover:bg-gray-50 transition duration-200">
                     <td class="py-4 px-4 border">{{ $product->id_mobil }}</td>
                     <!-- Kolom Gambar -->
-                
                     <td class="py-4 px-4 border ">
                         @if ($product->gambar)
                         <img src="{{ asset( $product->gambar) }}" alt="Gambar Produk" class="w-24 h-24 object-cover rounded">
@@ -58,6 +60,8 @@
                     <td class="py-4 px-4 border">{{ $product->model }}</td>
                     <td class="py-4 px-4 border">{{ $product->tahun }}</td>
                     <td class="py-4 px-4 border">{{ $product->plat }}</td>
+                    <td class="py-4 px-4 border">{{ $product->transmisi }}</td>
+                    <td class="py-4 px-4 border">{{ $product->kapasitas }}</td>
                     <td class="py-4 px-4 border">Rp {{ number_format($product->harga_sewa, 0, ',', '.') }}</td>
                     <td class="py-4 px-4 border">
                         <span class="px-3 py-1 text-sm font-medium rounded-full 
@@ -81,6 +85,8 @@
                             data-model="{{ $product->model }}"
                             data-tahun="{{ $product->tahun }}"
                             data-plat="{{ $product->plat }}"
+                            data-kapasitas="{{$product->kapasitas}}"
+                            data-transmisi="{{$product->transmisi}}"
                             data-harga_sewa="{{ $product->harga_sewa }}"
                             class="bg-blue-500 text-white px-4 py-1 rounded-lg hover:bg-blue-600 transition duration-200 shadow">
                             Edit
@@ -140,6 +146,25 @@
             </div>
 
             <div class="mb-4">
+                <label for="transmisi" class="block text-sm font-medium text-gray-700">Transmisi</label>
+                <select id="transmisi" name="transmisi" class="mt-1 p-2 w-full border rounded" required>
+                    <option value="" disabled selected>Pilih Transmisi</option>
+                    <option value="manual">Manual</option>
+                    <option value="matic">Matic</option>
+                </select>
+            </div>
+            
+            <div class="mb-4">
+                <label for="kapasitas" class="block text-sm font-medium text-gray-700">Kapasitas Penumpang</label>
+                <select id="kapasitas" name="kapasitas" class="mt-1 p-2 w-full border rounded" required>
+                    <option value="" disabled selected>Pilih Kapasitas</option>
+                    <option value="2">2 Penumpang</option>
+                    <option value="4">4 Penumpang</option>
+                    <option value="6">6 Penumpang</option>
+                </select>
+            </div>
+            
+            <div class="mb-4">
                 <label for="harga_sewa" class="block text-sm font-medium text-gray-700">Harga Sewa</label>
                 <input type="number" id="harga_sewa" name="harga_sewa" class="mt-1 p-2 w-full border rounded" required>
             </div>
@@ -182,6 +207,25 @@
                 </div>
 
                 <div class="mb-4">
+                    <label for="addTransmisi" class="block text-sm font-medium text-gray-700">Transmisi</label>
+                    <select id="addTransmisi" name="transmisi" class="mt-1 p-2 w-full border rounded" required>
+                        <option value="" disabled selected>--Pilih Transmisi--</option>
+                        <option value="manual">Manual</option>
+                        <option value="matic">Matic</option>
+                    </select>
+                </div>
+                
+                <div class="mb-4">
+                    <label for="addKapasitas" class="block text-sm font-medium text-gray-700">Kapasitas Penumpang</label>
+                    <select id="addKapasitas" name="kapasitas" class="mt-1 p-2 w-full border rounded" required>
+                        <option value="" disabled selected>--Pilih Kapasitas--</option>
+                        <option value="2">2 Penumpang</option>
+                        <option value="4">4 Penumpang</option>
+                        <option value="6">6 Penumpang</option>
+                    </select>
+                </div>
+                
+                <div class="mb-4">
                     <label for="addHargaSewa" class="block text-sm font-medium text-gray-700">Harga Sewa</label>
                     <input type="number" id="addHargaSewa" name="harga_sewa" class="mt-1 p-2 w-full border rounded" required>
                 </div>
@@ -206,59 +250,4 @@
         <div class="col-span-3"></div>
     </div>
 </div>
-
-<script>
-    let isAddModalOpen = false;
-    let isEditModalOpen = false;
-
-    function openAddModal() {
-        document.getElementById('addModal').classList.remove('hidden');
-        isAddModalOpen = true;
-    }
-
-    function closeAddModal() {
-        document.getElementById('addModal').classList.add('hidden');
-        isAddModalOpen = false;
-    }
-
-    function openEditModal(button) {
-        isEditModalOpen = true;
-
-        // Ambil nilai dari atribut data- pada tombol yang diklik
-        const product = {
-            id_mobil: button.getAttribute('data-id_mobil'),
-            merk: button.getAttribute('data-merk'),
-            model: button.getAttribute('data-model'),
-            tahun: button.getAttribute('data-tahun'),
-            plat: button.getAttribute('data-plat'),
-            harga_sewa: button.getAttribute('data-harga_sewa')
-        };
-
-        // Set nilai input form modal dengan data produk yang dipilih
-        document.getElementById('editForm').action = '/products/' + product.id_mobil;
-        document.getElementById('productId').value = product.id_mobil;
-        document.getElementById('merk').value = product.merk;
-        document.getElementById('model').value = product.model;
-        document.getElementById('tahun').value = product.tahun;
-        document.getElementById('plat').value = product.plat;
-        document.getElementById('harga_sewa').value = product.harga_sewa;
-
-        document.getElementById('editModal').classList.remove('hidden');
-    }
-
-    function closeModal() {
-        document.getElementById('editModal').classList.add('hidden');
-        isEditModalOpen = false;
-    }
-
-    window.addEventListener('load', function() {
-        if (!isAddModalOpen) {
-            document.getElementById('addModal').classList.add('hidden');
-        }
-
-        if (!isEditModalOpen) {
-            document.getElementById('editModal').classList.add('hidden');
-        }
-    });
-</script>
 @endsection

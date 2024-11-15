@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\CarController;
 use App\Http\Controllers\MetodePembayaranController;
 use App\Http\Controllers\PembayaranController;
 use App\Http\Controllers\PenyewaanController;
@@ -28,7 +29,14 @@ Route::middleware(['auth', 'user-access:user'])->group(function() {
 
 Route::middleware(['auth', 'user-access:admin'])->group(function() {
     Route::get('/admin/home', [HomeController::class, 'adminHome'])->name('admin/home');
+    Route::get('/admin/products', [HomeController::class, 'index'])->name('admin/products');
+    Route::resource('admin/products', AdminController::class);
+    Route::get('products/{product}/edit', [AdminController::class, 'edit'])->name('products.edit');
+    Route::put('products/{id}', [AdminController::class, 'update'])->name('products.update');
 });
+
+Route::get('/daftar-mobil/filter', [CarController::class, 'filter'])->name('car.filter');
+Route::get('/daftar-mobil', [CarController::class, 'index'])->name('car.list');
 
 Route::resource('admin/products', AdminController::class);
 Route::get('products/{product}/edit', [AdminController::class, 'edit'])->name('products.edit');
@@ -41,4 +49,5 @@ Route::prefix('pembayaran')->name('pembayaran.')->group(function() {
     Route::get('/create', [PembayaranController::class, 'create'])->name('create');
     Route::post('/', [PembayaranController::class, 'store'])->name('store');
 });
+
 

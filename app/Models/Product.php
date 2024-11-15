@@ -22,6 +22,8 @@ class Product extends Model
         'status',
         'gambar',
         'deskripsi',
+        'transmisi', 
+        'kapasitas',
     ];
 
     public $timestamps = true;

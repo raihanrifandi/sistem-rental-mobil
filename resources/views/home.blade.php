@@ -23,7 +23,7 @@
                     <p class="text-gray-1000 font-regular mb-8">
                         Lebih dari sekedar rental mobil. Kami hadir untuk <br> memastikan setiap langkah perjalanan Anda aman <br> dan nyaman, layaknya diiringi dengan doa ibu.
                     </p>
-                    <button class="bg-gradient-to-b from-[#65BAFF] to-[#038EFF] text-white px-8 py-3 rounded-[16px] hover:shadow-lg transition duration-300 kkkjjj">
+                    <button class="bg-gradient-to-b from-[#65BAFF] to-[#038EFF] text-white px-8 py-3 rounded-[14px] hover:shadow-lg transition duration-300">
                         Sewa Sekarang! 
                     </button>
                 </div>
@@ -35,11 +35,59 @@
                 <img src="assets/img/dot.png" alt="Dotted Element" data-aos="fade-up" data-aos-duration="750" data-aos-delay="100" data-aos-easing="ease-in-out" data-aos-repeat="true" style="position: absolute; top: 585px; left: 1160px; z-index: 0; width: 49px; height: 28px;">
             </div>
         </div>
+        <!-- Search Form Section - Positioned Below Hero -->
+        <div class="left-2 transform -bottom-20 w-128 max-w-5xl">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8 p-8">
+                <!-- Kategori -->
+                <div>
+                    <label class="block text-lg font-semibold text-gray-800 mb-2">Kategori</label>
+                    <div class="relative">
+                        <select class="w-full h-14 pl-10 pr-4 bg-gray-100 border border-gray-300 rounded-lg text-gray-600 focus:outline-none focus:ring-2 focus:ring-blue-500">
+                            <option>-- Pilih Kategori --</option>
+                        </select>
+                        <!-- Location Icon -->
+                        <svg class="absolute left-3 top-1/2 transform -translate-y-1/2 w-6 h-6 text-blue-500" fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                            <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5S10.62 6.5 12 6.5s2.5 1.12 2.5 2.5S13.38 11.5 12 11.5z"/>
+                        </svg>
+                    </div>
+                </div>
+
+                <!-- Tanggal Peminjaman -->
+                <div>
+                    <label class="block text-lg font-semibold text-gray-800 mb-2">Tanggal Peminjaman</label>
+                    <div class="relative">
+                        <input type="date" placeholder="Atur Tanggal" class="w-full h-14 pl-10 pr-4 bg-gray-100 border border-gray-300 rounded-lg text-gray-600 focus:outline-none focus:ring-2 focus:ring-blue-500">
+                        <!-- Calendar Icon -->
+                        <svg class="absolute left-3 top-1/2 transform -translate-y-1/2 w-6 h-6 text-blue-500" fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                            <path d="M19 4h-1V2h-2v2H8V2H6v2H5C3.9 4 3 4.9 3 6v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 16H5V10h14v10zM5 8V6h14v2H5z"/>
+                        </svg>
+                    </div>
+                </div>
+
+                <!-- Tanggal Pengembalian -->
+                <div>
+                    <label class="block text-lg font-semibold text-gray-800 mb-2">Tanggal Pengembalian</label>
+                    <div class="relative">
+                        <input type="date" placeholder="Atur Tanggal" class="w-full h-14 pl-10 pr-4 bg-gray-100 border border-gray-300 rounded-lg text-gray-600 focus:outline-none focus:ring-2 focus:ring-blue-500">
+                        <!-- Calendar Icon -->
+                        <svg class="absolute left-3 top-1/2 transform -translate-y-1/2 w-6 h-6 text-blue-500" fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                            <path d="M19 4h-1V2h-2v2H8V2H6v2H5C3.9 4 3 4.9 3 6v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 16H5V10h14v10zM5 8V6h14v2H5z"/>
+                        </svg>
+                    </div>
+                </div>
+                <!-- Cari Mobil Button -->
+                <div class="flex items-end">
+                    <button class="bg-gradient-to-b from-[#65BAFF] to-[#038EFF] text-white w-32 h-14 rounded-[14px] hover:shadow-lg transition duration-300">
+                        Cari Mobil
+                    </button>
+                </div>
+            </div>
+        </div>
     </section>
 
     <!-- Why Choose Us Section -->
-    <section class="py-16 bg-gray-50 lg:py-4">
-        <div class="px-4 sm:px-8 lg:px-8 py-8">
+    <section class="py-16 bg-white-0 lg:py-100">
+        <div class="px-4 sm:px-8 lg:px-8 py-18">    
             <h2 class="text-3xl md:text-[48px] font-semibold text-center mb-12 leading-[72px]">
                 Kenapa Harus Pilih Kami Untuk Perjalanan Yang <br>
                 Aman, Nyaman, Dan Terpercaya?
@@ -48,7 +96,7 @@
                 <div data-aos="fade-right">
                     <img src="assets/img/section1-img.png" alt="Jaguar F-Pace" class="w-[1200px] h-auto">
                 </div>
-                <img src="assets/img/dot.png" alt="Dotted Element" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="150" data-aos-easing="ease-in-out" data-aos-repeat="true" style="position: absolute; top: 850px; left: 75px; z-index: 1; width: 49px; height: 28px;">
+                <img src="assets/img/dot.png" alt="Dotted Element" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="150" data-aos-easing="ease-in-out" data-aos-repeat="true" style="position: absolute; top: 1000px; left: 75px; z-index: 1; width: 49px; height: 28px;">
                 <div data-aos="fade-left" class="space-y-6">
                 <!-- Feature 1 -->
                     <div class="flex items-start space-x-3">
@@ -122,7 +170,7 @@
                 Dapatkan Mobil Sewa Anda dengan Harga Terbaik dan Layanan<br>
                 terlengkap. Tunggu Apalagi, Pesan Sekarang!
             </p>
-            <button class="bg-white text-[#038EFF] px-8 py-3 rounded-[16px] hover:shadow-lg transition duration-300 w-[200px] h-[52px]">
+            <button class="bg-white text-[#038EFF] px-8 py-3 rounded-[14px] hover:shadow-lg transition duration-300 w-[200px] h-[52px]">
                 Sewa Sekarang! 
             </button>
         </div>
