@@ -4,10 +4,14 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\MetodePembayaranController;
+use App\Http\Controllers\PembayaranController;
 
 Route::get('/', function () {
     return view('home');
 });
+
+
 
 Route::controller(AuthController::class)->group(function() {
     Route::get('register','register')->name('register');
@@ -28,3 +32,11 @@ Route::middleware(['auth', 'user-access:admin'])->group(function() {
 Route::resource('admin/products', AdminController::class);
 Route::get('products/{product}/edit', [AdminController::class, 'edit'])->name('products.edit');
 Route::put('/products/{id}', [AdminController::class, 'update']);
+Route::resource('metode_pembayaran', MetodePembayaranController::class);
+
+Route::prefix('pembayaran')->name('pembayaran.')->group(function() {
+    Route::get('/', [PembayaranController::class, 'index'])->name('index');
+    Route::get('/create', [PembayaranController::class, 'create'])->name('create');
+    Route::post('/', [PembayaranController::class, 'store'])->name('store');
+});
+
