@@ -6,6 +6,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\MetodePembayaranController;
 use App\Http\Controllers\PembayaranController;
+use App\Http\Controllers\PenyewaanController;
 
 Route::get('/', function () {
     return view('home');
@@ -33,6 +34,7 @@ Route::resource('admin/products', AdminController::class);
 Route::get('products/{product}/edit', [AdminController::class, 'edit'])->name('products.edit');
 Route::put('/products/{id}', [AdminController::class, 'update']);
 Route::resource('metode_pembayaran', MetodePembayaranController::class);
+Route::resource('penyewaan', PenyewaanController::class);
 
 Route::prefix('pembayaran')->name('pembayaran.')->group(function() {
     Route::get('/', [PembayaranController::class, 'index'])->name('index');
