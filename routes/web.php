@@ -8,6 +8,8 @@ use App\Http\Controllers\CarController;
 use App\Http\Controllers\MetodePembayaranController;
 use App\Http\Controllers\PembayaranController;
 use App\Http\Controllers\PenyewaanController;
+use App\Http\Controllers\SewaController;
+use App\Models\Sewamobil;
 
 Route::get('/', function () {
     return view('home');
@@ -37,6 +39,9 @@ Route::middleware(['auth', 'user-access:admin'])->group(function() {
 
 Route::get('/daftar-mobil/filter', [CarController::class, 'filter'])->name('car.filter');
 Route::get('/daftar-mobil', [CarController::class, 'index'])->name('car.list');
+Route::get('/sewa', [SewaController::class, 'create'])->name('sewa-mobil.create');
+Route::post('/sewa', [SewaController::class, 'store'])->name('sewa-mobil.store');
+
 
 Route::resource('admin/products', AdminController::class);
 Route::get('products/{product}/edit', [AdminController::class, 'edit'])->name('products.edit');

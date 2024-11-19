@@ -15,9 +15,11 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->string('email')->unique();
+            $table->string('phone_number')->nullable(); // Tambahkan kolom phone_number
+            $table->text('address')->nullable(); // Tambahkan kolom address
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
-            $table->boolean('type')->default(false);
+            $table->boolean('type')->default(false); // Default type ke false (user)
             $table->rememberToken();
             $table->timestamps();
         });

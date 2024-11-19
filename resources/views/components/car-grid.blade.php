@@ -62,9 +62,7 @@
                 <div class="text-sm text-gray-500">Rp{{ number_format($car->harga_sewa * 7, 0, ',', '.') }}/minggu</div>
             </div>
 
-                <button class="w-full py-2 rounded text-white text-sm font-medium bg-gradient-to-r from-[#038EFF] to-[#65BAFF] hover:opacity-90 transition-opacity">
-                    Sewa
-                </button>
+                <a href="{{ route('sewa-mobil.store') }}"><button class="w-full py-2 rounded text-white text-sm font-medium bg-gradient-to-r from-[#038EFF] to-[#65BAFF] hover:opacity-90 transition-opacity">Sewa</button></a>
             </div>
         </div>
     @endif
