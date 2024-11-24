@@ -39,7 +39,7 @@
         <div class="left-2 transform -bottom-20 w-128 max-w-5xl">
             <div class="grid grid-cols-1 md:grid-cols-4 gap-8 p-8">
                 <!-- Kategori -->
-                <div>
+                {{-- <div>
                     <label class="block text-lg font-semibold text-gray-800 mb-2">Kategori</label>
                     <div class="relative">
                         <select class="w-full h-14 pl-10 pr-4 bg-gray-100 border border-gray-300 rounded-lg text-gray-600 focus:outline-none focus:ring-2 focus:ring-blue-500">
@@ -80,7 +80,7 @@
                     <button class="bg-gradient-to-b from-[#65BAFF] to-[#038EFF] text-white w-32 h-14 rounded-[14px] hover:shadow-lg transition duration-300">
                         Cari Mobil
                     </button>
-                </div>
+                </div> --}}
             </div>
         </div>
     </section>
