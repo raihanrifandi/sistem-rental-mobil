@@ -49,4 +49,10 @@ class User extends Authenticatable
             get: fn ($value) => ["user", "admin"][$value],
         );
     }
+
+    public function penyewaan()
+    {
+        return $this->hasMany(Penyewaan::class);
+    }
+
 }

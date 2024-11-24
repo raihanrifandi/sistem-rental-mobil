@@ -13,6 +13,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script src="{{ asset('js/home.js') }}"></script>
+    <script src="{{ asset('js/payment.js') }}"></script>
 </head>
 <body>
     <!-- Navbar Component -->

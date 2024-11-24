@@ -9,12 +9,14 @@ use App\Http\Controllers\CarController;
 use App\Http\Controllers\MetodePembayaranController;
 use App\Http\Controllers\PembayaranController;
 use App\Http\Controllers\PenyewaanController;
+use App\Http\Controllers\TransaksiController;
 
 
 Route::get('/', function () {
     return view('home');
 });
 
+// Login & Register
 Route::controller(AuthController::class)->group(function() {
     Route::get('register','register')->name('register');
     Route::post('register', 'registerSave')->name('register.save');
@@ -23,10 +25,28 @@ Route::controller(AuthController::class)->group(function() {
     Route::get('logout', 'logout')->middleware('auth')->name('logout');
 });
 
+// Lupa Password
+Route::controller(PasswordResetController::class)->group(function () {
+    Route::get('/forgot-password', 'showForgotPasswordForm')->name('password.request');
+    Route::post('/forgot-password', 'sendResetLink')->name('password.email');
+    Route::get('/reset-password/{token}', 'showResetPasswordForm')->name('password.reset');
+    Route::post('/reset-password', 'resetPassword')->name('password.update');
+});
+
+// Multi-authentication (Penyewa)
 Route::middleware(['auth', 'user-access:user'])->group(function() {
     Route::get('/home', [HomeController::class, 'index'])->name('home');
 });
 
+// 1. Daftar Mobil
+Route::get('/daftar-mobil/filter', [CarController::class, 'filter'])->name('car.filter');
+Route::get('/daftar-mobil', [CarController::class, 'index'])->name('car.list');
+
+// 2. Transaksi Mobil
+Route::get('/transaksi', [TransaksiController::class, 'index'])->name('transaksi');
+Route::post('/transaksi/store', [TransaksiController::class, 'store'])->name('transaksi.store');
+
+// Multi-authentication (Admin)
 Route::middleware(['auth', 'user-access:admin'])->group(function() {
     Route::get('/admin/home', [HomeController::class, 'adminHome'])->name('admin/home');
     Route::get('/admin/products', [HomeController::class, 'index'])->name('admin/products');
@@ -34,9 +54,6 @@ Route::middleware(['auth', 'user-access:admin'])->group(function() {
     Route::get('products/{product}/edit', [AdminController::class, 'edit'])->name('products.edit');
     Route::put('products/{id}', [AdminController::class, 'update'])->name('products.update');
 });
-
-Route::get('/daftar-mobil/filter', [CarController::class, 'filter'])->name('car.filter');
-Route::get('/daftar-mobil', [CarController::class, 'index'])->name('car.list');
 
 Route::resource('admin/products', AdminController::class);
 Route::get('products/{product}/edit', [AdminController::class, 'edit'])->name('products.edit');
@@ -50,10 +67,6 @@ Route::prefix('pembayaran')->name('pembayaran.')->group(function() {
     Route::post('/', [PembayaranController::class, 'store'])->name('store');
 });
 
-// Lupa Password
-Route::get('/forgot-password', [PasswordResetController::class, 'showForgotPasswordForm'])->name('password.request');
-Route::post('/forgot-password', [PasswordResetController::class, 'sendResetLink'])->name('password.email');
-Route::get('/reset-password/{token}', [PasswordResetController::class, 'showResetPasswordForm'])->name('password.reset');
-Route::post('/reset-password', [PasswordResetController::class, 'resetPassword'])->name('password.update');
+
 
 
