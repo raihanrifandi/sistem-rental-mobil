@@ -8,6 +8,7 @@
     <title>Register</title>
     <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet" />
     <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.8.2/dist/alpine.min.js"></script>
+    {!!htmlScriptTagJsApi()!!}
 </head>
 <body>
     <section class="h-screen flex">
@@ -52,6 +53,16 @@
                             @error('password_confirmation')
                             <span class="text-red-600">{{ $message }}</span>
                             @enderror
+                        </div>
+                        <div>
+                            {!!htmlFormSnippet()!!}
+                            @if($errors->has('g-recaptcha-response'))
+                            <div>
+                                <small class="text-danger">
+                                    {{$errors->first('g-recaptcha-response')}}
+                                </small>
+                            </div>
+                        @endif
                         </div>
                         <div class="flex items-start">
                             <div class="flex items-center h-5">

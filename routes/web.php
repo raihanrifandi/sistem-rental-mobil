@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\PasswordResetController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\CarController;
@@ -9,11 +10,10 @@ use App\Http\Controllers\MetodePembayaranController;
 use App\Http\Controllers\PembayaranController;
 use App\Http\Controllers\PenyewaanController;
 
+
 Route::get('/', function () {
     return view('home');
 });
-
-
 
 Route::controller(AuthController::class)->group(function() {
     Route::get('register','register')->name('register');
@@ -49,5 +49,11 @@ Route::prefix('pembayaran')->name('pembayaran.')->group(function() {
     Route::get('/create', [PembayaranController::class, 'create'])->name('create');
     Route::post('/', [PembayaranController::class, 'store'])->name('store');
 });
+
+// Lupa Password
+Route::get('/forgot-password', [PasswordResetController::class, 'showForgotPasswordForm'])->name('password.request');
+Route::post('/forgot-password', [PasswordResetController::class, 'sendResetLink'])->name('password.email');
+Route::get('/reset-password/{token}', [PasswordResetController::class, 'showResetPasswordForm'])->name('password.reset');
+Route::post('/reset-password', [PasswordResetController::class, 'resetPassword'])->name('password.update');
 
 

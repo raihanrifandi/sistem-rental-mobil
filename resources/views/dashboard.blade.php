@@ -1,5 +1,5 @@
 @extends('layouts.app')
-@section('title', 'Login Signup Rental yUK')
+@section('title', 'Dashboard Admin')
 
 @section('contents')
 <div>
