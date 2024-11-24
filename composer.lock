@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "77d1cf96edd873979eaf81fd54bf56ad",
+    "content-hash": "2570d11507a61f5fb94eb2f5ec0971d7",
     "packages": [
         {
             "name": "biscolab/laravel-recaptcha",

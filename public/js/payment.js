@@ -19,4 +19,6 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Update state when checkbox changes
     checkbox.addEventListener('change', updateButtonState);
+    
+    
 });

@@ -52,7 +52,7 @@
                         </div>
                         <div>
                             <label class="block text-sm text-gray-600 mb-2">Alamat Email</label>
-                            <input type="email" name="alamat_email" class="w-[456px] p-2border rounded-[6px] focus:ring-2 focus:ring-blue-500" required>
+                            <input type="email" name="alamat_email" class="w-[456px] p-2 border rounded-[6px] focus:ring-2 focus:ring-blue-500" required>
                         </div>
                         <div>
                             <label class="block text-sm text-gray-600 mb-2">Nomor Ponsel</label>
@@ -155,4 +155,5 @@
         </div>
     </div>
 </div>
+@include('components.konfirmasi')
 @endsection
