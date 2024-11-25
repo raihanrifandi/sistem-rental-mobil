@@ -2,6 +2,7 @@
 @section('title', 'TentangKami')
 
 @section('contents')
+@vite('resources/css/app.css')
     <div class="bg-white text-gray-800">
         <div class="container mx-auto px-4 py-16">
             <div class="grid grid-cols-1 md:grid-cols-2 gap-10 items-center">

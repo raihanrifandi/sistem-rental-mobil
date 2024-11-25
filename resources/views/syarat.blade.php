@@ -2,6 +2,7 @@
 @section('title', 'TentangKami')
 
 @section('contents')
+@vite('resources/css/app.css')
     <div class="container mx-auto px-6 py-16">
         <div class="flex flex-col items-center gap-10">
             <div class="text-left mx-auto max-w-3xl">
