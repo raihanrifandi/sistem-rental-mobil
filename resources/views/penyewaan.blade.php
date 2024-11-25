@@ -20,7 +20,7 @@
                 </tr>
             </thead>
             <tbody>
-                @foreach($penyewaan as $item)
+                @foreach ($penyewaan as $item)
                     <tr>
                         <td>{{ $item->tanggal_mulai }}</td>
                         <td>{{ $item->tanggal_selesai }}</td>
@@ -28,7 +28,8 @@
                         <td>{{ $item->status_penyewaan }}</td>
                         <td>
                             <a href="{{ route('penyewaan.edit', $item->id_penyewaan) }}" class="text-blue-500">Edit</a> |
-                            <form action="{{ route('penyewaan.destroy', $item->id_penyewaan) }}" method="POST" style="display:inline;">
+                            <form action="{{ route('penyewaan.destroy', $item->id_penyewaan) }}" method="POST"
+                                style="display:inline;">
                                 @csrf
                                 @method('DELETE')
                                 <button type="submit" class="text-red-500">Delete</button>
