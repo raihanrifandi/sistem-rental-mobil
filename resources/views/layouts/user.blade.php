@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -14,6 +15,7 @@
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script src="{{ asset('js/home.js') }}"></script>
 </head>
+
 <body>
     <!-- Navbar Component -->
     @include('components.navbar')
@@ -30,4 +32,5 @@
         AOS.init();
     </script>
 </body>
+
 </html>
