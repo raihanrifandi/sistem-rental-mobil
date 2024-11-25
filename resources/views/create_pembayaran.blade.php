@@ -18,7 +18,8 @@
             <!-- Tanggal Pembayaran -->
             <div class="mb-4">
                 <label for="tanggal_pembayaran" class="block text-gray-700">Tanggal Pembayaran</label>
-                <input type="date" name="tanggal_pembayaran" id="tanggal_pembayaran" class="w-full px-4 py-2 border rounded-lg" required>
+                <input type="date" name="tanggal_pembayaran" id="tanggal_pembayaran"
+                    class="w-full px-4 py-2 border rounded-lg" required>
             </div>
 
             <!-- Penyewaan -->

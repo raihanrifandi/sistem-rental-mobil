@@ -20,25 +20,48 @@ class AuthController extends Controller
     {
         return view('auth/register');
     }
-    
+
+    // public function registerSave(Request $request)
+    // {
+    //     Validator::make($request->all(),[
+    //         'name' => 'required',
+    //         'email' => 'required|email',
+    //         'password' => 'required|confirmed'
+    //     ])->validate();
+
+    //     User::create([
+    //         'name' => $request->name,
+    //         'email' => $request->email,
+    //         'password' => Hash::make($request->password),
+    //         'type' => "0"
+
+    //     ]);
+
+    //     return redirect()->route('login');
+    // }
+
     public function registerSave(Request $request)
     {
-        Validator::make($request->all(),[
+        Validator::make($request->all(), [
             'name' => 'required',
-            'email' => 'required|email',
-            'password' => 'required|confirmed'
+            'email' => 'required|email|unique:users,email',
+            'password' => 'required|confirmed',
+            'phone_number' => 'nullable|string|max:15',
+            'address' => 'nullable|string|max:255',
         ])->validate();
 
         User::create([
             'name' => $request->name,
             'email' => $request->email,
             'password' => Hash::make($request->password),
-            'type' => "0"
-            
+            'phone_number' => $request->phone_number,
+            'address' => $request->address,
+            'type' => "0",
         ]);
 
-        return redirect()->route('login');
+        return redirect()->route('login')->with('success', 'Registration successful. Please login.');
     }
+
 
     public function login()
     {
@@ -47,7 +70,7 @@ class AuthController extends Controller
 
     public function loginAction(Request $request)
     {
-        Validator::make($request->all(),[
+        Validator::make($request->all(), [
             'email' => 'required|email',
             'password' => 'required'
         ])->validate();
@@ -65,15 +88,14 @@ class AuthController extends Controller
         } else {
             return redirect()->route('home');
         }
-         
     }
 
     public function logout(Request $request)
     {
         Auth::guard('web')->logout();
- 
+
         $request->session()->invalidate();
- 
+
         return redirect('/login');
     }
 }

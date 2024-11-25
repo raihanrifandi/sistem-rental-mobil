@@ -2,6 +2,11 @@
 @section('title', 'Home')
 
 @section('contents')
+<!-- Scroll to Top Button -->
+<button id="scrollToTop" class="fixed bottom-5 right-5 bg-gradient-to-b from-[#038EFF] to-[#65BAFF] text-white w-14 h-14 flex items-center justify-center rounded-full shadow-lg opacity-0 transition-opacity duration-500">
+    ↑
+</button>
+
 <main>
     <!-- Hero Section -->
     <section class="relative overflow-hidden w-full">
@@ -39,7 +44,7 @@
         <div class="left-2 transform -bottom-20 w-128 max-w-5xl">
             <div class="grid grid-cols-1 md:grid-cols-4 gap-8 p-8">
                 <!-- Kategori -->
-                {{-- <div>
+                <div>
                     <label class="block text-lg font-semibold text-gray-800 mb-2">Kategori</label>
                     <div class="relative">
                         <select class="w-full h-14 pl-10 pr-4 bg-gray-100 border border-gray-300 rounded-lg text-gray-600 focus:outline-none focus:ring-2 focus:ring-blue-500">
@@ -80,7 +85,7 @@
                     <button class="bg-gradient-to-b from-[#65BAFF] to-[#038EFF] text-white w-32 h-14 rounded-[14px] hover:shadow-lg transition duration-300">
                         Cari Mobil
                     </button>
-                </div> --}}
+                </div>
             </div>
         </div>
     </section>
@@ -149,14 +154,6 @@
             </div>
         </div>
     </section>
-
-    {{-- <!-- Car Selection Section -->
-    <section class="py-16 bg-gray-50">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            
-            <!-- Car selection content -->
-        </div>
-    </section> --}}
 
     <!-- Start Your Journey Section -->
     <section class="py-36 relative bg-cover bg-center bg-no-repeat" style="background-image: url('assets/img/footerBg.png')">
