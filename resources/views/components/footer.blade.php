@@ -1,72 +1,97 @@
-<!-- footer.blade.php -->
-<footer style="background-color: #181818; min-height: 400px; color: #fff; padding: 4rem 2rem 2rem 2rem;">
-    <div style="display: flex; justify-content: space-between; align-items: flex-start; max-width: 1200px; margin: 0 auto;">
-        <!-- Logo and Description -->
-        <div style="flex: 2.5; margin-right: 6rem;">
+<footer style="background-color: #002366; color: #ffffff; padding: 2rem 1rem;">
+    <div
+        style="display: flex; justify-content: space-between; align-items: flex-start; max-width: 1200px; margin: 0 auto;">
+        <!-- Logo dan Deskripsi -->
+        <div style="flex: 2; margin-right: 2rem;">
             <div style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 1.5rem;">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <circle cx="12" cy="12" r="12" fill="white"/>
-                </svg>
-                <h3 style="color: #ffffff; font-size: 1.5rem; font-weight: 600; margin: 0;">DOA IBU <span style="color: #007bff;">RENT</span></h3>
+                <img src="assets/img/logo.png" alt="Logo" style="width: 50px; height: auto;">
+                <h3 style="color: #ffffff; font-size: 1.5rem; font-weight: 600; margin: 0;">Doa Ibu Rental</h3>
             </div>
-            <p style="max-width: 300px; color: #707070; line-height: 1.6; margin-bottom: 2rem; font-size: 0.95rem;">
-                "Lorem ipsum dolor sit. Lacus nulla rhoncus varius enim velit pharetra varius integer scelerisque. tristique."
+            <p style="color: #d1d1d1; line-height: 1.6; font-size: 0.95rem;">
+                Doa Ibu Rental adalah sebuah platform web yang menyediakan layanan sewa mobil dengan kemudahan,
+                keamanan, dan harga yang kompetitif.
             </p>
-            <div style="display: flex; gap: 1rem;">
-                <!-- Social Icons with Hover Effect -->
-                <a href="#" style="display: flex; align-items: center; justify-content: center; width: 40px; height: 40px; background-color: #292929; border-radius: 50%; transition: all 0.3s;" onmouseover="this.style.backgroundColor='#038EFF'" onmouseout="this.style.backgroundColor='#292929'">
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" style="color: white;">
-                        <path fill="currentColor" d="M12 2a10 10 0 1 0 10 10A10 10 0 0 0 12 2Zm2.5 5a1.5 1.5 0 1 1-1.5 1.5 1.5 1.5 0 0 1 1.5-1.5Zm2.45 7.5a7.5 7.5 0 0 1-7.9 0A1 1 0 0 1 8.5 13h7a1 1 0 0 1 .45 1.5Zm-7.45-5a1.5 1.5 0 1 1 1.5-1.5 1.5 1.5 0 0 1-1.5 1.5Z"/>
+            <div style="margin-top: 1.5rem;">
+                <p
+                    style="margin: 0; font-size: 0.95rem; color: #d1d1d1; display: flex; align-items: center; gap: 0.5rem;">
+                    <svg style="color: #ffffff;" xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                        fill="currentColor" viewBox="0 0 16 16">
+                        <path
+                            d="M3.654 1.328a.678.678 0 0 1 1.018-.13l2.165 2.165c.329.329.445.8.302 1.23a.678.678 0 0 1-.125.197l-.854.854a14.978 14.978 0 0 0 6.012 6.012l.854-.854c.053-.053.124-.095.197-.125a.678.678 0 0 1 1.23.302l2.165 2.165c.291.291.33.75.13 1.018A17.478 17.478 0 0 1 15.01 15c-2.28 1.99-4.872 3-7.99 3s-5.71-1.01-7.99-3C-.01 13.28 1.99 10.688 3.654 8.01a17.478 17.478 0 0 1 0-6.682z" />
                     </svg>
-                </a>
-                <a href="#" style="display: flex; align-items: center; justify-content: center; width: 40px; height: 40px; background-color: #292929; border-radius: 50%; transition: all 0.3s;" onmouseover="this.style.backgroundColor='#038EFF'" onmouseout="this.style.backgroundColor='#292929'">
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" style="color: white;">
-                        <path fill="currentColor" d="M19.615 3.184c-3.604-.246-11.631-.245-15.23 0-3.897.266-4.356 2.62-4.385 8.816.029 6.185.484 8.549 4.385 8.816 3.6.245 11.626.246 15.23 0 3.897-.266 4.356-2.62 4.385-8.816-.029-6.185-.484-8.549-4.385-8.816zm-10.615 12.816v-8l8 3.993-8 4.007z"/>
+                    +62 850 1099 7854
+                </p>
+                <p
+                    style="margin: 0; font-size: 0.95rem; color: #d1d1d1; display: flex; align-items: center; gap: 0.5rem;">
+                    <svg style="color: #ffffff;" xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                        fill="currentColor" viewBox="0 0 16 16">
+                        <path
+                            d="M0 4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V4zm3-1.5a.5.5 0 0 0-.5.5v1a.5.5 0 0 0 .5.5h10a.5.5 0 0 0 .5-.5v-1a.5.5 0 0 0-.5-.5H3zm10 6v-2H3v2h10zm-2 2v-1H3v1h8z" />
                     </svg>
-                </a>
-                <a href="#" style="display: flex; align-items: center; justify-content: center; width: 40px; height: 40px; background-color: #292929; border-radius: 50%; transition: all 0.3s;" onmouseover="this.style.backgroundColor='#038EFF'" onmouseout="this.style.backgroundColor='#292929'">
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" style="color: white;">
-                        <path fill="currentColor" d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"/>
-                    </svg>
-                </a>
+                    doaiburental@gmail.com
+                </p>
             </div>
         </div>
 
-        <!-- Navigation Sections Container -->
-        <div style="flex: 3.5; display: flex; justify-content: space-between;">
-            <!-- Sitemap Links -->
-            <div style="flex: 1;">
-                <h4 style="color: #ffffff; font-size: 1.25rem; font-weight: 600; margin-bottom: 1.5rem;">Sitemap</h4>
-                <ul style="list-style-type: none; padding: 0; margin: 0;">
-                    <li style="margin-bottom: 1rem;"><a href="#" style="color: #707070; text-decoration: none; transition: color 0.3s; font-size: 0.95rem;" onmouseover="this.style.color='#038EFF'" onmouseout="this.style.color='#707070'">Home</a></li>
-                    <li style="margin-bottom: 1rem;"><a href="#" style="color: #707070; text-decoration: none; transition: color 0.3s; font-size: 0.95rem;" onmouseover="this.style.color='#038EFF'" onmouseout="this.style.color='#707070'">Tentang Kami</a></li>
-                    <li style="margin-bottom: 1rem;"><a href="#" style="color: #707070; text-decoration: none; transition: color 0.3s; font-size: 0.95rem;" onmouseover="this.style.color='#038EFF'" onmouseout="this.style.color='#707070'">Daftar Mobil</a></li>
-                    <li style="margin-bottom: 1rem;"><a href="#" style="color: #707070; text-decoration: none; transition: color 0.3s; font-size: 0.95rem;" onmouseover="this.style.color='#038EFF'" onmouseout="this.style.color='#707070'">Syarat & Ketentuan</a></li>
-                </ul>
-            </div>
+        <!-- Menu -->
+        <div style="flex: 1; margin-right: 2rem;">
+            <h4 style="margin-bottom: 1rem; font-size: 1.25rem; font-weight: 600;">Menu</h4>
+            <ul style="list-style-type: none; padding: 0; margin: 0;">
+                <li style="margin-bottom: 0.75rem;">
+                    <a href="#"
+                        style="text-decoration: none; color: #d1d1d1; font-size: 0.9rem; transition: color 0.3s;"
+                        onmouseover="this.style.color='#ffffff'" onmouseout="this.style.color='#d1d1d1'">Home</a>
+                </li>
+                <li style="margin-bottom: 0.75rem;">
+                    <a href="#"
+                        style="text-decoration: none; color: #d1d1d1; font-size: 0.9rem; transition: color 0.3s;"
+                        onmouseover="this.style.color='#ffffff'" onmouseout="this.style.color='#d1d1d1'">Tentang
+                        Kami</a>
+                </li>
+                <li style="margin-bottom: 0.75rem;">
+                    <a href="#"
+                        style="text-decoration: none; color: #d1d1d1; font-size: 0.9rem; transition: color 0.3s;"
+                        onmouseover="this.style.color='#ffffff'" onmouseout="this.style.color='#d1d1d1'">Daftar
+                        Mobil</a>
+                </li>
+                <li style="margin-bottom: 0.75rem;">
+                    <a href="#"
+                        style="text-decoration: none; color: #d1d1d1; font-size: 0.9rem; transition: color 0.3s;"
+                        onmouseover="this.style.color='#ffffff'" onmouseout="this.style.color='#d1d1d1'">Syarat &
+                        Ketentuan</a>
+                </li>
+                <li style="margin-bottom: 0.75rem;">
+                    <a href="#"
+                        style="text-decoration: none; color: #d1d1d1; font-size: 0.9rem; transition: color 0.3s;"
+                        onmouseover="this.style.color='#ffffff'" onmouseout="this.style.color='#d1d1d1'">Hubungi
+                        Kami</a>
+                </li>
+            </ul>
+        </div>
 
-            <!-- Additional Links -->
-            <div style="flex: 1;">
-                <h4 style="color: #ffffff; font-size: 1.25rem; font-weight: 600; margin-bottom: 1.5rem;">Links</h4>
-                <ul style="list-style-type: none; padding: 0; margin: 0;">
-                    <li style="margin-bottom: 1rem;"><a href="#" style="color: #707070; text-decoration: none; transition: color 0.3s; font-size: 0.95rem;" onmouseover="this.style.color='#038EFF'" onmouseout="this.style.color='#707070'">Features</a></li>
-                    <li style="margin-bottom: 1rem;"><a href="#" style="color: #707070; text-decoration: none; transition: color 0.3s; font-size: 0.95rem;" onmouseover="this.style.color='#038EFF'" onmouseout="this.style.color='#707070'">Team</a></li>
-                    <li style="margin-bottom: 1rem;"><a href="#" style="color: #707070; text-decoration: none; transition: color 0.3s; font-size: 0.95rem;" onmouseover="this.style.color='#038EFF'" onmouseout="this.style.color='#707070'">Blog</a></li>
-                </ul>
-            </div>
-
-            <!-- Contact Information -->
-            <div style="flex: 1;">
-                <h4 style="color: #ffffff; font-size: 1.25rem; font-weight: 600; margin-bottom: 1.5rem;">Contact</h4>
-                <p style="color: #707070; margin-bottom: 1rem; font-size: 0.95rem;">(208) 555-0112</p>
-                <p style="color: #707070; margin-bottom: 1rem; font-size: 0.95rem;">@email.com</p>
-                <p style="color: #707070; font-size: 0.95rem;">Ranchview Dr.<br>Richardson, California</p>
+        <!-- Social Media -->
+        <div style="flex: 1;">
+            <h4 style="margin-bottom: 1rem; font-size: 1.25rem; font-weight: 600;">Socials</h4>
+            <div style="display: flex; gap: 1rem;">
+                <a href="#"
+                    style="display: flex; align-items: center; justify-content: center; width: 35px; height: 35px; background-color: #ffffff; border-radius: 50%; transition: all 0.3s;"
+                    onmouseover="this.style.backgroundColor='#038EFF'"
+                    onmouseout="this.style.backgroundColor='#ffffff'">
+                    <img src="assets/img/whatsapp.png" alt="WhatsApp" style="width: 20px; height: auto;">
+                </a>
+                <a href="#"
+                    style="display: flex; align-items: center; justify-content: center; width: 35px; height: 35px; background-color: #ffffff; border-radius: 50%; transition: all 0.3s;"
+                    onmouseover="this.style.backgroundColor='#038EFF'"
+                    onmouseout="this.style.backgroundColor='#ffffff'">
+                    <img src="assets/img/ig.png" alt="Instagram" style="width: 20px; height: auto;">
+                </a>
             </div>
         </div>
     </div>
 
-    <!-- Footer Bottom Text -->
-    <div style="text-align: center; margin-top: 4rem; padding-top: 2rem; border-top: 1px solid #292929; color: #707070; font-size: 0.95rem;">
-        © 2024 Kelompok PWL - All Rights Reserved
+    <!-- Footer Bottom -->
+    <div
+        style="text-align: center; margin-top: 2rem; padding-top: 1rem; border-top: 1px solid #ffffff20; font-size: 0.85rem; color: #d1d1d1;">
+        © Copyright 2024 - RentalYukk All rights reserved.
     </div>
 </footer>

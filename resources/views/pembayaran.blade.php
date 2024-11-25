@@ -2,12 +2,12 @@
 @section('title', 'Manajemen Pembayaran')
 
 @section('contents')
-<div class="container mx-auto">
-    <h1 class="text-3xl font-semibold mb-8">Pembayaran</h1>
-    <a href="{{ route('pembayaran.create') }}" class="bg-blue-500 text-white p-2 rounded">+ Tambah Pembayaran</a>
+    <div class="container mx-auto">
+        <h1 class="text-3xl font-semibold mb-8">Pembayaran</h1>
+        <a href="{{ route('pembayaran.create') }}" class="bg-blue-500 text-white p-2 rounded">+ Tambah Pembayaran</a>
 
-    <table class="min-w-full bg-white mt-4">
-    <thead class="bg-gray-700 text-white">
+        <table class="min-w-full bg-white mt-4">
+            <thead class="bg-gray-700 text-white">
                 <tr>
                     <th class="py-2 px-4">ID Pembayaran</th>
                     <th class="py-2 px-4">Jumlah</th>
@@ -27,6 +27,6 @@
                     </tr>
                 @endforeach
             </tbody>
-    </table>
-</div>
+        </table>
+    </div>
 @endsection

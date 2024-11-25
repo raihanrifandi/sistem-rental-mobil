@@ -11,7 +11,7 @@ class CreateSewaMobilTable extends Migration
      */
     public function up(): void
     {
-        Schema::create('sewamobil', function (Blueprint $table) {
+        Schema::create('sewa-mobil', function (Blueprint $table) {
             $table->id(); // Primary key
             $table->string('nama_penyewa'); // Nama penyewa
             $table->string('alamat'); // Alamat penyewa
