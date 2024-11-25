@@ -12,6 +12,7 @@ use App\Http\Controllers\PenyewaanController;
 use App\Http\Controllers\SewaController;
 use App\Http\Controllers\AboutController;
 use App\Http\Controllers\SyaratController;
+use App\Http\Controllers\HubungiController;
 
 
 // Route untuk halaman utama
@@ -39,6 +40,7 @@ Route::middleware(['auth', 'user-access:user'])->group(function () {
     Route::post('/sewa', [SewaController::class, 'store'])->name('sewa-mobil.store');
     Route::get('/tentang-kami', [AboutController::class, 'index'])->name('tentangkami');
     Route::get('/syarat', [SyaratController::class, 'index'])->name('syarat');
+    Route::get('/hubungi-kami', [HubungiController::class, 'index'])->name('hubungi-kami');
 });
 
 // Route untuk admin dengan middleware auth dan user-access:admin
