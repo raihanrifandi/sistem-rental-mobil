@@ -1,6 +1,6 @@
 document.addEventListener('DOMContentLoaded', function() {
     const checkbox = document.getElementById('agreementCheckbox');
-    const payButton = document.getElementById('paymentButton');
+    const payButton = document.getElementById('pay-button');
 
     function updateButtonState() {
         if (checkbox.checked) {

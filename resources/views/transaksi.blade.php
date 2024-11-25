@@ -73,10 +73,8 @@
                     <h2 class="text-lg font-medium mb-4">Metode Pembayaran</h2>
                     <div class="border rounded-[6px] p-4">
                         <p class="text-sm font-medium mb-2">Payment Method</p>
-                        <div class="flex gap-2">
-                            <img src="/path-to-mastercard-logo.png" alt="Mastercard" class="h-8">
-                            <img src="/path-to-visa-logo.png" alt="Visa" class="h-8">
-                            <img src="/path-to-other-payment-logo.png" alt="Other" class="h-8">
+                        <div id="snap-container">
+                            {{-- Snap dari midtrans --}}
                         </div>
                     </div>
                 </div>
@@ -96,8 +94,8 @@
                     </div>
                 </div>
 
-                <button type="submit" 
-                        id="paymentButton"
+                <button type="button" 
+                        id="pay-button"
                         disabled
                         class="w-full py-4 rounded-2xl font-medium text-white button-disabled transition-all duration-300">
                     Bayar Sekarang
@@ -155,5 +153,55 @@
         </div>
     </div>
 </div>
-@include('components.konfirmasi')
+{{-- @include('components.konfirmasi') --}}
+<!-- Midtrans Snap JS -->
+<script type="text/javascript" 
+src="https://app.sandbox.midtrans.com/snap/snap.js"
+data-client-key="{{ env('MIDTRANS_CLIENT_KEY') }}"></script> 
+<script type="text/javascript">
+    var payButton = document.getElementById('pay-button');
+    payButton.addEventListener('click', function () {
+        event.preventDefault();
+        
+        // Call Snap Midtrans popup
+        window.snap.pay('{{ $snapToken }}', {
+            onSuccess: function (result) {
+                alert("Pembayaran berhasil!"); 
+                console.log(result);
+                window.location.href = '/';
+            },
+            onPending: function (result) {
+                alert("Menunggu pembayaran!"); 
+                console.log(result);
+            },
+            onError: function (result) {
+                alert("Pembayaran gagal!"); 
+                console.log(result);
+            },
+            onClose: function () {
+                alert('Anda menutup popup tanpa menyelesaikan pembayaran.');
+            }
+        });
+    });
+    //   window.snap.embed('snapToken', {
+    //     embedId: 'snap-container',
+    //     onSuccess: function (result) {
+    //       /* You may add your own implementation here */
+    //       alert("payment success!"); console.log(result);
+    //     },
+    //     onPending: function (result) {
+    //       /* You may add your own implementation here */
+    //       alert("wating your payment!"); console.log(result);
+    //     },
+    //     onError: function (result) {
+    //       /* You may add your own implementation here */
+    //       alert("payment failed!"); console.log(result);
+    //     },
+    //     onClose: function () {
+    //       /* You may add your own implementation here */
+    //       alert('you closed the popup without finishing the payment');
+    //     }
+    //   });
+
+</script>
 @endsection

@@ -14,7 +14,7 @@
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script src="{{ asset('js/home.js') }}"></script>
     <script src="{{ asset('js/payment.js') }}"></script>
-    <script src="{{ asset('js/confirmation.js') }}"></script>
+    {{-- <script src="{{ asset('js/confirmation.js') }}"></script> --}}
 </head>
 <body>
     <!-- Navbar Component -->

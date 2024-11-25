@@ -62,7 +62,7 @@
                 <div class="text-sm text-gray-500">Rp{{ number_format($car->harga_sewa * 7, 0, ',', '.') }}/minggu</div>
             </div>
 
-            <form action="{{ route('transaksi') }}" method="GET">
+            <form action="{{ route('transaksi.index') }}" method="GET">
                 <input type="hidden" name="mobil_id" value="{{ $car->id_mobil }}">
                 <button type="submit" class="w-full py-2 rounded text-white text-sm font-medium bg-gradient-to-r from-[#038EFF] to-[#65BAFF] hover:opacity-90 transition-opacity">
                     Sewa
