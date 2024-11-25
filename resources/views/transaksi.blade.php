@@ -94,7 +94,7 @@
                     </div>
                 </div>
 
-                <button type="submit" 
+                <button type="button" 
                         id="paymentButton"
                         disabled
                         class="w-full py-4 rounded-2xl font-medium text-white button-disabled transition-all duration-300">
@@ -154,8 +154,9 @@
     </div>
 </div>
 @include('components.konfirmasi')
+
 <!-- Midtrans Snap JS -->
-{{-- <script type="text/javascript" 
+<script type="text/javascript" 
 src="https://app.stg.midtrans.com/snap/snap.js"
 data-client-key="{{ env('MIDTRANS_CLIENT_KEY') }}"></script> 
 <script type="text/javascript">
@@ -164,7 +165,7 @@ data-client-key="{{ env('MIDTRANS_CLIENT_KEY') }}"></script>
         event.preventDefault();
         
         // Call Snap Midtrans popup
-        window.snap.pay('gagal', {
+        window.snap.pay('Gagal Jir', {
             onSuccess: function (result) {
                 alert("Pembayaran berhasil!"); 
                 console.log(result);
@@ -185,5 +186,5 @@ data-client-key="{{ env('MIDTRANS_CLIENT_KEY') }}"></script>
     });
     //   window.snap.embed('snapToken', {
     //     embedId: 'snap-container',
-</script> --}}
+</script>
 @endsection

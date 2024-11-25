@@ -44,7 +44,7 @@ Route::get('/daftar-mobil', [CarController::class, 'index'])->name('car.list');
 
 // 2. Transaksi Mobil
 Route::get('/transaksi', [TransaksiController::class, 'index'])->name('transaksi.index');
-Route::post('/transaksi', [TransaksiController::class, 'store'])->name('transaksi.store');
+Route::post('/transaksi/store', [TransaksiController::class, 'store'])->name('transaksi.store');
 // Route::get('/transaksi/konfirmasi/{id}', [TransaksiController::class, 'showConfirmation'])->name('transaksi.konfirmasi');
 // Route::get('/transaksi/pembayaran/{id}', [TransaksiController::class, 'showPayment'])->name('transaksi.pembayaran');
 
