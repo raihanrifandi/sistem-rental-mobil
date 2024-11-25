@@ -94,8 +94,8 @@
                     </div>
                 </div>
 
-                <button type="button" 
-                        id="pay-button"
+                <button type="submit" 
+                        id="paymentButton"
                         disabled
                         class="w-full py-4 rounded-2xl font-medium text-white button-disabled transition-all duration-300">
                     Bayar Sekarang
@@ -153,10 +153,10 @@
         </div>
     </div>
 </div>
-{{-- @include('components.konfirmasi') --}}
+@include('components.konfirmasi')
 <!-- Midtrans Snap JS -->
-<script type="text/javascript" 
-src="https://app.sandbox.midtrans.com/snap/snap.js"
+{{-- <script type="text/javascript" 
+src="https://app.stg.midtrans.com/snap/snap.js"
 data-client-key="{{ env('MIDTRANS_CLIENT_KEY') }}"></script> 
 <script type="text/javascript">
     var payButton = document.getElementById('pay-button');
@@ -164,7 +164,7 @@ data-client-key="{{ env('MIDTRANS_CLIENT_KEY') }}"></script>
         event.preventDefault();
         
         // Call Snap Midtrans popup
-        window.snap.pay('{{ $snapToken }}', {
+        window.snap.pay('gagal', {
             onSuccess: function (result) {
                 alert("Pembayaran berhasil!"); 
                 console.log(result);
@@ -185,23 +185,5 @@ data-client-key="{{ env('MIDTRANS_CLIENT_KEY') }}"></script>
     });
     //   window.snap.embed('snapToken', {
     //     embedId: 'snap-container',
-    //     onSuccess: function (result) {
-    //       /* You may add your own implementation here */
-    //       alert("payment success!"); console.log(result);
-    //     },
-    //     onPending: function (result) {
-    //       /* You may add your own implementation here */
-    //       alert("wating your payment!"); console.log(result);
-    //     },
-    //     onError: function (result) {
-    //       /* You may add your own implementation here */
-    //       alert("payment failed!"); console.log(result);
-    //     },
-    //     onClose: function () {
-    //       /* You may add your own implementation here */
-    //       alert('you closed the popup without finishing the payment');
-    //     }
-    //   });
-
-</script>
+</script> --}}
 @endsection
