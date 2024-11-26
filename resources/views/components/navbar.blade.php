@@ -27,16 +27,15 @@
                         Hubungi Kami
                     </a>
 
-                     <!-- Button Pesan Sekarang hanya tampil saat belum login -->
+                    <!-- Button Pesan Sekarang hanya tampil saat belum login -->
                     @guest
                     <form action="{{ route('login') }}" method="GET">
-                        <button 
-                            type="submit" 
-                            class="bg-gradient-to-b from-[#65BAFF] to-[#038EFF] text-white px-6 py-2 rounded-lg text-sm font-medium hover:shadow-lg transition duration-300 flex items-center space-x-2 w-[186px] h-[54px]"
-                        >
+                        <button
+                            type="submit"
+                            class="bg-gradient-to-b from-[#65BAFF] to-[#038EFF] text-white px-6 py-2 rounded-lg text-sm font-medium hover:shadow-lg transition duration-300 flex items-center space-x-2 w-[186px] h-[54px]">
                             <span>Pesan Sekarang</span>
                             <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="white" viewBox="0 0 24 24" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 5a2 2 0 012-2h10a2 2 0 012 2v16l-7-3.5L5 21V5z"/>
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 5a2 2 0 012-2h10a2 2 0 012 2v16l-7-3.5L5 21V5z" />
                             </svg>
                         </button>
                     </form>
@@ -50,13 +49,14 @@
                             <img class="h-8 w-8 rounded-full" src="https://i.pinimg.com/564x/71/0c/37/710c37e50568b4df2131f4470075224a.jpg" alt="User Profile">
                         </button>
                         <div x-show="show" class="origin-top-right absolute right-0 mt-2 w-48 rounded-md shadow-lg py-1 bg-white ring-1 ring-black ring-opacity-5 focus:outline-none" role="menu" aria-orientation="vertical" aria-labelledby="user-menu-button" tabindex="-1">
+                            <a href="{{ route('profile') }}" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" role="menuitem" tabindex="-1" id="user-menu-item-1">Profile</a>
                             <a href="{{ url('/logout') }}" class="block px-4 py-2 text-sm text-gray-700" role="menuitem" tabindex="-1" id="user-menu-item-2">Sign out</a>
                         </div>
                     </div>
                     @endauth
-                    </div>    
                 </div>
             </div>
         </div>
-    </nav>
+</div>
+</nav>
 </div>
