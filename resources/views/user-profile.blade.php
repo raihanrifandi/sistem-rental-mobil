@@ -38,7 +38,7 @@
             <div class="w-full md:w-2/3 p-6">
                 <div class="flex items-center space-x-2">
                     <span class="bg-[#038EFF] text-white text-xs px-2 py-1 rounded">HALO</span>
-                    <h1 class="text-2xl font-bold">Saya {{$user->name}}</h1>
+                    <h1 class="text-2xl font-bold">Saya {{ $user->name }}</h1>
                 </div>
                 <p class="text-gray-600 text-sm mt-1">Pelanggan Setia Doa Ibu Rental</p>
 
@@ -46,9 +46,9 @@
                     <h1 class="text-2xl font-bold mb-4">Profil</h1>
 
                     <p class="text-gray-600 mt-1"><strong>Email:</strong> {{ $user->email }}</p>
-                    <p class="text-gray-600 mt-1"><strong>Telepon:</strong> {{ $user->phone ?? 'Belum Diberikan' }}</p>
-                    <p class="text-gray-600 mt-1"><strong>Nomor SIM:</strong> {{ $user->license_number ?? 'Belum Diberikan' }}</p>
-                    <p class="text-gray-600 mt-1"><strong>Total Penyewaan:</strong> {{ $user->rental_count ?? '0' }} mobil</p>
+                    <p class="text-gray-600 mt-1"><strong>Telepon:</strong> {{ $user->phone_number ?? 'Belum Diberikan' }}</p>
+                    <p class="text-gray-600 mt-1"><strong>Alamat:</strong> {{ $user->address ?? 'Belum Diberikan' }}</p>
+                    <p class="text-gray-600 mt-1"><strong>Role:</strong> {{ $user->type }}</p>
                     <p class="text-gray-600 mt-1"><strong>Profil Diperbarui:</strong> {{ $user->updated_at->format('d F Y') }}</p>
 
                     <!-- Tombol Edit Profil -->
@@ -78,15 +78,15 @@
                     <input type="email" name="email" value="{{ $user->email }}" class="w-full border-gray-300 rounded p-2">
                 </div>
 
-                <!-- <div class="mb-4">
-                    <label class="block text-sm font-semibold mb-1">Password Lama</label>
-                    <input type="password" name="current_password" class="w-full border-gray-300 rounded p-2">
+                <div class="mb-4">
+                    <label class="block text-sm font-semibold mb-1">Telepon</label>
+                    <input type="text" name="phone_number" value="{{ $user->phone_number }}" class="w-full border-gray-300 rounded p-2">
                 </div>
 
                 <div class="mb-4">
-                    <label class="block text-sm font-semibold mb-1">Password Baru</label>
-                    <input type="password" name="new_password" class="w-full border-gray-300 rounded p-2">
-                </div> -->
+                    <label class="block text-sm font-semibold mb-1">Alamat</label>
+                    <textarea name="address" class="w-full border-gray-300 rounded p-2">{{ $user->address }}</textarea>
+                </div>
 
                 <div class="flex justify-end space-x-2">
                     <button type="button" onclick="closeModal()" class="bg-gray-500 text-white px-4 py-2 rounded">Batal</button>

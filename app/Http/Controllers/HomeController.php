@@ -6,7 +6,6 @@ use App\Models\Penyewaan;
 use App\Models\Product;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Hash;
 
 class HomeController extends Controller
 {
@@ -29,19 +28,25 @@ class HomeController extends Controller
 
     public function updateProfile(Request $request)
     {
-        $user = Auth::user();
+        $user = auth()->user();
 
         // Validasi input
         $validated = $request->validate([
             'name' => 'required|string|max:255',
             'email' => 'required|email|max:255|unique:users,email,' . $user->id,
+            'phone_number' => 'nullable|string|max:15',
+            'address' => 'nullable|string|max:255',
         ]);
 
-        // Update nama dan email
-        $user->name = $validated['name'];
-        $user->email = $validated['email'];
-        $user->save();
+        // Update data pengguna
+        $user->update([
+            'name' => $validated['name'],
+            'email' => $validated['email'],
+            'phone_number' => $validated['phone_number'] ?? $user->phone_number,
+            'address' => $validated['address'] ?? $user->address,
+        ]);
 
+        // Redirect dengan pesan sukses
         return redirect()->route('profile')->with('success', 'Profil berhasil diperbarui!');
     }
 
