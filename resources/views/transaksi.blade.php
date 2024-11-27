@@ -72,7 +72,7 @@
                         </div>
                         <div>
                             <label class="block text-sm text-gray-600 mb-2">Nomor Ponsel <span class="text-red-500">*</span></label>
-                            <input type="tel" name="nomor_telepon" class="w-[456px] p-2 border rounded-[6px] focus:ring-2 focus:ring-blue-500" required>
+                            <input type="tel" name="nomor_telepon" class="w-[456px] p-2 border rounded-[6px] focus:ring-2 focus:ring-blue-500" value="{{ $user->phone_number }}" required>
                         </div>
                         <div class="mb-4">
                             <label for="tanggal_mulai" class="block text-sm text-gray-600 mb-2">Tanggal Mulai <span class="text-red-500">*</span></label>

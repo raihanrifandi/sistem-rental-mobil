@@ -48,7 +48,6 @@
                     <p class="text-gray-600 mt-1"><strong>Email:</strong> {{ $user->email }}</p>
                     <p class="text-gray-600 mt-1"><strong>Telepon:</strong> {{ $user->phone_number ?? 'Belum Diberikan' }}</p>
                     <p class="text-gray-600 mt-1"><strong>Alamat:</strong> {{ $user->address ?? 'Belum Diberikan' }}</p>
-                    <p class="text-gray-600 mt-1"><strong>Role:</strong> {{ $user->type }}</p>
                     <p class="text-gray-600 mt-1"><strong>Profil Diperbarui:</strong> {{ $user->updated_at->format('d F Y') }}</p>
 
                     <!-- Tombol Edit Profil -->

@@ -30,7 +30,6 @@ class HomeController extends Controller
     {
         $user = auth()->user();
 
-        // Validasi input
         $validated = $request->validate([
             'name' => 'required|string|max:255',
             'email' => 'required|email|max:255|unique:users,email,' . $user->id,
@@ -38,15 +37,13 @@ class HomeController extends Controller
             'address' => 'nullable|string|max:255',
         ]);
 
-        // Update data pengguna
         $user->update([
             'name' => $validated['name'],
             'email' => $validated['email'],
-            'phone_number' => $validated['phone_number'] ?? $user->phone_number,
+            'phone_number' => $validated['phone_number'] ?? $user->no_telepon,
             'address' => $validated['address'] ?? $user->address,
         ]);
 
-        // Redirect dengan pesan sukses
         return redirect()->route('profile')->with('success', 'Profil berhasil diperbarui!');
     }
 
