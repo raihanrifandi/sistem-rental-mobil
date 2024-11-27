@@ -51,6 +51,7 @@ Route::middleware(['auth', 'user-access:admin'])->group(function () {
     Route::resource('admin/products', AdminController::class);
     Route::resource('metode_pembayaran', MetodePembayaranController::class);
     Route::resource('penyewaan', PenyewaanController::class);
+    Route::patch('penyewaan/{penyewaan}/validasi', [PenyewaanController::class, 'updateValidasi'])->name('penyewaan.updateValidasi');
     // Rute Edit dan Update Produk
     Route::get('products/{product}/edit', [AdminController::class, 'edit'])->name('products.edit');
     Route::put('products/{id}', [AdminController::class, 'update'])->name('products.update');

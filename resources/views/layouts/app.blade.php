@@ -28,7 +28,7 @@
             <!-- Navigation Links -->
             <ul class="space-y-2">
                 <li>
-                    <a href="{{ route('admin/home') }}"
+                    <a href="{{ route('admin.home') }}"
                         class="flex items-center p-2 text-base font-normal text-white rounded-lg hover:bg-gray-700">
                         <svg class="w-6 h-6 text-gray-300 transition duration-75 group-hover:text-white" fill="none"
                             stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">

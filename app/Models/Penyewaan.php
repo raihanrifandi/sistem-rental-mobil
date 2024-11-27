@@ -19,6 +19,7 @@ class Penyewaan extends Model
         'status_penyewaan',
         'id_mobil',
         'user_id',
+        'validasi',
     ];
 
     public function mobil()
