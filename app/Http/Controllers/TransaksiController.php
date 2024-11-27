@@ -54,7 +54,7 @@ class TransaksiController extends Controller
     public function store(Request $request)
     {
         // Validasi data input dari form transaksi
-        $request->validate([
+        $validatedData = $request->validate([
             'mobil_id' => 'required|exists:mobil,id_mobil',
             'nama_penyewa' => 'required|string|max:255',
             'alamat_email' => 'required|email|max:255',
@@ -63,11 +63,11 @@ class TransaksiController extends Controller
             'tanggal_selesai' => 'required|date|after:tanggal_mulai',
         ]);
 
-        dd($request->all());
+        // dd($request->all());
 
-        $user = User::user();
+        $userId = auth()->user()->id; // Dapatkan ID pengguna dari sesi
+        $user = User::find($userId); // Cari pengguna berdasarkan ID 
         $user->update([
-            'name' => $request->nama_penyewa,
             'no_telepon' => $request->nomor_telepon,
         ]);
 
@@ -91,5 +91,6 @@ class TransaksiController extends Controller
         ]);
 
         $mobil->update(['status' => 'rented']);
+        return redirect()->route('transaksi')->with('success', 'Transaksi berhasil dibuat!');
     }
 }
