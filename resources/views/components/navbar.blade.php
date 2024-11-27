@@ -4,42 +4,54 @@
             <div class="flex justify-between h-16">
                 <!-- Logo -->
                 <div class="flex-shrink-0 flex items-center">
-                    <a href="/" class="text-[#038EFF] font-bold text-xl">
-                        LOGO DOA IBU
+                    <a href="/" class="flex items-center space-x-4">
+                        <!-- Profil Gambar -->
+                        <div
+                            class="w-12 h-12 rounded-full bg-blue-500 flex items-center justify-center border-4 border-white">
+                            <img src="assets/img/logo.png" alt="Logo" class="w-full h-full rounded-full">
+                        </div>
+                        <!-- Teks di Sebelah Kanan -->
+                        <span class="text-blue-500 text-lg font-bold">DOA IBU RENTAL</span>
                     </a>
                 </div>
 
+
                 <!-- Navigation Bar -->
                 <div class="hidden md:flex items-center space-x-8">
-                    <a href="/" class="{{ Request::is('/') ? 'font-medium text-[#038EFF]' : 'text-gray-700' }} hover:text-[#038EFF] px-3 py-2 text-sm transition duration-150">
+                    <a href="/"
+                        class="{{ Request::is('/') ? 'font-medium text-[#038EFF]' : 'text-gray-700' }} hover:text-[#038EFF] px-3 py-2 text-sm transition duration-150">
                         Home
                     </a>
-                    <a href="/tentang-kami" class="{{ Request::is('tentang-kami') ? 'font-medium text-[#038EFF]' : 'text-gray-700' }} hover:text-[#038EFF] px-3 py-2 text-sm transition duration-150">
+                    <a href="/tentang-kami"
+                        class="{{ Request::is('tentang-kami') ? 'font-medium text-[#038EFF]' : 'text-gray-700' }} hover:text-[#038EFF] px-3 py-2 text-sm transition duration-150">
                         Tentang Kami
                     </a>
-                    <a href="/daftar-mobil" class="{{ Request::is('daftar-mobil') ? 'font-medium text-[#038EFF]' : 'text-gray-700' }} hover:text-[#038EFF] px-3 py-2 text-sm transition duration-150">
+                    <a href="/daftar-mobil"
+                        class="{{ Request::is('daftar-mobil') ? 'font-medium text-[#038EFF]' : 'text-gray-700' }} hover:text-[#038EFF] px-3 py-2 text-sm transition duration-150">
                         Daftar Mobil
                     </a>
-                    <a href="/syarat-ketentuan" class="{{ Request::is('syarat-ketentuan') ? 'font-medium text-[#038EFF]' : 'text-gray-700' }} hover:text-[#038EFF] px-3 py-2 text-sm transition duration-150">
+                    <a href="/syarat"
+                        class="{{ Request::is('syarat') ? 'font-medium text-[#038EFF]' : 'text-gray-700' }} hover:text-[#038EFF] px-3 py-2 text-sm transition duration-150">
                         Syarat & Ketentuan
                     </a>
-                    <a href="/hubungi-kami" class="{{ Request::is('hubungi-kami') ? 'font-medium text-[#038EFF]' : 'text-gray-700' }} hover:text-[#038EFF] px-3 py-2 text-sm transition duration-150">
+                    <a href="/hubungi-kami"
+                        class="{{ Request::is('hubungi-kami') ? 'font-medium text-[#038EFF]' : 'text-gray-700' }} hover:text-[#038EFF] px-3 py-2 text-sm transition duration-150">
                         Hubungi Kami
                     </a>
 
-                     <!-- Button Pesan Sekarang hanya tampil saat belum login -->
+                    <!-- Button Pesan Sekarang hanya tampil saat belum login -->
                     @guest
-                    <form action="{{ route('login') }}" method="GET">
-                        <button 
-                            type="submit" 
-                            class="bg-gradient-to-b from-[#65BAFF] to-[#038EFF] text-white px-6 py-2 rounded-lg text-sm font-medium hover:shadow-lg transition duration-300 flex items-center space-x-2 w-[186px] h-[54px]"
-                        >
-                            <span>Pesan Sekarang</span>
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="white" viewBox="0 0 24 24" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 5a2 2 0 012-2h10a2 2 0 012 2v16l-7-3.5L5 21V5z"/>
-                            </svg>
-                        </button>
-                    </form>
+                        <form action="{{ route('login') }}" method="GET">
+                            <button type="submit"
+                                class="bg-gradient-to-b from-[#65BAFF] to-[#038EFF] text-white px-6 py-2 rounded-lg text-sm font-medium hover:shadow-lg transition duration-300 flex items-center space-x-2 w-[186px] h-[54px]">
+                                <span>Pesan Sekarang</span>
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="white" viewBox="0 0 24 24"
+                                    stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M5 5a2 2 0 012-2h10a2 2 0 012 2v16l-7-3.5L5 21V5z" />
+                                </svg>
+                            </button>
+                        </form>
                     @endguest
 
                     <!-- Profile menu hanya tampil saat login -->
@@ -52,13 +64,12 @@
                         <div x-show="show" class="origin-top-right absolute right-0 mt-2 w-48 rounded-md shadow-lg py-1 bg-white ring-1 ring-black ring-opacity-5 focus:outline-none" role="menu" aria-orientation="vertical" aria-labelledby="user-menu-button" tabindex="-1">
                             <a href="{{ url('/logout') }}" class="block px-4 py-2 text-sm text-gray-700" role="menuitem" tabindex="-1" id="user-menu-item-2">Riwayat Transaksi</a>
                             <a href="{{ url('/logout') }}" class="block px-4 py-2 text-sm text-gray-700" role="menuitem" tabindex="-2" id="user-menu-item-2">Keluar</a>
-                        </div>
-                        
+                        </div>  
                     </div>
                     @endauth
-                    </div>    
                 </div>
             </div>
         </div>
-    </nav>
+</div>
+</nav>
 </div>

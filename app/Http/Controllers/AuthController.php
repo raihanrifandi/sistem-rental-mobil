@@ -43,6 +43,7 @@ class AuthController extends Controller
         return redirect()->route('login')->with('success', 'Registration successful. Please login.');
     }
 
+
     public function login()
     {
         return view('auth.login');
@@ -56,7 +57,7 @@ class AuthController extends Controller
             'password' => 'required',
         ])->validate();
 
-        // Perocbaan login
+        // Percobaan login
         if (!Auth::attempt($request->only('email', 'password'), $request->boolean('remember'))) {
             throw ValidationException::withMessages([
                 'email' => trans('auth.failed'),
@@ -71,6 +72,7 @@ class AuthController extends Controller
         }
 
         return redirect()->route('home');
+
     }
 
     public function logout(Request $request)
