@@ -15,7 +15,7 @@ return new class extends Migration
             $table->integer('total_biaya');
             $table->enum('status_penyewaan', ['pending', 'on-going', 'completed', 'canceled'])->default('pending'); 
             $table->foreignId('id_mobil')->constrained('mobil', 'id_mobil');
-            $table->foreignId('id_pengguna')->constrained('pengguna', 'id_pengguna');
+            $table->foreignId('id_pengguna')->constrained('users', 'id');
             $table->timestamps();
         });
     }

@@ -2,6 +2,11 @@
 @section('title', 'Home')
 
 @section('contents')
+<!-- Scroll to Top Button -->
+<button id="scrollToTop" class="fixed bottom-5 right-5 bg-gradient-to-b from-[#038EFF] to-[#65BAFF] text-white w-14 h-14 flex items-center justify-center rounded-full shadow-lg opacity-0 transition-opacity duration-500">
+    ↑
+</button>
+
 <main>
     <!-- Hero Section -->
     <section class="relative overflow-hidden w-full">
@@ -149,14 +154,6 @@
             </div>
         </div>
     </section>
-
-    {{-- <!-- Car Selection Section -->
-    <section class="py-16 bg-gray-50">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            
-            <!-- Car selection content -->
-        </div>
-    </section> --}}
 
     <!-- Start Your Journey Section -->
     <section class="py-36 relative bg-cover bg-center bg-no-repeat" style="background-image: url('assets/img/footerBg.png')">

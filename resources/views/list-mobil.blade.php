@@ -9,37 +9,32 @@
         <h2 class="text-2xl font-bold">Daftar Mobil</h2>
 
         <!-- Search Bar -->
-        <div class="flex justify-end flex-1 max-w-xs">
-            <div class="relative w-64">
+        <form class="flex-grow max-w-md">   
+            <label for="default-search" class="mb-2 text-sm font-medium text-gray-900 sr-only">Search</label>
+            <div class="relative">
+                <!-- Icon di sisi kiri -->
+                <div class="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
+                    <svg class="w-4 h-4 text-gray-500" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
+                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z"/>
+                    </svg>
+                </div>
+                <!-- Input Field -->
                 <input 
-                    type="text" 
-                    id="searchInput" 
-                    placeholder="Cari Mobil" 
-                    class="w-full pl-10 pr-3 py-2 rounded border border-gray-200 focus:ring-[#038EFF] focus:border-[#038EFF]"
+                    type="search" 
+                    id="default-search" 
+                    class="block w-full p-4 ps-10 pe-24 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500" 
+                    placeholder="Cari Mobil..." 
+                    required 
+                />
+                <!-- Tombol di dalam field -->
+                <button 
+                    type="submit" 
+                    class="absolute end-2 top-2.5 text-white bg-gradient-to-b from-[#65BAFF] to-[#038EFF] focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-[4px] text-sm px-4 py-2"
                 >
-                <svg 
-                    class="w-5 h-5 text-gray-400 absolute left-3 top-1/2 transform -translate-y-1/2" 
-                    viewBox="0 0 24 24" 
-                    fill="none" 
-                    stroke="currentColor"
-                >
-                    <path 
-                        stroke-linecap="round" 
-                        stroke-linejoin="round" 
-                        stroke-width="2" 
-                        d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
-                    />
-                </svg>
+                    Search
+                </button>
             </div>
-        </div>
-
-        <!-- Test Filters Button -->
-        <div class="flex justify-end mt-4">
-            <button id="testFiltersBtn" 
-                    class="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 focus:outline-none">
-                Test Filters
-            </button>
-        </div>
+        </form>        
     </div>
   
     <div class="flex gap-8">

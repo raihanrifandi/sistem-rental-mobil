@@ -10,7 +10,7 @@ class PenyewaanController extends Controller
     // Display a listing of penyewaan
     public function index()
     {
-        $penyewaan = Penyewaan::all();
+        $penyewaan = Penyewaan::with('user')->get();
         return view('penyewaan', compact('penyewaan'));
     }
 
@@ -46,18 +46,31 @@ class PenyewaanController extends Controller
     // Update a penyewaan in storage
     public function update(Request $request, Penyewaan $penyewaan)
     {
+        // Validasi request
         $request->validate([
-            'tanggal_mulai' => 'required|date',
-            'tanggal_selesai' => 'required|date',
-            'total_biaya' => 'required|integer',
             'status_penyewaan' => 'required|in:pending,on-going,completed,canceled',
-            'id_mobil' => 'required|exists:mobil,id_mobil',
-            'id_pengguna' => 'required|exists:pengguna,id_pengguna',
         ]);
 
-        $penyewaan->update($request->all());
+        // Update status penyewaan
+        $penyewaan->update([
+            'status_penyewaan' => $request->status_penyewaan,
+        ]);
 
-        return redirect()->route('penyewaan')->with('success', 'Penyewaan updated successfully.');
+        // Redirect setelah berhasil update
+        return redirect()->route('penyewaan.index')->with('success', 'Status penyewaan berhasil diperbarui.');
+    }
+
+    public function updateValidasi(Request $request, Penyewaan $penyewaan)
+    {
+        $request->validate([
+            'validasi' => 'required|in:accept,reject',
+        ]);
+
+        // Update validasi penyewaan
+        $penyewaan->validasi = $request->validasi;
+        $penyewaan->save();
+
+        return response()->json(['message' => 'Validasi berhasil diperbarui']);
     }
 
     // Remove the specified penyewaan from storage

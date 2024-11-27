@@ -59,7 +59,7 @@
             <div style="flex: 1;">
                 <h4 style="color: #ffffff; font-size: 1.25rem; font-weight: 600; margin-bottom: 1.5rem;">Contact</h4>
                 <p style="color: #707070; margin-bottom: 1rem; font-size: 0.95rem;">(208) 555-0112</p>
-                <p style="color: #707070; margin-bottom: 1rem; font-size: 0.95rem;">@email.com</p>
+                <p style="color: #707070; margin-bottom: 1rem; font-size: 0.95rem;">doaiburentalcar@gmail.com</p>
                 <p style="color: #707070; font-size: 0.95rem;">Ranchview Dr.<br>Richardson, California</p>
             </div>
         </div>
