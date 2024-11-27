@@ -18,7 +18,9 @@
 </head>
 <body>
     <!-- Navbar Component -->
-    @include('components.navbar')
+    <header>
+        @include('components.navbar')
+    </header>
 
     <!-- Contents -->
     <main>
@@ -27,7 +29,9 @@
         </div>
     </main>
 
-    @include('components.footer')
+    <footer>
+        @include('components.footer')
+    </footer>
     <script>
         AOS.init();
     </script>

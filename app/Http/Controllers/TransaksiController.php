@@ -27,8 +27,22 @@ class TransaksiController extends Controller
             return redirect()->back()->with('error', 'Mobil tidak tersedia atau sedang disewa.');
         }
 
-        // Kirim data mobil ke halaman transaksi
-        return view('transaksi', compact('mobil'));
+        $params = array(
+            'transaction_details' => array(
+                'order_id' => 'ORDER-123', 
+                'gross_amount' => 2000000,
+            ),
+            'customer_details' => array(
+                'first_name' => 'John',
+                'last_name' => 'Doe',
+                'email' => 'john.doe@example.com',
+                'phone' => '081234567890',
+            ),
+        );
+    
+        $snapToken = Snap::getSnapToken($params);
+
+        return view('transaksi', compact('mobil', 'snapToken'));
 
     }
 
@@ -39,7 +53,7 @@ class TransaksiController extends Controller
     {
         // Validasi data input dari form transaksi
         $validatedData = $request->validate([
-            'mobil_id' => 'required|exists:mobil,id_mobil', // Pastikan mobil_id ada di database
+            'mobil_id' => 'required|exists:product,id_mobil',
             'nama_penyewa' => 'required|string|max:255',
             'alamat_email' => 'required|email|max:255',
             'nomor_telepon' => 'required|string|max:15',
@@ -68,28 +82,5 @@ class TransaksiController extends Controller
 
         // Update status mobil menjadi 'rented'
         $mobil->update(['status' => 'rented']);
-
-        // Konfigurasi transaksi untuk Midtrans
-        $params = array(
-            'transaction_details' => array(
-                'order_id' => 'ORDER-' . $penyewaan->id, 
-                'gross_amount' => $total_biaya,
-            ),
-            'customer_details' => array(
-                'first_name' => $request->nama_penyewa,
-                'last_name' => $request->nama_penyewa,
-                'email' => $request->alamat_email,
-                'phone' => $request->nomor_telepon,
-            ),
-        );
-
-        try {
-            $snapToken = Snap::getSnapToken($params);
-            return view('transaksi', compact('snapToken', 'penyewaan', 'mobil', 'total_biaya'));
-        } catch (\Exception $e) {
-            // Hapus transaksi jika gagal membuat token
-            $penyewaan->delete();
-            return redirect()->route('transaksi')->with('error', 'Gagal memproses transaksi. Silakan coba lagi.');
-        }
     }
 }

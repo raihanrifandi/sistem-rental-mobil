@@ -14,7 +14,6 @@
 </head>
 
 <body class="h-screen flex bg-gray-50">
-
     <!-- Sidebar with Header Elements -->
     <aside class="bg-gray-800 text-white w-20 flex flex-col items-center pt-6 space-y-8">
         <!-- Profile Picture -->
@@ -98,5 +97,4 @@
         }
     </script>
 </body>
-
 </html>

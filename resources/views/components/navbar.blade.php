@@ -50,8 +50,10 @@
                             <img class="h-8 w-8 rounded-full" src="https://i.pinimg.com/564x/71/0c/37/710c37e50568b4df2131f4470075224a.jpg" alt="User Profile">
                         </button>
                         <div x-show="show" class="origin-top-right absolute right-0 mt-2 w-48 rounded-md shadow-lg py-1 bg-white ring-1 ring-black ring-opacity-5 focus:outline-none" role="menu" aria-orientation="vertical" aria-labelledby="user-menu-button" tabindex="-1">
-                            <a href="{{ url('/logout') }}" class="block px-4 py-2 text-sm text-gray-700" role="menuitem" tabindex="-1" id="user-menu-item-2">Sign out</a>
+                            <a href="{{ url('/logout') }}" class="block px-4 py-2 text-sm text-gray-700" role="menuitem" tabindex="-1" id="user-menu-item-2">Riwayat Transaksi</a>
+                            <a href="{{ url('/logout') }}" class="block px-4 py-2 text-sm text-gray-700" role="menuitem" tabindex="-2" id="user-menu-item-2">Keluar</a>
                         </div>
+                        
                     </div>
                     @endauth
                     </div>    

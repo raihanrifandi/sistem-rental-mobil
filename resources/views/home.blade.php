@@ -155,14 +155,6 @@
         </div>
     </section>
 
-    {{-- <!-- Car Selection Section -->
-    <section class="py-16 bg-gray-50">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            
-            <!-- Car selection content -->
-        </div>
-    </section> --}}
-
     <!-- Start Your Journey Section -->
     <section class="py-36 relative bg-cover bg-center bg-no-repeat" style="background-image: url('assets/img/footerBg.png')">
         <!-- Overlay optional untuk memastikan teks tetap terbaca -->
