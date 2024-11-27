@@ -25,7 +25,6 @@
                     class="w-12 h-12 rounded-full border border-white shadow">
             </div>
 
-
             <!-- Navigation Links -->
             <ul class="space-y-2">
                 <li>
@@ -127,5 +126,4 @@
         }
     </script>
 </body>
-
 </html>

@@ -22,6 +22,10 @@ Route::get('/', function () {
     return view('home');
 });
 
+Route::get('/syarat-ketentuan', function () {
+    return view('syaratKetentuan');
+});
+
 // Rute Autentikasi
 Route::controller(AuthController::class)->group(function () {
     Route::get('register', 'register')->name('register');
