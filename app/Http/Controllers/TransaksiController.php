@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Penyewaan;
 use App\Models\Product;
+use App\Models\User;
 use Midtrans\Snap;
 
 class TransaksiController extends Controller
@@ -20,7 +21,9 @@ class TransaksiController extends Controller
     public function index(Request $request)
     {
         // Ambil data mobil berdasarkan mobil_id dari request
+        // Ambil data penyewa berdasarkan id dari session yang sedang aktif
         $mobil = Product::find($request->mobil_id);
+        $user = User::find(auth()->user()->id);
 
         // Jika mobil tidak ditemukan atau status tidak 'available'
         if (!$mobil || $mobil->status !== 'available') {
@@ -41,8 +44,7 @@ class TransaksiController extends Controller
         );
     
         $snapToken = Snap::getSnapToken($params);
-
-        return view('transaksi', compact('mobil', 'snapToken'));
+        return view('transaksi', compact('mobil', 'user', 'snapToken'));
 
     }
 
@@ -52,13 +54,21 @@ class TransaksiController extends Controller
     public function store(Request $request)
     {
         // Validasi data input dari form transaksi
-        $validatedData = $request->validate([
-            'mobil_id' => 'required|exists:product,id_mobil',
+        $request->validate([
+            'mobil_id' => 'required|exists:mobil,id_mobil',
             'nama_penyewa' => 'required|string|max:255',
             'alamat_email' => 'required|email|max:255',
             'nomor_telepon' => 'required|string|max:15',
             'tanggal_mulai' => 'required|date|after_or_equal:today',
             'tanggal_selesai' => 'required|date|after:tanggal_mulai',
+        ]);
+
+        dd($request->all());
+
+        $user = User::user();
+        $user->update([
+            'name' => $request->nama_penyewa,
+            'no_telepon' => $request->nomor_telepon,
         ]);
 
         // Hitung durasi penyewaan (dalam hari)
@@ -71,7 +81,7 @@ class TransaksiController extends Controller
         $total_biaya = $durasi_hari * $mobil->harga_sewa;
 
         // Simpan transaksi sementara ke database
-        $penyewaan = Penyewaan::create([
+        Penyewaan::create([
             'tanggal_mulai' => $request->tanggal_mulai,
             'tanggal_selesai' => $request->tanggal_selesai,
             'total_biaya' => $total_biaya,
@@ -80,7 +90,6 @@ class TransaksiController extends Controller
             'user_id' => auth()->user()->id,
         ]);
 
-        // Update status mobil menjadi 'rented'
         $mobil->update(['status' => 'rented']);
     }
 }

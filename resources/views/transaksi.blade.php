@@ -62,11 +62,13 @@
                     <div class="space-y-4">
                         <div>
                             <label class="block text-sm text-gray-600 mb-2">Nama Lengkap Sesuai KTP/Paspor/SIM <span class="text-red-500">*</span></label>
-                            <input type="text" name="nama_penyewa" class="w-[456px] p-2 border rounded-[6px] focus:ring-2 focus:ring-blue-500" required>
+                            <input type="text" name="nama_penyewa" class="w-[456px] p-2 border rounded-[6px] focus:ring-2 focus:ring-blue-500" 
+                                   value="{{ old('nama_penyewa', $user->name) }}" required>
                         </div>
                         <div>
                             <label class="block text-sm text-gray-600 mb-2">Alamat Email <span class="text-red-500">*</span></label>
-                            <input type="email" name="alamat_email" class="w-[456px] p-2 border rounded-[6px] focus:ring-2 focus:ring-blue-500" required>
+                            <input type="email" name="alamat_email" class="w-[456px] p-2 border rounded-[6px] bg-gray-100 focus:ring-2 focus:ring-blue-500 cursor-not-allowed" 
+                                   value="{{ $user->email }}" readonly>
                         </div>
                         <div>
                             <label class="block text-sm text-gray-600 mb-2">Nomor Ponsel <span class="text-red-500">*</span></label>
@@ -215,7 +217,7 @@
 <script type="text/javascript" src="https://app.sandbox.midtrans.com/snap/snap.js" 
 data-client-key="{{ env('MIDTRANS_CLIENT_KEY') }}"></script> 
 <script>
-var payButton = document.getElementById('pay-button');
+var payButton = document.getElementById('pay-butto');
 payButton.addEventListener('click', function () {
     event.preventDefault();
     
