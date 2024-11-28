@@ -15,11 +15,17 @@ class Penyewaan extends Model
     protected $fillable = [
         'tanggal_mulai',
         'tanggal_selesai',
+        'waktu_penjemputan',
         'total_biaya',
         'status_penyewaan',
         'id_mobil',
         'user_id',
     ];
+
+    public function setWaktuPenjemputanAttribute($value)
+    {
+        $this->attributes['waktu_penjemputan'] = date('H:i:s', strtotime($value));
+    }
 
     public function mobil()
     {

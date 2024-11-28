@@ -14,9 +14,6 @@ use App\Http\Controllers\SyaratController;
 use App\Http\Controllers\HubungiController;
 use App\Http\Controllers\AboutController;
 
-
-
-
 // Rute Umum
 Route::get('/', function () {
     return view('home');

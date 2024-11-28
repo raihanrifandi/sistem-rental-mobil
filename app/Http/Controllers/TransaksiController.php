@@ -45,6 +45,7 @@ class TransaksiController extends Controller
     
         $snapToken = Snap::getSnapToken($params);
         return view('transaksi', compact('mobil', 'user', 'snapToken'));
+        // return view('transaksi', compact('mobil', 'user', 'snapToken'));
 
     }
 
@@ -54,19 +55,20 @@ class TransaksiController extends Controller
     public function store(Request $request)
     {
         // Validasi data input dari form transaksi
-        $validatedData = $request->validate([
+        $request->validate([
             'mobil_id' => 'required|exists:mobil,id_mobil',
             'nama_penyewa' => 'required|string|max:255',
             'alamat_email' => 'required|email|max:255',
             'nomor_telepon' => 'required|string|max:15',
             'tanggal_mulai' => 'required|date|after_or_equal:today',
             'tanggal_selesai' => 'required|date|after:tanggal_mulai',
+            'waktu_penjemputan' => 'required|date_format:H:i',
         ]);
 
-        // dd($request->all());
+        dd($request->waktu_penjemputan);
 
-        $userId = auth()->user()->id; // Dapatkan ID pengguna dari sesi
-        $user = User::find($userId); // Cari pengguna berdasarkan ID 
+        $userId = auth()->user()->id; 
+        $user = User::find($userId); 
         $user->update([
             'no_telepon' => $request->nomor_telepon,
         ]);
@@ -84,6 +86,7 @@ class TransaksiController extends Controller
         Penyewaan::create([
             'tanggal_mulai' => $request->tanggal_mulai,
             'tanggal_selesai' => $request->tanggal_selesai,
+            'waktu_penjemputan' => $request->waktu_penjemputan,
             'total_biaya' => $total_biaya,
             'status_penyewaan' => 'pending',
             'id_mobil' => $mobil->id_mobil,
@@ -91,6 +94,7 @@ class TransaksiController extends Controller
         ]);
 
         $mobil->update(['status' => 'rented']);
+        
         return redirect()->route('transaksi')->with('success', 'Transaksi berhasil dibuat!');
     }
 }

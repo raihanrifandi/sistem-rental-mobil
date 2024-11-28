@@ -30,7 +30,7 @@
                         class="{{ Request::is('daftar-mobil') ? 'font-medium text-[#038EFF]' : 'text-gray-700' }} hover:text-[#038EFF] px-3 py-2 text-sm transition duration-150">
                         Daftar Mobil
                     </a>
-                    <a href="/syarat"
+                    <a href="/syarat-ketentuan"
                         class="{{ Request::is('syarat') ? 'font-medium text-[#038EFF]' : 'text-gray-700' }} hover:text-[#038EFF] px-3 py-2 text-sm transition duration-150">
                         Syarat & Ketentuan
                     </a>

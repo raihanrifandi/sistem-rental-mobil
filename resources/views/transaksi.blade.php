@@ -62,44 +62,49 @@
                     <div class="space-y-4">
                         <div>
                             <label class="block text-sm text-gray-600 mb-2">Nama Lengkap Sesuai KTP/Paspor/SIM <span class="text-red-500">*</span></label>
-                            <input type="text" name="nama_penyewa" class="w-[456px] p-2 border rounded-[6px] focus:ring-2 focus:ring-blue-500" 
+                            <input type="text" name="nama_penyewa" class="w-[456px] p-2 border border-gray-300 text-gray-900 rounded-[6px] focus:ring-2 focus:ring-blue-500" 
                                    value="{{ old('nama_penyewa', $user->name) }}" required>
                         </div>
                         <div>
                             <label class="block text-sm text-gray-600 mb-2">Alamat Email <span class="text-red-500">*</span></label>
-                            <input type="email" name="alamat_email" class="w-[456px] p-2 border rounded-[6px] bg-gray-100 focus:ring-2 focus:ring-blue-500 cursor-not-allowed" 
+                            <input type="email" name="alamat_email" class="w-[456px] p-2 border border-gray-300 text-gray-900 rounded-[6px] bg-gray-100 focus:ring-2 focus:ring-blue-500 cursor-not-allowed" 
                                    value="{{ $user->email }}" readonly>
                         </div>
                         <div>
-                            <label class="block text-sm text-gray-600 mb-2">Nomor Ponsel <span class="text-red-500">*</span></label>
-                            <input type="tel" name="nomor_telepon" class="w-[456px] p-2 border rounded-[6px] focus:ring-2 focus:ring-blue-500" required>
+                            <label class="block text-sm text-gray-600 mb-2">Nomor Telepon <span class="text-red-500">*</span></label>
+                            <input type="tel" name="nomor_telepon" class="w-[456px] p-2 border border-gray-300 text-gray-900 rounded-[6px] focus:ring-2 focus:ring-blue-500" required>
                         </div>
                         <div class="mb-4">
                             <label for="tanggal_mulai" class="block text-sm text-gray-600 mb-2">Tanggal Mulai <span class="text-red-500">*</span></label>
-                            <input type="date" name="tanggal_mulai" id="tanggal_mulai" class="w-[456px] p-2 border rounded-[6px] focus:ring-2 focus:ring-blue-500" required>
+                            <input type="date" name="tanggal_mulai" id="tanggal_mulai" class="w-[456px] p-2 border border-gray-300 text-gray-900 rounded-[6px] focus:ring-2 focus:ring-blue-500" required>
                         </div>
                         <div class="mb-4">
                             <label for="tanggal_selesai" class="block text-sm text-gray-600 mb-2">Tanggal Selesai <span class="text-red-500">*</span></label>
-                            <input type="date" name="tanggal_selesai" id="tanggal_selesai" class="w-[456px] p-2 border rounded-[6px] focus:ring-2 focus:ring-blue-500" required>
+                            <input type="date" name="tanggal_selesai" id="tanggal_selesai" class="w-[456px] p-2 border border-gray-300 text-gray-900 rounded-[6px] focus:ring-2 focus:ring-blue-500" required>
                         </div>
+                        <div class="mb-4">
+                            <label for="waktu_penjemputan" class="block text-sm text-gray-600 mb-2">Waktu Penjemputan <span class="text-red-500">*</span></label>
+                            <input type="time" name="waktu_penjemputan" id="waktu_penjemputan" class="w-[456px] p-2 border border-gray-300 text-gray-900 rounded-[6px] focus:ring-2 focus:ring-blue-500" min="06:00" max="23:00" required />
+                            <p id="time-warning" class="text-red-500 text-sm hidden mt-1">Waktu penjemputan harus antara 06:00-23:00 dan minimal 3 jam dari sekarang.</p>
+                        </div>                   
                     </div>
                 </div>
 
                 <div class="bg-white rounded-[6px] p-6 mb-6 border border-gray-200">
                     <h2 class="text-lg font-medium mb-4">Dokumen Wajib</h2>
-                        <p class="text-[16px] font-regular mb-4">KTP/SIM/Paspor</p>
-                        <div class="flex items-center justify-center w-full">
-                            <label for="dropzone-file" class="flex flex-col items-center justify-center w-full h-64 border-2 border-gray-300 border-dashed rounded-lg cursor-pointer bg-gray-50 hover:bg-gray-100">
-                                <div class="flex flex-col items-center justify-center pt-5 pb-6">
-                                    <svg class="w-8 h-8 mb-4 text-gray-500 dark:text-gray-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 16">
-                                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 13h3a3 3 0 0 0 0-6h-.025A5.56 5.56 0 0 0 16 6.5 5.5 5.5 0 0 0 5.207 5.021C5.137 5.017 5.071 5 5 5a4 4 0 0 0 0 8h2.167M10 15V6m0 0L8 8m2-2 2 2"/>
-                                    </svg>
-                                    <p class="mb-2 text-sm text-gray-500 dark:text-gray-400"><span class="font-semibold">Click to upload</span> or drag and drop</p>
-                                    <p class="text-xs text-gray-500 dark:text-gray-400">PNG, JPG or JPEG (MAX. 1MB)</p>
-                                </div>
-                                <input id="dropzone-file" type="file" class="hidden" />
-                            </label>
-                        </div> 
+                    <p class="text-[16px] font-regular mb-4">KTP/SIM/Paspor</p>
+                    <div class="flex items-center justify-center w-full">
+                        <label for="dropzone-file" class="flex flex-col items-center justify-center w-full h-64 border-2 border-gray-300 border-dashed rounded-lg cursor-pointer bg-gray-50 hover:bg-gray-100">
+                            <div class="flex flex-col items-center justify-center pt-5 pb-6">
+                                <svg class="w-8 h-8 mb-4 text-gray-500 dark:text-gray-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 16">
+                                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 13h3a3 3 0 0 0 0-6h-.025A5.56 5.56 0 0 0 16 6.5 5.5 5.5 0 0 0 5.207 5.021C5.137 5.017 5.071 5 5 5a4 4 0 0 0 0 8h2.167M10 15V6m0 0L8 8m2-2 2 2"/>
+                                </svg>
+                                <p class="mb-2 text-sm text-gray-500 dark:text-gray-400"><span class="font-semibold">Click to upload</span> or drag and drop</p>
+                                <p class="text-xs text-gray-500 dark:text-gray-400">PNG, JPG or JPEG (MAX. 1MB)</p>
+                            </div>
+                            <input id="dokumen_wajib" type="file" class="hidden" />
+                        </label>
+                    </div> 
                 </div>
 
                 <div class="bg-white rounded-[6px] p-6 mb-6 border border-gray-200">
@@ -152,7 +157,7 @@
                         <span>Kode Promo</span>
                         <a href="#" class="text-blue-500">Masukkan Kode</a>
                     </div>
-                    <input type="text" placeholder="Masukkan kode promo" class="w-full p-3 border rounded-[6px] focus:ring-2 focus:ring-blue-500">
+                    <input type="text" placeholder="Masukkan kode promo" class="w-full p-3 border border-gray-300 text-gray-900 rounded-[6px] focus:ring-2 focus:ring-blue-500">
                 </div>
 
                 <div class="border-t pt-4">

@@ -68,7 +68,7 @@ class AuthController extends Controller
 
         // Redirect berdasarkan tipe user
         if (auth()->user()->type == 'admin') {
-            return redirect()->route('admin/home');
+            return redirect()->route('admin.home');
         }
 
         return redirect()->route('home');
