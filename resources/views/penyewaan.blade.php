@@ -16,7 +16,6 @@
                 <th class="px-4 py-2 text-left">Tanggal Selesai</th>
                 <th class="px-4 py-2 text-left">Total Biaya</th>
                 <th class="px-4 py-2 text-left">Status</th>
-                <th class="px-4 py-2 text-left">Validasi</th>
                 <th class="px-4 py-2 text-left">Edit Status</th>
             </tr>
         </thead>
@@ -33,24 +32,7 @@
                 <td class="px-4 py-2">{{ number_format($item->total_biaya, 0, ',', '.') }}</td>
                 <td class="px-4 py-2">{{ ucfirst($item->status_penyewaan) }}</td>
 
-                <!-- Validasi -->
                 <td class="px-4 py-2">
-                    @if($item->validasi === 'accept')
-                    <span class="text-green-500">Accepted</span>
-                    @elseif($item->validasi === 'reject')
-                    <span class="text-red-500">Rejected</span>
-                    @else
-                    <button class="px-4 py-2 bg-green-500 text-white rounded-md hover:bg-green-600 accept-btn" data-item-id="{{ $item->id_penyewaan }}">
-                        Accept
-                    </button>
-                    <button class="px-4 py-2 bg-red-500 text-white rounded-md hover:bg-red-600 reject-btn" data-item-id="{{ $item->id_penyewaan }}">
-                        Reject
-                    </button>
-                    @endif
-                </td>
-
-                <td class="px-4 py-2">
-                    <!-- Tombol Edit hanya muncul jika validasi "accepted" -->
                     @if ($item->validasi === 'accept')
                     <button class="px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600 edit-btn"
                         data-item-id="{{ $item->id_penyewaan }}"
@@ -75,7 +57,6 @@
             <div class="mb-4">
                 <label for="status" class="block text-sm font-medium text-gray-700">Status</label>
                 <select id="status" name="status_penyewaan" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm">
-                    <option value="pending">Pending</option>
                     <option value="on-going">On-Going</option>
                     <option value="completed">Completed</option>
                     <option value="canceled">Canceled</option>
@@ -97,59 +78,12 @@
 
 <script>
     document.addEventListener('DOMContentLoaded', function() {
-        const acceptButtons = document.querySelectorAll('.accept-btn');
-        const rejectButtons = document.querySelectorAll('.reject-btn');
         const editButtons = document.querySelectorAll('.edit-btn');
         const modal = document.getElementById('editModal');
         const editForm = document.getElementById('editForm');
         const cancelButton = document.getElementById('cancelButton');
         const statusField = document.getElementById('status');
 
-        // Handle Accept Button Click
-        acceptButtons.forEach(button => {
-            button.addEventListener('click', function() {
-                const itemId = this.dataset.itemId;
-
-                fetch(`/penyewaan/${itemId}/validasi`, {
-                        method: 'PATCH',
-                        headers: {
-                            'Content-Type': 'application/json',
-                            'X-CSRF-TOKEN': '{{ csrf_token() }}',
-                        },
-                        body: JSON.stringify({
-                            validasi: 'accept'
-                        })
-                    })
-                    .then(response => response.json())
-                    .then(data => {
-                        alert(data.message);
-                        location.reload();
-                    });
-            });
-        });
-
-        // Handle Reject Button Click
-        rejectButtons.forEach(button => {
-            button.addEventListener('click', function() {
-                const itemId = this.dataset.itemId;
-
-                fetch(`/penyewaan/${itemId}/validasi`, {
-                        method: 'PATCH',
-                        headers: {
-                            'Content-Type': 'application/json',
-                            'X-CSRF-TOKEN': '{{ csrf_token() }}',
-                        },
-                        body: JSON.stringify({
-                            validasi: 'reject'
-                        })
-                    })
-                    .then(response => response.json())
-                    .then(data => {
-                        alert(data.message);
-                        location.reload();
-                    });
-            });
-        });
 
         // Handle Edit Button Click
         editButtons.forEach(button => {

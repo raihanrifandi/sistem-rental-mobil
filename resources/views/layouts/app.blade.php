@@ -74,6 +74,17 @@
                     </a>
                 </li>
                 <li>
+                    <a href="{{ route('validasi.penyewaan') }}"
+                        class="flex items-center p-2 text-base font-normal text-white rounded-lg hover:bg-gray-700">
+                        <svg class="w-6 h-6 text-gray-300 transition duration-75 group-hover:text-white" fill="none"
+                            stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M5 11l7-7 7 7M5 19h14"></path>
+                        </svg>
+                        <span class="ml-3">Request Penyewaan</span>
+                    </a>
+                </li>
+                <li>
                     <a href="#" onclick="confirmLogout(event)"
                         class="flex items-center p-2 text-base font-normal text-white rounded-lg hover:bg-red-600">
                         <svg class="w-6 h-6 text-gray-300 transition duration-75 group-hover:text-white" fill="none"
