@@ -8,7 +8,6 @@ use App\Models\Penyewaan;
 use App\Models\Pembayaran;
 use Carbon\Carbon;
 
-
 class PaymentHistoryController extends Controller
 {
     public function index()
@@ -62,7 +61,8 @@ class PaymentHistoryController extends Controller
         $fraudStatus = $notification['fraud_status'];
 
         // Temukan data pembayaran berdasarkan order_id
-        $payment = Pembayaran::where('order_id', $orderId)->first();
+        $payment = Pembayaran::with('penyewaan.mobil')
+        ->where('id_penyewaan', $orderId)->first();
 
         if (!$payment) {
             return response()->json(['message' => 'Payment not found'], 404);

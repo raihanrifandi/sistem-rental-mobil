@@ -38,7 +38,7 @@ class PermintaanController extends Controller
             // Membuat parameter untuk Midtrans
             $params = [
                 'transaction_details' => [
-                    'order_id' => 'PAY-' . $penyewaan->id_penyewaan, // ID unik untuk pembayaran
+                    'order_id' => $penyewaan->id_penyewaan, // ID unik untuk pembayaran
                     'gross_amount' => $penyewaan->total_biaya, // Total biaya penyewaan
                 ],
                 'customer_details' => [
