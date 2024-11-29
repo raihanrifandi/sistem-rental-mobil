@@ -8,6 +8,6 @@ class HubungiController extends Controller
 {
     public function index()
     {
-        return view('hubungi-kami');
+        return view('user.hubungi-kami');
     }
 }

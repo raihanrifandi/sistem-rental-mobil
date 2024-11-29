@@ -122,8 +122,13 @@
                     </div>
                 </div>
 
-                <button type="submit" 
-                        id="paymentButton"
+                @foreach ($errors->all() as $error)
+                    <p class="text-red-500">{{ $error }}</p>
+                @endforeach
+
+
+                <button type="button" 
+                        id="openModalButton"
                         disabled
                         class="w-full py-4 rounded-[10px] font-medium text-white button-disabled transition-all duration-300">
                     Konfirmasi Penyewaan
@@ -183,8 +188,17 @@
     </div>
 </div>
 
-{{-- Pop Up Konfirmasi Lanjut Ke Pembayaran--}}
-@include('components.konfirmasi')
+<div id="confirmationModal" class="hidden fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+    <div class="bg-white p-6 rounded-lg shadow-lg w-full max-w-md">
+        <h2 class="text-lg font-bold mb-4">Konfirmasi Penyewaan</h2>
+        <p class="text-gray-600 mb-6">Apakah Anda yakin ingin melanjutkan ke tahapan pembayaran?</p>
+        <div class="flex justify-end gap-4">
+            <button id="cancelButton" class="px-4 py-2 bg-gray-300 rounded-lg">Batal</button>
+            <button id="confirmButton" class="py-2 px-4 rounded bg-blue-500 text-white hover:bg-blue-600">Konfirmasi</button>
+        </div>
+    </div>
+</div>
+
 <script>
     document.addEventListener("DOMContentLoaded", function () {
         const tanggalMulaiInput = document.getElementById("tanggal_mulai");

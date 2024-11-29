@@ -15,7 +15,7 @@ class HomeController extends Controller
 
     public function index()
     {
-        return view('home');
+        return view('user.home');
     }
 
     public function adminHome()
@@ -27,6 +27,6 @@ class HomeController extends Controller
         $penyewaan = Penyewaan::all();
 
 
-        return view('dashboard', compact('jumlahMobil', 'mobilTersewa', 'mobilTersedia', 'penyewaan'));
+        return view('admin.dashboard', compact('jumlahMobil', 'mobilTersewa', 'mobilTersedia', 'penyewaan'));
     }
 }

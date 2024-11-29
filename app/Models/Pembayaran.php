@@ -19,8 +19,11 @@ class Pembayaran extends Model
     protected $fillable = [
         'jumlah',
         'tanggal_pembayaran',
+        'status_pembayaran',
         'id_penyewaan',
         'id_metode',
+        'snap_token',
+        'token_expiration',
     ];
 
     // Define the relationships
@@ -28,7 +31,7 @@ class Pembayaran extends Model
     // A pembayaran belongs to a penyewaan (sewa transaction)
     public function penyewaan()
     {
-        return $this->belongsTo(Penyewaan::class, 'id_penyewaan');
+        return $this->belongsTo(Penyewaan::class, 'id_penyewaan', 'id_penyewaan');
     }
 
     // A pembayaran belongs to a metode pembayaran (payment method)

@@ -10,7 +10,7 @@ class CarController extends Controller
     public function index()
     {
         $cars = Product::where('status', 'available')->get(); // Only fetch available cars
-        return view('list-mobil', compact('cars'));
+        return view('user.katalog-mobil', compact('cars'));
     }
 
     public function filter(Request $request)

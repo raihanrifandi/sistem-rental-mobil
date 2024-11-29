@@ -10,7 +10,7 @@ class AdminController extends Controller
     public function index()
     {
         $products = Product::all();
-        return view('admin-product-management', compact('products'));
+        return view('admin.daftar-mobil', compact('products'));
     }
 
     public function create()

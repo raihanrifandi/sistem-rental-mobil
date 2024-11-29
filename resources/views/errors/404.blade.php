@@ -6,7 +6,7 @@
     <div class="w-full max-w-md">
         <!-- Placeholder for 404 Illustration -->
         <div class="w-full h-64 flex items-center justify-center mb-6">
-            <img src="assets/img/error404.png" class="width: 49px; height: 28px;" alt="404-not-found">
+            <img src="../../assets/img/error404.png" class="width: 49px; height: 28px;" alt="404-not-found">
         </div>
         
         <div class="text-center">

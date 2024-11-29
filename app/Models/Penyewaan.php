@@ -22,11 +22,6 @@ class Penyewaan extends Model
         'user_id',
     ];
 
-    public function setWaktuPenjemputanAttribute($value)
-    {
-        $this->attributes['waktu_penjemputan'] = date('H:i:s', strtotime($value));
-    }
-
     public function mobil()
     {
         return $this->belongsTo(Product::class, 'id_mobil');
@@ -36,6 +31,12 @@ class Penyewaan extends Model
     {
         return $this->belongsTo(User::class, 'user_id');
     }
+
+    public function pembayaran()
+    {
+        return $this->hasOne(Pembayaran::class, 'id_penyewaan', 'id_penyewaan');
+    }
+
 
 
 }

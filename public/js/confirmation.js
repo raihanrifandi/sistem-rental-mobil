@@ -1,18 +1,24 @@
-document.addEventListener('DOMContentLoaded', () => {
 
-    const paymentButton = document.getElementById('paymentButton');
-    const confirmationModal = document.getElementById('confirmationModal');
-    const cancelButton = document.getElementById('cancelButton');
+document.addEventListener("DOMContentLoaded", () => {
+    const modal = document.getElementById("confirmationModal");
+    const openModalButton = document.getElementById("openModalButton");
+    const cancelButton = document.getElementById("cancelButton");
+    const confirmButton = document.getElementById("confirmButton");
+    const form = document.querySelector("form");
 
-    // Tampilkan modal ketika tombol bayar ditekan
-    paymentButton.addEventListener('click', (e) => {
-        e.preventDefault();
-        confirmationModal.classList.remove('hidden');
+    // Buka modal
+    openModalButton.addEventListener("click", () => {
+        modal.classList.remove("hidden");
     });
 
-    // Sembunyikan modal ketika tombol batal ditekan
-    cancelButton.addEventListener('click', () => {
-        confirmationModal.classList.add('hidden');
+    // Tutup modal
+    cancelButton.addEventListener("click", () => {
+        modal.classList.add("hidden");
+    });
+
+    // Kirim form dari modal
+    confirmButton.addEventListener("click", () => {
+        form.submit();
     });
 });
 

@@ -1,7 +1,7 @@
 document.addEventListener('DOMContentLoaded', function() {
         
     const checkbox = document.getElementById('agreementCheckbox');
-    const proceedButton = document.getElementById('paymentButton');
+    const proceedButton = document.getElementById('openModalButton');
 
     function updateButtonState() {
         if (checkbox.checked) {

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 use App\Models\Penyewaan;
 use App\Models\Product;
 use App\Models\User;
@@ -20,7 +21,6 @@ class TransaksiController extends Controller
      */
     public function index(Request $request)
     {
-        // Ambil data mobil berdasarkan mobil_id dari request
         // Ambil data penyewa berdasarkan id dari session yang sedang aktif
         $mobil = Product::find($request->mobil_id);
         $user = User::find(auth()->user()->id);
@@ -44,7 +44,7 @@ class TransaksiController extends Controller
         );
     
         $snapToken = Snap::getSnapToken($params);
-        return view('transaksi', compact('mobil', 'user', 'snapToken'));
+        return view('user.transaksi', compact('mobil', 'user', 'snapToken'));
         // return view('transaksi', compact('mobil', 'user', 'snapToken'));
 
     }
@@ -53,7 +53,7 @@ class TransaksiController extends Controller
      * Menyimpan data transaksi ke database.
      */
     public function store(Request $request)
-    {
+    {   
         // Validasi data input dari form transaksi
         $request->validate([
             'mobil_id' => 'required|exists:mobil,id_mobil',
@@ -65,13 +65,14 @@ class TransaksiController extends Controller
             'waktu_penjemputan' => 'required|date_format:H:i',
         ]);
 
-        dd($request->waktu_penjemputan);
-
         $userId = auth()->user()->id; 
         $user = User::find($userId); 
         $user->update([
             'no_telepon' => $request->nomor_telepon,
         ]);
+
+        // Pastikan waktu selalu memiliki format HH:MM:SS
+        $waktuPenjemputan = $request->waktu_penjemputan . ':00';
 
         // Hitung durasi penyewaan (dalam hari)
         $tanggal_mulai = \Carbon\Carbon::parse($request->tanggal_mulai);
@@ -86,7 +87,7 @@ class TransaksiController extends Controller
         Penyewaan::create([
             'tanggal_mulai' => $request->tanggal_mulai,
             'tanggal_selesai' => $request->tanggal_selesai,
-            'waktu_penjemputan' => $request->waktu_penjemputan,
+            'waktu_penjemputan' => $waktuPenjemputan,
             'total_biaya' => $total_biaya,
             'status_penyewaan' => 'pending',
             'id_mobil' => $mobil->id_mobil,
@@ -94,7 +95,8 @@ class TransaksiController extends Controller
         ]);
 
         $mobil->update(['status' => 'rented']);
-        
-        return redirect()->route('transaksi')->with('success', 'Transaksi berhasil dibuat!');
+
+        $token = Str::uuid();
+        return redirect()->route('berhasil', ['token' => $token]);
     }
 }
