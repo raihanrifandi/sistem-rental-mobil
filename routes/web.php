@@ -14,6 +14,7 @@ use App\Http\Controllers\TransaksiController;
 use App\Http\Controllers\HubungiController;
 use App\Http\Controllers\AboutController;
 use App\Http\Controllers\PaymentHistoryController;
+use App\Http\Controllers\InvoiceController;
 
 // Rute Umum
 Route::get('/', function () {
@@ -41,9 +42,9 @@ Route::middleware(['auth', 'user-access:user', 'PreventBackHistory'])->group(fun
         return view('user.berhasil', ['token' => $token]);
     })->name('berhasil');
     Route::get('/riwayat-transaksi', [PaymentHistoryController::class, 'index'])->name('riwayat-transaksi');
-    Route::get('riwayat-transaksi/detail-pembayaran/{id}', [PaymentHistoryController::class, 'showPaymentDetail'])->name('transaksi.showPaymentDetail');
-    Route::post('/midtrans/notification', [PaymentHistoryController::class, 'handleNotification'])->name('midtrans.notification');
+    Route::get('/transaksi/detail-pembayaran/{encryptedId}', [PaymentHistoryController::class, 'showPaymentDetail'])->name('transaksi.showPaymentDetail');
     Route::get('/daftar-mobil', [CarController::class, 'index'])->name('car.list');
+    Route::get('/transaksi/invoice/{encryptedId}', [InvoiceController::class, 'show'])->name('invoice.show');
 });
 
 // Rute untuk Admin

@@ -3,8 +3,9 @@
 
 @section('contents')
 <div class="max-w-6xl mx-auto px-4">
+    <br>
     <div class="flex items-center gap-2 mb-8">
-        <a href="{{ url()->previous() }}" class="text-gray-600">
+        <a href="/daftar-mobil" class="text-gray-600">
             <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
             </svg>
@@ -53,6 +54,23 @@
                 </div>
             </div>
 
+            @if ($errors->any())
+            <div class="flex p-4 mb-4 text-sm text-red-800 rounded-lg bg-red-50" role="alert">
+                <svg class="flex-shrink-0 inline w-4 h-4 me-3 mt-[2px]" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
+                  <path d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5ZM9.5 4a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM12 15H8a1 1 0 0 1 0-2h1v-3H8a1 1 0 0 1 0-2h2a1 1 0 0 1 1 1v4h1a1 1 0 0 1 0 2Z"/>
+                </svg>
+                <span class="sr-only">Perhatian!</span>
+                <div>
+                  <span class="font-medium">Pastikan anda telah mengisi form dengan benar :</span>
+                    <ul class="mt-1.5 list-disc list-inside">
+                        @foreach ($errors->all() as $error)
+                            <p>{{ $error }}</p>
+                        @endforeach
+                    </ul>
+                </div>
+            </div>
+            @endif
+
             <form action="{{ route('transaksi.store') }}" method="POST">
                 @csrf
                 <input type="hidden" name="mobil_id" value="{{ $mobil->id_mobil }}">
@@ -90,6 +108,16 @@
                     </div>
                 </div>
 
+                <div class="flex items-center p-4 mb-4 text-sm text-[#038EFF] border border-[#65BAFF]-300 rounded-lg bg-blue-50" role="alert">
+                    <svg class="flex-shrink-0 inline w-4 h-4 me-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
+                      <path d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5ZM9.5 4a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM12 15H8a1 1 0 0 1 0-2h1v-3H8a1 1 0 0 1 0-2h2a1 1 0 0 1 1 1v4h1a1 1 0 0 1 0 2Z"/>
+                    </svg>
+                    <span class="sr-only">Info</span>
+                    <div>
+                      <span class="font-medium">Data identitas Anda hanya akan digunakan untuk memverifikasi penyewaan.</span>
+                    </div>
+                </div>
+
                 <div class="bg-white rounded-[6px] p-6 mb-6 border border-gray-200">
                     <h2 class="text-lg font-medium mb-4">Dokumen Wajib</h2>
                     <p class="text-[16px] font-regular mb-4">KTP/SIM/Paspor</p>
@@ -121,11 +149,6 @@
                         </div>
                     </div>
                 </div>
-
-                @foreach ($errors->all() as $error)
-                    <p class="text-red-500">{{ $error }}</p>
-                @endforeach
-
 
                 <button type="button" 
                         id="openModalButton"
@@ -213,7 +236,7 @@
             const tanggalSelesai = new Date(tanggalSelesaiInput.value);
 
             if (!isNaN(tanggalMulai) && !isNaN(tanggalSelesai) && tanggalSelesai >= tanggalMulai) {
-                const selisihHari = (tanggalSelesai - tanggalMulai) / (1000 * 60 * 60 * 24) + 1; // Menghitung jumlah hari
+                const selisihHari = (tanggalSelesai - tanggalMulai) / (1000 * 60 * 60 * 24); // Menghitung jumlah hari
                 const subtotal = selisihHari * hargaSewaPerHari; // Menghitung subtotal
                 const pajak = hargaSewaPerHari * pajakPersen; // Menghitung pajak
                 const total = subtotal + pajak; // Total harga termasuk pajak
@@ -230,35 +253,5 @@
         tanggalMulaiInput.addEventListener("change", hitungTotalHarga);
         tanggalSelesaiInput.addEventListener("change", hitungTotalHarga);
     });
-</script>
-
-{{-- Midtrans Payment--}}
-<script type="text/javascript" src="https://app.sandbox.midtrans.com/snap/snap.js" 
-data-client-key="{{ env('MIDTRANS_CLIENT_KEY') }}"></script> 
-<script>
-var payButton = document.getElementById('pay-butto');
-payButton.addEventListener('click', function () {
-    event.preventDefault();
-    
-    // Call Snap Midtrans popup
-    window.snap.pay('{{$snapToken}}', {
-        onSuccess: function (result) {
-            alert("Pembayaran berhasil!"); 
-            console.log(result);
-            window.location.href = '/';
-        },
-        onPending: function (result) {
-            alert("Menunggu pembayaran!"); 
-            console.log(result);
-        },
-        onError: function (result) {
-            alert("Pembayaran gagal!"); 
-            console.log(result);
-        },
-        onClose: function () {
-            alert('Anda menutup popup tanpa menyelesaikan pembayaran.');
-        }
-    });
-});  
 </script>
 @endsection

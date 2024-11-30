@@ -12,12 +12,14 @@
         Sisa waktu: 
         <span id="timer" class="font-bold"></span>
     </p>
-    <div class="border rounded-[6px] p-4 mt-4">
-        <p class="text-sm font-medium mb-2">Pilih Metode Pembayaran</p>
-        <div id="snap-container"></div>
-        <button id="pay-button" class="mt-4 bg-green-500 text-white px-4 py-2 rounded-lg hover:bg-green-600 transition duration-200">
-            Bayar Sekarang
-        </button>
+
+    <div class="bg-white rounded-[6px] p-6 mb-6 border border-gray-200">
+        <h2 class="text-lg font-medium mb-4">Detail Pembayaran</h2>
+        <div class="border rounded-[6px] p-4">
+            <div id="snap-container">
+                {{-- Snap dari midtrans --}}
+            </div>
+        </div>
     </div>
 </div>
 
@@ -60,17 +62,13 @@ data-client-key="{{ env('MIDTRANS_CLIENT_KEY') }}"></script>
         }
     }, 1000);
 
-    // Snap Midtrans
-    const payButton = document.getElementById('pay-button');
-    payButton.addEventListener('click', function (event) {
-        event.preventDefault();
-
-        // Memanggil popup Snap Midtrans
-        window.snap.pay("{{ $snapToken }}", {
+    document.addEventListener('DOMContentLoaded', function () {
+        window.snap.embed("{{ $snapToken }}", {
+            embedId: 'snap-container', 
             onSuccess: function (result) {
                 alert("Pembayaran berhasil!");
                 console.log(result);
-                window.location.href = '/riwayat-transaksi'; // Redirect ke riwayat transaksi
+                window.location.href = '/riwayat-transaksi';
             },
             onPending: function (result) {
                 alert("Menunggu pembayaran!");
@@ -81,9 +79,10 @@ data-client-key="{{ env('MIDTRANS_CLIENT_KEY') }}"></script>
                 console.log(result);
             },
             onClose: function () {
-                alert("Anda menutup popup tanpa menyelesaikan pembayaran.");
+                alert("Anda menutup pembayaran tanpa menyelesaikan transaksi.");
             }
         });
     });
+</script>
 </script>
 @endsection

@@ -79,9 +79,11 @@ class TransaksiController extends Controller
         $tanggal_selesai = \Carbon\Carbon::parse($request->tanggal_selesai);
         $durasi_hari = $tanggal_mulai->diffInDays($tanggal_selesai);
 
-        // Ambil data mobil untuk menghitung total biaya
+        // Ambil data mobil untuk menghitung total biaya beserta pajaknya
         $mobil = Product::find($request->mobil_id);
-        $total_biaya = $durasi_hari * $mobil->harga_sewa;
+        $pajak = $mobil->harga_sewa * 0.1;
+        $subtotal_biaya = $durasi_hari * $mobil->harga_sewa;
+        $total_biaya =  $subtotal_biaya + $pajak;
 
         // Simpan transaksi sementara ke database
         Penyewaan::create([

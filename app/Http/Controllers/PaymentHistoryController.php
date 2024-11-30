@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Models\Penyewaan;
 use App\Models\Pembayaran;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\Crypt;
 
 class PaymentHistoryController extends Controller
 {
@@ -24,44 +25,53 @@ class PaymentHistoryController extends Controller
         return view('user.riwayat-transaksi', compact('transactions'));
     }
 
-    public function showPaymentDetail($id)
+    public function showPaymentDetail($encryptedId)
     {
-        // Cari data pembayaran berdasarkan id_transaksi
-        $payment = Pembayaran::with('penyewaan.mobil')
-        ->where('id_penyewaan', $id) // Cari berdasarkan id_penyewaan
-        ->firstOrFail(); // Ambil data pertama atau lempar 404 jika tidak ditemukan
+        try {
+            // Dekripsi id_penyewaan
+            $id = Crypt::decryptString($encryptedId);
 
-        // Validasi status penyewaan terkait pembayaran
-        if ($payment->penyewaan->status_penyewaan !== 'confirmed') {
-            return redirect()->route('user.riwayat-transaksi')->with('error', 'Transaksi belum dikonfirmasi atau sudah kadaluarsa.');
+            // Cari data pembayaran berdasarkan id_penyewaan
+            $payment = Pembayaran::with('penyewaan.mobil')
+                ->where('id_penyewaan', $id)
+                ->firstOrFail(); // Ambil data pertama atau lempar 404 jika tidak ditemukan
+
+            // Validasi status penyewaan terkait pembayaran
+            if ($payment->penyewaan->status_penyewaan !== 'confirmed') {
+                return redirect()->route('user.riwayat-transaksi')
+                    ->with('error', 'Transaksi belum dikonfirmasi atau sudah kadaluarsa.');
+            }
+
+            // Validasi token pembayaran (kadaluarsa)
+            if (Carbon::now()->greaterThan($payment->token_expiration)) {
+                return redirect()->route('user.riwayat-transaksi')
+                    ->with('error', 'Token pembayaran telah kadaluarsa.');
+            }
+
+            // Kirim data ke view
+            return view('user.detail-pembayaran', [
+                'transaction' => $payment, // Data pembayaran
+                'snapToken' => $payment->snap_token, // Ambil snap_token dari tabel pembayaran
+            ]);
+        } catch (\Exception $e) {
+            // Jika dekripsi gagal atau data tidak ditemukan
+            return redirect()->route('user.riwayat-transaksi')
+                ->with('error', 'Terjadi kesalahan pada transaksi.');
         }
-
-        // Validasi token pembayaran (kadaluarsa)
-        if (Carbon::now()->greaterThan($payment->token_expiration)) {
-            return redirect()->route('user.riwayat-transaksi')->with('error', 'Token pembayaran telah kadaluarsa.');
-        }
-
-        // Kirim data ke view
-        return view('user.detail-pembayaran', [
-            'transaction' => $payment, // Data pembayaran
-            'snapToken' => $payment->snap_token, // Ambil snap_token dari tabel pembayaran
-        ]);
     }
 
     public function handleNotification(Request $request)
     {
         // Ambil data dari webhook
-        $serverKey = env('MIDTRANS_SERVER_KEY'); // Server Key dari Midtrans
+        $serverKey = env('MIDTRANS_SERVER_KEY'); 
         $notification = json_decode($request->getContent(), true);
 
         // Validasi signature key untuk keamanan
         $orderId = $notification['order_id'];
-        $statusCode = $notification['status_code'];
         $transactionStatus = $notification['transaction_status'];
-        $fraudStatus = $notification['fraud_status'];
 
         // Temukan data pembayaran berdasarkan order_id
-        $payment = Pembayaran::with('penyewaan.mobil')
+        $payment = Pembayaran::with('penyewaan')
         ->where('id_penyewaan', $orderId)->first();
 
         if (!$payment) {
@@ -95,7 +105,7 @@ class PaymentHistoryController extends Controller
             ]);
         }
 
-        return response()->json(['message' => 'Notification processed successfully']);
+        return response()->json(['message' => 'Notification processed successfully'], 200);
     }
 
 }
