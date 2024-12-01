@@ -2,7 +2,6 @@
 @section('title', 'Manajemen Produk Mobil')
 
 @section('contents')
-    <div class="container mx-auto">
         <div id="toastContainer" class="fixed top-5 right-5 space-y-4 z-50"></div>
 
         @if (session('error'))
@@ -27,98 +26,76 @@
         </div>
 
         <!-- Table Produk -->
-        <div class="bg-white shadow-lg rounded-lg overflow-hidden">
-            <table class="min-w-full bg-white border ">
-                <thead>
-                    <tr class="bg-gray-100 border-b">
-                        <th class="py-3 px-4 text-left text-gray-600 font-semibold text-sm uppercase tracking-wider border">
-                            ID</th>
-                        <th class="py-3 px-4 text-left text-gray-600 font-semibold text-sm uppercase tracking-wider border">
-                            Gambar</th>
-                        <th class="py-3 px-4 text-left text-gray-600 font-semibold text-sm uppercase tracking-wider border">
-                            Merk</th>
-                        <th class="py-3 px-4 text-left text-gray-600 font-semibold text-sm uppercase tracking-wider border">
-                            Model</th>
-                        <th class="py-3 px-4 text-left text-gray-600 font-semibold text-sm uppercase tracking-wider border">
-                            Tahun</th>
-                        <th class="py-3 px-4 text-left text-gray-600 font-semibold text-sm uppercase tracking-wider border">
-                            Plat</th>
-                        <th class="py-3 px-4 text-left text-gray-600 font-semibold text-sm uppercase tracking-wider border">
-                            Transmisi</th>
-                        <th class="py-3 px-4 text-left text-gray-600 font-semibold text-sm uppercase tracking-wider border">
-                            Kapasitas</th>
-                        <th class="py-3 px-4 text-left text-gray-600 font-semibold text-sm uppercase tracking-wider border">
-                            Harga Sewa</th>
-                        <th class="py-3 px-4 text-left text-gray-600 font-semibold text-sm uppercase tracking-wider border">
-                            Status</th>
-                        <th
-                            class="py-3 px-4 text-center text-gray-600 font-semibold text-sm uppercase tracking-wider border">
-                            Aksi</th>
+        <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
+            <table class="min-w-full text-sm text-left text-gray-500">
+                <thead class="text-xs text-gray-700 uppercase bg-gray-100 dark:bg-gray-700 dark:text-gray-1000">
+                    <tr>
+                        <th scope="col" class="px-6 py-3">ID</th>
+                        <th scope="col" class="px-6 py-3">Gambar</th>
+                        <th scope="col" class="px-6 py-3">Merk</th>
+                        <th scope="col" class="px-6 py-3">Model</th>
+                        <th scope="col" class="px-6 py-3">Tahun</th>
+                        <th scope="col" class="px-6 py-3">Plat</th>
+                        <th scope="col" class="px-6 py-3">Transmisi</th>
+                        <th scope="col" class="px-6 py-3">Kapasitas</th>
+                        <th scope="col" class="px-6 py-3">Harga Sewa</th>
+                        <th scope="col" class="px-6 py-3">Status</th>
+                        <th scope="col" class="px-6 py-3 text-center">Aksi</th>
                     </tr>
                 </thead>
-                <tbody class="text-gray-700 ">
+                <tbody>
                     @foreach ($products as $product)
-                        <tr class="hover:bg-gray-50 transition duration-200">
-                            <td class="py-4 px-4 border">{{ $product->id_mobil }}</td>
-                            <!-- Kolom Gambar -->
-                            <td class="py-4 px-4 border ">
+                        <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
+                            <td class="px-6 py-4">{{ $product->id_mobil }}</td>
+                            <td class="px-6 py-4">
                                 @if ($product->gambar)
                                     <img src="{{ asset($product->gambar) }}" alt="Gambar Produk"
-                                        class="w-24 h-24 object-cover rounded">
+                                        class="w-16 h-16 object-cover rounded">
                                 @else
-                                    <span class="text-gray-500">Tidak ada gambar</span>
+                                    <span class="text-gray-1000">Tidak ada gambar</span>
                                 @endif
                             </td>
-
-                            <td class="py-4 px-4 border">{{ $product->merk }}</td>
-                            <td class="py-4 px-4 border">{{ $product->model }}</td>
-                            <td class="py-4 px-4 border">{{ $product->tahun }}</td>
-                            <td class="py-4 px-4 border">{{ $product->plat }}</td>
-                            <td class="py-4 px-4 border">{{ $product->transmisi }}</td>
-                            <td class="py-4 px-4 border">{{ $product->kapasitas }}</td>
-                            <td class="py-4 px-4 border">Rp {{ number_format($product->harga_sewa, 0, ',', '.') }}</td>
-                            <td class="py-4 px-4 border">
+                            <td class="px-6 py-4">{{ $product->merk }}</td>
+                            <td class="px-6 py-4">{{ $product->model }}</td>
+                            <td class="px-6 py-4">{{ $product->tahun }}</td>
+                            <td class="px-6 py-4">{{ $product->plat }}</td>
+                            <td class="px-6 py-4">{{ $product->transmisi }}</td>
+                            <td class="px-6 py-4">{{ $product->kapasitas }}</td>
+                            <td class="px-6 py-4">Rp {{ number_format($product->harga_sewa, 0, ',', '.') }}</td>
+                            <td class="px-6 py-4">
                                 <span
-                                    class="px-3 py-1 text-sm font-medium rounded-full 
-                            {{ $product->status === 'available'
-                                ? 'bg-green-100 text-green-700'
-                                : ($product->status === 'rented'
-                                    ? 'bg-red-100 text-red-700'
-                                    : 'bg-yellow-100 text-yellow-700') }}">
+                                    class="px-3 py-1 text-xs font-medium rounded-full 
+                                        {{ $product->status === 'available'
+                                            ? 'bg-green-100 text-green-700'
+                                            : ($product->status === 'rented'
+                                                ? 'bg-red-100 text-red-700'
+                                                : 'bg-yellow-100 text-yellow-700') }}">
                                     {{ $product->status === 'available' ? 'Tersedia' : ($product->status === 'rented' ? 'Disewa' : 'Pemeliharaan') }}
                                 </span>
                             </td>
-
-                            <td class="py-4 px-4 border text-center">
+                            <td class="px-6 py-4 text-center space-x-2">
                                 <!-- Tombol Edit -->
                                 <button onclick="openEditModal(this)" data-id_mobil="{{ $product->id_mobil }}"
-                                    data-merk="{{ $product->merk }}" data-model="{{ $product->model }}"
-                                    data-tahun="{{ $product->tahun }}" data-plat="{{ $product->plat }}"
-                                    data-kapasitas="{{ $product->kapasitas }}" data-transmisi="{{ $product->transmisi }}"
-                                    data-harga_sewa="{{ $product->harga_sewa }}"
-                                    class="bg-blue-500 text-white px-4 py-1 rounded-lg hover:bg-blue-600 transition duration-200 shadow">
+                                    class="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50">
                                     Edit
                                 </button>
                                 <!-- Form Hapus -->
-                                <form action="{{ route('products.destroy', $product->id_mobil) }}" method="POST"
-                                    class="inline"
+                                <form action="{{ route('products.destroy', $product->id_mobil) }}" method="POST" class="inline"
                                     onsubmit="return confirm('Apakah Anda yakin ingin menghapus produk ini?');">
                                     @csrf
                                     @method('DELETE')
                                     <button type="submit"
-                                        class="bg-red-500 text-white px-4 py-1 rounded-lg hover:bg-red-600 transition duration-200 shadow">
+                                        class="px-4 py-2 bg-red-600 text-white rounded hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-opacity-50">
                                         Hapus
                                     </button>
                                 </form>
                             </td>
-
                         </tr>
                     @endforeach
                 </tbody>
             </table>
         </div>
-    </div>
-
+        
     <!-- Modal Edit Produk -->
     <div id="editModal" class="fixed inset-0 bg-gray-800 bg-opacity-50 flex items-center justify-center p-4">
         <div class="bg-white p-6 rounded-lg shadow-lg w-full max-w-xl" style="overflow-y: auto; max-height: 80vh;">
