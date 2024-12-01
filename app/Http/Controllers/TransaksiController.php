@@ -58,7 +58,7 @@ class TransaksiController extends Controller
             'mobil_id' => 'required|exists:mobil,id_mobil',
             'nama_penyewa' => 'required|string|max:255',
             'alamat_email' => 'required|email|max:255',
-            'nomor_telepon' => 'required|string|max:15',
+            'phone_number' => 'required|string|max:15',
             'tanggal_mulai' => 'required|date|after_or_equal:today',
             'tanggal_selesai' => 'required|date|after:tanggal_mulai',
         ]);
@@ -68,7 +68,7 @@ class TransaksiController extends Controller
         $userId = auth()->user()->id; // Dapatkan ID pengguna dari sesi
         $user = User::find($userId); // Cari pengguna berdasarkan ID 
         $user->update([
-            'no_telepon' => $request->nomor_telepon,
+            'no_telepon' => $request->phone_number,
         ]);
 
         // Hitung durasi penyewaan (dalam hari)
