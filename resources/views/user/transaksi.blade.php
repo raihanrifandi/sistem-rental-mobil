@@ -24,7 +24,7 @@
         {{ session('success') }}
     </div>
     @endif
-    
+
     <div class="flex flex-col md:flex-row gap-8">
         <!-- Left Side - Form -->
         <div class="w-full md:w-2/3">
@@ -57,21 +57,21 @@
             @if ($errors->any())
             <div class="flex p-4 mb-4 text-sm text-red-800 rounded-lg bg-red-50" role="alert">
                 <svg class="flex-shrink-0 inline w-4 h-4 me-3 mt-[2px]" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
-                  <path d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5ZM9.5 4a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM12 15H8a1 1 0 0 1 0-2h1v-3H8a1 1 0 0 1 0-2h2a1 1 0 0 1 1 1v4h1a1 1 0 0 1 0 2Z"/>
+                    <path d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5ZM9.5 4a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM12 15H8a1 1 0 0 1 0-2h1v-3H8a1 1 0 0 1 0-2h2a1 1 0 0 1 1 1v4h1a1 1 0 0 1 0 2Z" />
                 </svg>
                 <span class="sr-only">Perhatian!</span>
                 <div>
-                  <span class="font-medium">Pastikan anda telah mengisi form dengan benar :</span>
+                    <span class="font-medium">Pastikan anda telah mengisi form dengan benar :</span>
                     <ul class="mt-1.5 list-disc list-inside">
                         @foreach ($errors->all() as $error)
-                            <p>{{ $error }}</p>
+                        <p>{{ $error }}</p>
                         @endforeach
                     </ul>
                 </div>
             </div>
             @endif
 
-            <form action="{{ route('transaksi.store') }}" method="POST">
+            <form action="{{ route('transaksi.store') }}" method="POST" enctype="multipart/form-data">
                 @csrf
                 <input type="hidden" name="mobil_id" value="{{ $mobil->id_mobil }}">
 
@@ -80,13 +80,13 @@
                     <div class="space-y-4">
                         <div>
                             <label class="block text-sm text-gray-600 mb-2">Nama Lengkap Sesuai KTP/Paspor/SIM <span class="text-red-500">*</span></label>
-                            <input type="text" name="nama_penyewa" class="w-[456px] p-2 border border-gray-300 text-gray-900 rounded-[6px] focus:ring-2 focus:ring-blue-500" 
-                                   value="{{ old('nama_penyewa', $user->name) }}" required>
+                            <input type="text" name="nama_penyewa" class="w-[456px] p-2 border border-gray-300 text-gray-900 rounded-[6px] focus:ring-2 focus:ring-blue-500"
+                                value="{{ old('nama_penyewa', $user->name) }}" required>
                         </div>
                         <div>
                             <label class="block text-sm text-gray-600 mb-2">Alamat Email <span class="text-red-500">*</span></label>
-                            <input type="email" name="alamat_email" class="w-[456px] p-2 border border-gray-300 text-gray-900 rounded-[6px] bg-gray-100 focus:ring-2 focus:ring-blue-500 cursor-not-allowed" 
-                                   value="{{ $user->email }}" readonly>
+                            <input type="email" name="alamat_email" class="w-[456px] p-2 border border-gray-300 text-gray-900 rounded-[6px] bg-gray-100 focus:ring-2 focus:ring-blue-500 cursor-not-allowed"
+                                value="{{ $user->email }}" readonly>
                         </div>
                         <div>
                             <label class="block text-sm text-gray-600 mb-2">Nomor Telepon <span class="text-red-500">*</span></label>
@@ -104,17 +104,17 @@
                             <label for="waktu_penjemputan" class="block text-sm text-gray-600 mb-2">Waktu Penjemputan <span class="text-red-500">*</span></label>
                             <input type="time" name="waktu_penjemputan" id="waktu_penjemputan" class="w-[456px] p-2 border border-gray-300 text-gray-900 rounded-[6px] focus:ring-2 focus:ring-blue-500" min="06:00" max="23:00" required />
                             <p id="time-warning" class="text-red-500 text-sm hidden mt-1">Waktu penjemputan harus antara 06:00-23:00 dan minimal 3 jam dari sekarang.</p>
-                        </div>                   
+                        </div>
                     </div>
                 </div>
 
                 <div class="flex items-center p-4 mb-4 text-sm text-[#038EFF] border border-[#65BAFF]-300 rounded-lg bg-blue-50" role="alert">
                     <svg class="flex-shrink-0 inline w-4 h-4 me-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
-                      <path d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5ZM9.5 4a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM12 15H8a1 1 0 0 1 0-2h1v-3H8a1 1 0 0 1 0-2h2a1 1 0 0 1 1 1v4h1a1 1 0 0 1 0 2Z"/>
+                        <path d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5ZM9.5 4a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM12 15H8a1 1 0 0 1 0-2h1v-3H8a1 1 0 0 1 0-2h2a1 1 0 0 1 1 1v4h1a1 1 0 0 1 0 2Z" />
                     </svg>
                     <span class="sr-only">Info</span>
                     <div>
-                      <span class="font-medium">Data identitas Anda hanya akan digunakan untuk memverifikasi penyewaan.</span>
+                        <span class="font-medium">Data identitas Anda hanya akan digunakan untuk memverifikasi penyewaan.</span>
                     </div>
                 </div>
 
@@ -122,18 +122,21 @@
                     <h2 class="text-lg font-medium mb-4">Dokumen Wajib</h2>
                     <p class="text-[16px] font-regular mb-4">KTP/SIM/Paspor</p>
                     <div class="flex items-center justify-center w-full">
-                        <label for="dropzone-file" class="flex flex-col items-center justify-center w-full h-64 border-2 border-gray-300 border-dashed rounded-lg cursor-pointer bg-gray-50 hover:bg-gray-100">
+                        <label for="dokumen_wajib" class="flex flex-col items-center justify-center w-full h-64 border-2 border-gray-300 border-dashed rounded-lg cursor-pointer bg-gray-50 hover:bg-gray-100">
                             <div class="flex flex-col items-center justify-center pt-5 pb-6">
-                                <svg class="w-8 h-8 mb-4 text-gray-500 dark:text-gray-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 16">
-                                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 13h3a3 3 0 0 0 0-6h-.025A5.56 5.56 0 0 0 16 6.5 5.5 5.5 0 0 0 5.207 5.021C5.137 5.017 5.071 5 5 5a4 4 0 0 0 0 8h2.167M10 15V6m0 0L8 8m2-2 2 2"/>
+                                <svg class="w-8 h-8 mb-4 text-gray-500" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 16">
+                                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 13h3a3 3 0 0 0 0-6h-.025A5.56 5.56 0 0 0 16 6.5 5.5 5.5 0 0 0 5.207 5.021C5.137 5.017 5.071 5 5 5a4 4 0 0 0 0 8h2.167M10 15V6m0 0L8 8m2-2 2 2" />
                                 </svg>
-                                <p class="mb-2 text-sm text-gray-500 dark:text-gray-400"><span class="font-semibold">Click to upload</span> or drag and drop</p>
-                                <p class="text-xs text-gray-500 dark:text-gray-400">PNG, JPG or JPEG (MAX. 1MB)</p>
+                                <p class="mb-2 text-sm text-gray-500"><span class="font-semibold">Click to upload</span> or drag and drop</p>
+                                <p class="text-xs text-gray-500">PNG, JPG or JPEG (MAX. 1MB)</p>
                             </div>
-                            <input id="dokumen_wajib" type="file" class="hidden" />
+                            <input id="dokumen_wajib" type="file" name="dokumen_wajib" class="hidden" accept="image/png, image/jpeg, image/jpg" />
                         </label>
-                    </div> 
+                    </div>
+                    <div id="fileInfo" class="mt-2 text-sm text-gray-600"></div>
+                    <p id="fileError" class="text-red-500 text-sm mt-1 hidden">File harus berformat PNG, JPG, atau JPEG dan maksimal ukuran 1MB.</p>
                 </div>
+
 
                 <div class="bg-white rounded-[6px] p-6 mb-6 border border-gray-200">
                     <h2 class="text-lg font-medium mb-4">Persetujuan & Kebijakan</h2>
@@ -141,19 +144,19 @@
                         <p class="mb-4">Please review the order details and payment details before proceeding to confirm your order</p>
                         <div class="flex items-start gap-2">
                             <input type="checkbox" id="agreementCheckbox" required class="mt-1">
-                            <p>I agree to the 
-                                <a href="#" class="text-blue-500">Terms & conditions</a>, 
-                                <a href="#" class="text-blue-500">Privacy policy</a> & 
+                            <p>I agree to the
+                                <a href="#" class="text-blue-500">Terms & conditions</a>,
+                                <a href="#" class="text-blue-500">Privacy policy</a> &
                                 <a href="#" class="text-blue-500">Return policy</a>
                             </p>
                         </div>
                     </div>
                 </div>
 
-                <button type="button" 
-                        id="openModalButton"
-                        disabled
-                        class="w-full py-4 rounded-[10px] font-medium text-white button-disabled transition-all duration-300">
+                <button type="button"
+                    id="openModalButton"
+                    disabled
+                    class="w-full py-4 rounded-[10px] font-medium text-white button-disabled transition-all duration-300">
                     Konfirmasi Penyewaan
                 </button>
             </form>
@@ -165,13 +168,13 @@
             <div class="bg-white rounded-[6px] p-6 border border-gray-200 sticky top-4">
                 <div class="flex items-center gap-4 mb-6">
                     @if($mobil->gambar)
-                        <img src="{{ asset($mobil->gambar) }}" alt="{{ $mobil->merk }}" class="w-24 h-24 object-cover rounded-2xl">
+                    <img src="{{ asset($mobil->gambar) }}" alt="{{ $mobil->merk }}" class="w-24 h-24 object-cover rounded-2xl">
                     @else
-                        <div class="w-24 h-24 bg-gray-100 rounded-2xl flex items-center justify-center">
-                            <svg class="w-8 h-8 text-gray-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
-                            </svg>
-                        </div>
+                    <div class="w-24 h-24 bg-gray-100 rounded-2xl flex items-center justify-center">
+                        <svg class="w-8 h-8 text-gray-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                        </svg>
+                    </div>
                     @endif
                     <div>
                         <h3 class="font-medium">{{ $mobil->merk }} {{ $mobil->model }}</h3>
@@ -223,12 +226,16 @@
 </div>
 
 <script>
-    document.addEventListener("DOMContentLoaded", function () {
+    document.addEventListener("DOMContentLoaded", function() {
         const tanggalMulaiInput = document.getElementById("tanggal_mulai");
         const tanggalSelesaiInput = document.getElementById("tanggal_selesai");
         const subTotalHargaElement = document.getElementById("")
         const totalHargaElement = document.querySelector(".total-harga");
-        const hargaSewaPerHari = {{ $mobil->harga_sewa }}; // Harga sewa per hari dari backend
+        const hargaSewaPerHari = {
+            {
+                $mobil - > harga_sewa
+            }
+        }; // Harga sewa per hari dari backend
         const pajakPersen = 0.1; // 10%
 
         function hitungTotalHarga() {
@@ -252,6 +259,55 @@
         // Event listener untuk input tanggal
         tanggalMulaiInput.addEventListener("change", hitungTotalHarga);
         tanggalSelesaiInput.addEventListener("change", hitungTotalHarga);
+    });
+</script>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        const fileInput = document.getElementById("dokumen_wajib");
+        const fileInfo = document.getElementById("fileInfo");
+        const filePreview = document.createElement('img');
+        filePreview.classList.add('hidden');
+        filePreview.classList.add('w-34', 'h-24', 'object-cover', 'rounded-2xl');
+        const previewContainer = document.querySelector('#dokumen_wajib').closest('.flex.items-center.justify-center'); // Find the container of the file input
+        previewContainer.appendChild(filePreview);
+
+        fileInput.addEventListener("change", function(event) {
+            const file = event.target.files[0];
+            const fileError = document.getElementById("fileError");
+
+            fileInfo.textContent = "";
+            filePreview.src = "";
+            filePreview.classList.add("hidden");
+            fileError.classList.add("hidden");
+
+            if (file) {
+                // Cek size (max 1MB)
+                if (file.size > 1024 * 1024) { // Max 1MB
+                    fileError.textContent = "File terlalu besar! Maksimal 1MB.";
+                    fileError.classList.remove("hidden");
+                    return;
+                }
+
+                // cek tipe file ( PNG, JPG, or JPEG)
+                if (!["image/png", "image/jpeg", "image/jpg"].includes(file.type)) {
+                    fileError.textContent = "Format file tidak didukung! Gunakan PNG, JPG, atau JPEG.";
+                    fileError.classList.remove("hidden");
+                    return;
+                }
+
+                // menampilkan nama file
+                fileInfo.textContent = `File yang dipilih: ${file.name}`;
+
+                // menampilkan preview
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    filePreview.src = e.target.result; // Set the image source to the uploaded file
+                    filePreview.classList.remove("hidden"); // Show the image
+                };
+                reader.readAsDataURL(file); // Read the file as data URL
+            }
+        });
     });
 </script>
 @endsection

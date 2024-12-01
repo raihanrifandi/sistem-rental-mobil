@@ -63,7 +63,10 @@ class TransaksiController extends Controller
             'tanggal_mulai' => 'required|date|after_or_equal:today',
             'tanggal_selesai' => 'required|date|after:tanggal_mulai',
             'waktu_penjemputan' => 'required|date_format:H:i',
+            'dokumen_wajib' => 'required|file|mimes:jpg,jpeg,png|max:1024'
         ]);
+
+        $filePath = $request->file('dokumen_wajib')->store('public/identitas');
 
         $userId = auth()->user()->id; 
         $user = User::find($userId); 
@@ -94,6 +97,7 @@ class TransaksiController extends Controller
             'status_penyewaan' => 'pending',
             'id_mobil' => $mobil->id_mobil,
             'user_id' => auth()->user()->id,
+            'kartu_identitas' => $filePath,
         ]);
 
         $mobil->update(['status' => 'rented']);
