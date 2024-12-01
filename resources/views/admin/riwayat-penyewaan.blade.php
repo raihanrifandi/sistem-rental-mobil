@@ -22,6 +22,34 @@
             <h1 class="text-3xl font-semibold text-gray-800">Manajemen Penyewaan</h1>
         </div>
 
+        <!-- Search Bar -->
+        <div class="mb-4 flex items-center relative">
+            <input
+              class="appearance-none border-2 pl-10 border-gray-300 hover:border-gray-400 transition-colors rounded-md w-[256px] py-2 px-3 text-gray-800 leading-tight focus:outline-none focus:ring-purple-600 focus:border-purple-600 focus:shadow-outline"
+              id="searchInput"
+              type="text"
+              placeholder="Search..."
+            />
+          
+            <div class="absolute left-0 inset-y-0 flex items-center">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                class="h-6 w-6 ml-3 text-gray-400 hover:text-gray-500"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
+                />
+              </svg>
+            </div>
+          </div>
+        <br>
+
         <!-- Tabel Penyewaan -->
         <div class="bg-white shadow-lg rounded-lg overflow-hidden">
             <table class="min-w-full bg-white border">
@@ -38,7 +66,7 @@
                         <th class="py-3 px-4 text-center text-gray-600 font-semibold text-sm uppercase tracking-wider border">Aksi</th>
                     </tr>
                 </thead>
-                <tbody class="text-gray-700">
+                <tbody id="productTableBody" class="text-gray-700">
                     @foreach ($penyewaan as $sewa)
                         <tr class="hover:bg-gray-50 transition duration-200">
                             <td class="py-4 px-4 border">{{ $sewa->id_penyewaan }}</td>
@@ -55,17 +83,19 @@
                                     {{ $sewa->status_penyewaan }}
                                 </span>
                             </td>
-                            <td class="py-4 px-4 border text-center">
+                            <td class="py-12 px-8 border flex justify-center items-center text-center">
                                 <!-- Tombol Edit -->
                                 <a href="{{ route('penyewaan.edit', $sewa->id_penyewaan) }}" 
                                    class="bg-blue-500 text-white px-4 py-1 rounded-lg hover:bg-blue-600 transition duration-200 shadow">
-                                    Edit
+                                   <i class="fa-solid fa-pen-to-square"></i>
                                 </a>
                                 <!-- Form Hapus -->
                                 <form action="{{ route('penyewaan.destroy', $sewa->id_penyewaan) }}" method="POST" class="inline" onsubmit="return confirm('Apakah Anda yakin ingin menghapus penyewaan ini?');">
                                     @csrf
                                     @method('DELETE')
-                                    <button type="submit" class="bg-red-500 text-white px-4 py-1 rounded-lg hover:bg-red-600 transition duration-200 shadow">Hapus</button>
+                                    <button type="submit" class="bg-red-500 text-white px-4 py-1 rounded-lg hover:bg-red-600 transition duration-200 shadow">
+                                        <i class="fa-solid fa-trash"></i>
+                                    </button>
                                 </form>
                             </td>
                         </tr>
@@ -73,5 +103,18 @@
                 </tbody>
             </table>
         </div>
+        <div class="mt-6">
+            {{ $penyewaan->links('components.pagination') }}
+        </div>
     </div>
+    <script>
+        $(document).ready(function () {
+            $("#searchInput").on("keyup", function () {
+                let value = $(this).val().toLowerCase();
+                $("#productTableBody tr").filter(function () {
+                    $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1);
+                });
+            });
+        });
+    </script>
 @endsection

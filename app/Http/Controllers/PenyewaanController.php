@@ -12,7 +12,7 @@ class PenyewaanController extends Controller
             ->join('users', 'penyewaan.user_id', '=', 'users.id')
             ->join('mobil', 'penyewaan.id_mobil', '=', 'mobil.id_mobil')
             ->whereIn('penyewaan.status_penyewaan', ['on-going', 'confirmed', 'completed', 'canceled'])
-            ->get();
+            ->paginate(10);
 
         return view('admin.riwayat-penyewaan', compact('penyewaan'));
     }

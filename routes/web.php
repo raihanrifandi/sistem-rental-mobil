@@ -55,6 +55,7 @@ Route::middleware(['auth', 'user-access:admin', 'PreventBackHistory'])->group(fu
     Route::get('admin/request-penyewaan', [PermintaanController::class, 'index'])->name('admin.permintaan');
     Route::get('admin/riwayat-penyewaan', [PenyewaanController::class, 'index'])->name('admin.penyewaan');
     Route::post('admin/request-penyewaan/verify/{id}', [PermintaanController::class, 'verifikasi'])->name('permintaan.verify');
+    Route::patch('admin/request-penyewaan/reject/{id}', [PermintaanController::class, 'reject'])->name('permintaan.reject');
     Route::get('admin/transaksi-pembayaran', [PembayaranController::class, 'index'])->name('admin.pembayaran');
     Route::resource('metode_pembayaran', MetodePembayaranController::class);
     Route::resource('admin/penyewaan', PenyewaanController::class);

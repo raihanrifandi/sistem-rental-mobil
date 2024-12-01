@@ -16,7 +16,7 @@ class PembayaranController extends Controller
         $pembayaranList = Pembayaran::select('pembayaran.*', 'penyewaan.id_penyewaan', 'penyewaan.total_biaya', 'metode_pembayaran.jenis_pembayaran')
             ->join('penyewaan', 'pembayaran.id_penyewaan', '=', 'penyewaan.id_penyewaan')
             ->join('metode_pembayaran', 'pembayaran.id_metode', '=', 'metode_pembayaran.id_metode')
-            ->get();
+            ->paginate(10);
 
         return view('admin.pembayaran', compact('pembayaranList'));
     }
