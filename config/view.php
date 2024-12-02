@@ -33,4 +33,12 @@ return [
         realpath(storage_path('framework/views'))
     ),
 
+    'pagination' => [
+        'default' => 'tailwind',
+    ],
+
+    'driver' => env('VIEW_DRIVER', 'blade'),
+    'cache' => storage_path('framework/views'),
+
+
 ];

@@ -5,13 +5,13 @@
             <!-- Logo and Description -->
             <div>
                 <div class="flex items-center space-x-3 mb-6">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-12 text-blue-500" fill="currentColor" viewBox="0 0 24 24">
-                        <circle cx="12" cy="12" r="12"></circle>
-                    </svg>
+                    <!-- Gambar Logo -->
+                    <img src="assets/img/logo.png" alt="Logo" class="h-12 w-12">
                     <h3 class="text-xl font-semibold">
                         DOA IBU <span class="text-blue-500">RENTAL</span>
                     </h3>
                 </div>
+                
                 <p class="text-gray-400 text-sm mb-6">
                     RentalYukk adalah sebuah platform web yang menyediakan layanan sewa mobil dengan kemudahan, keamanan, dan harga yang kompetitif.
                 </p>
@@ -25,7 +25,7 @@
                     </a>
                 </div>
             </div>
-            <!-- Sitemap -->
+            <!-- menu -->
             <div>
                 <h4 class="text-lg font-semibold mb-6">Menu</h4>
                 <ul class="space-y-4">

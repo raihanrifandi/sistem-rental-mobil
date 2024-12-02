@@ -1,76 +1,52 @@
 <?php
-
 namespace App\Http\Controllers;
 
 use App\Models\Product;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use Exception;
 
 class CarController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $cars = Product::where('status', 'available')->get(); // Only fetch available cars
-        return view('user.katalog-mobil', compact('cars'));
-    }
+        try {
+            $query = Product::query()
+                ->where('status', 'available');
 
-    public function filter(Request $request)
-    {
-        $query = Product::query();
+            // Apply search filter if present
+            if ($request->filled('search')) {
+                $search = $request->search;
+                $query->where('merk', 'like', "%{$search}%");
+            }
 
+            $cars = $query
+                ->latest()
+                ->paginate(10);
 
-        // Filter by search (optional)
-        if ($request->filled('search')) {
-            $search = $request->search;
-            $query->where(function($q) use ($search) {
-                $q->where('merk', 'like', "%{$search}%")
-                  ->orWhere('model', 'like', "%{$search}%");
-            });
+            // Append query parameters for pagination links
+            $cars->appends($request->query());
+
+            // Check if request is AJAX and return appropriate response
+            if ($request->ajax()) {
+                $view = view('components.car-grid', compact('cars'))->render();
+                return response()->json([
+                    'status' => 'success',
+                    'html' => $view,
+                    'count' => $cars->total(),
+                ]);
+            }
+
+            // Render the view with the filtered cars
+            return view('user.katalog-mobil', compact('cars'));
+        } catch (Exception $e) {
+            if ($request->ajax()) {
+                return response()->json([
+                    'status' => 'error',
+                    'message' => $e->getMessage(),
+                ], 500);
+             }
+            return back()->with('error', 'Failed to load cars: ' . $e->getMessage());
         }
-
-        // Filter by model (optional, multiple selection possible)
-        if ($request->filled('model') && !empty($request->model)) {
-            $query->whereIn('model', (array)$request->model);
-        }
-
-        // Filter by transmisi (optional, multiple selection possible)
-        if ($request->filled('transmisi') && !empty($request->transmisi)) {
-            $query->whereIn('transmisi', (array)$request->transmisi);
-        }
-
-        // Filter by kapasitas (optional)
-        if ($request->filled('kapasitas') && $request->kapasitas !== '') {
-            $query->where('kapasitas', $request->kapasitas);
-        }
-
-        // Filter by price range (optional, both min and max are independent)
-        if ($request->filled('min_harga') && is_numeric($request->min_harga)) {
-            $query->where('harga', '>=', $request->min_harga);
-        }
-
-        if ($request->filled('max_harga') && is_numeric($request->max_harga)) {
-            $query->where('harga', '<=', $request->max_harga);
-        }
-
-        // Get the filtered results
-        $cars = $query->get();
-
-        if ($request->ajax()) {
-            $view = view('components.car-grid', compact('cars'))->render();
-            return response()->json([
-                'status' => 'success',
-                'html' => $view,
-                'count' => $cars->count(),
-                'filters_applied' => [
-                    'search' => $request->search ?? null,
-                    'model' => $request->model ?? [],
-                    'transmisi' => $request->transmisi ?? [],
-                    'kapasitas' => $request->kapasitas ?? null,
-                    'min_harga' => $request->min_harga ?? null,
-                    'max_harga' => $request->max_harga ?? null,
-                ]
-            ]);
-        }
-
-        return view('list-mobil', compact('cars'));
     }
 }
