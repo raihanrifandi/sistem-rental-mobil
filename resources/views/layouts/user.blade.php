@@ -24,14 +24,12 @@
     <header>
         @include('components.navbar')
     </header>
-
     <!-- Contents -->
     <main>
         <div>
             <div>@yield('contents')</div>
         </div>
     </main>
-
     <footer>
         @include('components.footer')
     </footer>
