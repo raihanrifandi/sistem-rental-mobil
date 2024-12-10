@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\VerificationController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\CarController;
@@ -16,9 +17,16 @@ use App\Http\Controllers\AboutController;
 use App\Http\Controllers\PaymentHistoryController;
 use App\Http\Controllers\InvoiceController;
 
+
 // Rute Umum
 Route::get('/', function () {
     return view('user.home');
+});
+
+Route::middleware(['auth'])->group(function () {
+    Route::get('/email/verify', [VerificationController::class, 'notice'])->name('verification.notice');
+    Route::get('/email/verify/{id}/{hash}', [VerificationController::class, 'verify'])->middleware('signed')->name('verification.verify');
+    Route::post('/email/resend', [VerificationController::class, 'resend'])->middleware('throttle:6,1')->name('verification.resend');
 });
 
 
@@ -32,7 +40,7 @@ Route::controller(AuthController::class)->group(function () {
 });
 
 // Rute untuk Pengguna Biasa
-Route::middleware(['auth', 'user-access:user', 'PreventBackHistory'])->group(function () {
+Route::middleware(['auth', 'verified', 'user-access:user', 'PreventBackHistory'])->group(function () {
     Route::get('/home', [HomeController::class, 'index'])->name('home');
     Route::get('/daftar-mobil/filter', [CarController::class, 'filter'])->name('car.filter');
     Route::get('/daftar-mobil', [CarController::class, 'index'])->name('car.list');

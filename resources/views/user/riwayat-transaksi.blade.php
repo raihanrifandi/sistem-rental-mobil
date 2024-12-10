@@ -58,6 +58,8 @@
                             </a>
                         @elseif ($transaction->status_penyewaan == 'canceled')
                             <span class="bg-red-200 text-red-800 px-3 py-1 rounded-full text-sm font-medium">Dibatalkan</span>
+                        @elseif ($transaction->status_penyewaan == 'rejected')
+                            <span class="bg-red-200 text-red-800 px-3 py-1 rounded-full text-sm font-medium">Ditolak</span>
                         @endif
                     </div>
                 </div>

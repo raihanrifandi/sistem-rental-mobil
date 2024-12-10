@@ -102,7 +102,7 @@
                             <td class="py-4 px-4 border">{{ $product->model }}</td>
                             <td class="py-4 px-4 border">{{ $product->tahun }}</td>
                             <td class="py-4 px-4 border">{{ $product->plat }}</td>
-                            <td class="py-4 px-4 border">{{ $product->transmisi }}</td>
+                            <td class="py-4 px-4 border">{{ ucfirst($product->transmisi) }}</td>
                             <td class="py-4 px-4 border">{{ $product->kapasitas }}</td>
                             <td class="py-4 px-4 border">Rp {{ number_format($product->harga_sewa, 0, ',', '.') }}</td>
                             <td class="py-4 px-4 border">
