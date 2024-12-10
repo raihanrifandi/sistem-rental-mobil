@@ -52,16 +52,16 @@
 
         <!-- Tabel Pembayaran -->
         <div class="bg-white shadow-lg rounded-lg overflow-hidden">
-            <table class="min-w-full bg-white border">
-                <thead>
-                    <tr class="bg-gray-100 border-b">
-                        <th class="py-3 px-4 text-left text-gray-600 font-semibold text-sm uppercase tracking-wider border">ID Pembayaran</th>
-                        <th class="py-3 px-4 text-left text-gray-600 font-semibold text-sm uppercase tracking-wider border">Jumlah</th>
-                        <th class="py-3 px-4 text-left text-gray-600 font-semibold text-sm uppercase tracking-wider border">Tanggal Pembayaran</th>
-                        <th class="py-3 px-4 text-left text-gray-600 font-semibold text-sm uppercase tracking-wider border">ID Penyewaan</th>
-                        <th class="py-3 px-4 text-left text-gray-600 font-semibold text-sm uppercase tracking-wider border">Metode Pembayaran</th>
-                        <th class="py-3 px-4 text-left text-gray-600 font-semibold text-sm uppercase tracking-wider border">Status Pembayaran</th>
-                        <th class="py-3 px-4 text-center text-gray-600 font-semibold text-sm uppercase tracking-wider border">Aksi</th>
+            <table class="min-w-full text-sm text-left text-gray-500">
+                <thead class="text-xs text-gray-700 uppercase bg-gray-100 dark:bg-gray-700 dark:text-gray-100">
+                    <tr>
+                        <th class="px-6 py-3 border">ID Pembayaran</th>
+                        <th class="px-6 py-3 border">Jumlah</th>
+                        <th class="px-6 py-3 border">Tanggal Pembayaran</th>
+                        <th class="px-6 py-3 border">ID Penyewaan</th>
+                        <th class="px-6 py-3 border">Metode Pembayaran</th>
+                        <th class="px-6 py-3 border">Status Pembayaran</th>
+                        <th class="px-6 py-3 text-center border">Aksi</th>
                     </tr>
                 </thead>
                 <tbody id="productTableBody" class="text-gray-700">
@@ -89,17 +89,22 @@
                             </td>
                         </tr>
                         <!-- Modal Detail Pembayaran -->
-                        <div id="detailModal{{ $pembayaran->id_pembayaran }}" class="hidden fixed inset-0 z-50 flex justify-center items-center bg-black bg-opacity-50" role="dialog" aria-labelledby="modalTitle" aria-hidden="true">
+                        <div id="detailModal{{ $pembayaran->id_pembayaran }}"
+                            class="hidden fixed inset-0 z-50 flex justify-center items-center bg-black bg-opacity-50"
+                            role="dialog" aria-labelledby="modalTitle" aria-hidden="true">
                             <div class="bg-white rounded-lg shadow-lg w-96 p-6 relative">
-                                <button type="button" class="absolute top-2 right-2 text-gray-600 hover:text-gray-800" data-modal-toggle="detailModal{{ $pembayaran->id_pembayaran }}">
+                                <button type="button" class="absolute top-2 right-2 text-gray-600 hover:text-gray-800"
+                                    data-modal-toggle="detailModal{{ $pembayaran->id_pembayaran }}">
                                     <i class="fas fa-times"></i>
                                 </button>
                                 <h3 class="text-xl font-semibold text-gray-800 mb-4">Detail Pembayaran</h3>
                                 <p><strong>ID Pembayaran:</strong> {{ $pembayaran->id_pembayaran }}</p>
-                                <p><strong>Jumlah Pembayaran:</strong> Rp {{ number_format($pembayaran->jumlah, 0, ',', '.') }}</p>
-                                <p><strong>Tanggal Pembayaran:</strong> {{ \Carbon\Carbon::parse($pembayaran->tanggal_pembayaran)->format('d M Y') }}</p>
+                                <p><strong>Jumlah Pembayaran:</strong> Rp
+                                    {{ number_format($pembayaran->jumlah, 0, ',', '.') }}</p>
+                                <p><strong>Tanggal Pembayaran:</strong>
+                                    {{ \Carbon\Carbon::parse($pembayaran->tanggal_pembayaran)->format('d M Y') }}</p>
                                 <p><strong>ID Penyewaan:</strong> {{ $pembayaran->id_penyewaan }}</p>
-                                <p><strong>Metode Pembayaran:</strong> {{ $pembayaran->jenis_pembayaran}}</p>
+                                <p><strong>Metode Pembayaran:</strong> {{ $pembayaran->jenis_pembayaran }}</p>
                                 <p><strong>Status Pembayaran:</strong> {{ ucfirst($pembayaran->status_pembayaran) }}</p>
                             </div>
                         </div>

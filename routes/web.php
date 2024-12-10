@@ -93,3 +93,7 @@ Route::get('/syarat-ketentuan', function () {
 
 Route::get('hubungi-kami', [HubungiController::class, 'index'])->name('hubungi-kami');
 Route::get('tentang-kami', [AboutController::class, 'index'])->name('tentangkami');
+
+Route::get('/cars/filter', [CarController::class, 'filter'])->name('car.filter');
+Route::get('/katalog-mobil', [CarController::class, 'index'])->name('katalog.index');
+Route::get('/filter-mobil', [CarController::class, 'filter'])->name('katalog.filter');
