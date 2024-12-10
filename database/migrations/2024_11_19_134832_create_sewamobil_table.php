@@ -30,6 +30,6 @@ class CreateSewaMobilTable extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('sewamobil');
+        Schema::dropIfExists('sewa-mobil');
     }
 }

@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-return new class extends Migration
+class RemoveUnusedColumnsFromUsers extends Migration
 {
     /**
      * Run the migrations.
@@ -12,14 +12,24 @@ return new class extends Migration
     public function up(): void
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->dropColumn([
-                'alamat_email',
-                'two_factor_secret',
-                'two_factor_recovery_codes',
-                'two_factor_confirmed_at',
-                'phone_number',
-                'address',
-            ]);
+            if (Schema::hasColumn('users', 'alamat_email')) {
+                $table->dropColumn('alamat_email');
+            }
+            if (Schema::hasColumn('users', 'two_factor_secret')) {
+                $table->dropColumn('two_factor_secret');
+            }
+            if (Schema::hasColumn('users', 'two_factor_recovery_codes')) {
+                $table->dropColumn('two_factor_recovery_codes');
+            }
+            if (Schema::hasColumn('users', 'two_factor_confirmed_at')) {
+                $table->dropColumn('two_factor_confirmed_at');
+            }
+            if (Schema::hasColumn('users', 'phone_number')) {
+                $table->dropColumn('phone_number');
+            }
+            if (Schema::hasColumn('users', 'address')) {
+                $table->dropColumn('address');
+            }
         });
     }
 
@@ -34,7 +44,7 @@ return new class extends Migration
             $table->text('two_factor_recovery_codes')->nullable();
             $table->timestamp('two_factor_confirmed_at')->nullable();
             $table->string('phone_number')->nullable();
-            $table->string('address')->nullable();
+            $table->text('address')->nullable();
         });
     }
-};
+}
