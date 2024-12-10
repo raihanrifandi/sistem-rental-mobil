@@ -33,14 +33,19 @@ class AuthController extends Controller
         ])->validate();
 
         // Buat user baru
-        User::create([
+        $user = User::create([
             'name' => $request->name,
             'email' => $request->email,
             'password' => Hash::make($request->password),
             'type' => '0', // Default user type
         ]);
 
-        return redirect()->route('login')->with('success', 'Registration successful. Please login.');
+        auth()->login($user);
+
+         // Kirim email verifikasi
+        $user->sendEmailVerificationNotification();
+
+        return redirect()->route('verification.notice');
     }
 
 
@@ -62,6 +67,11 @@ class AuthController extends Controller
             throw ValidationException::withMessages([
                 'email' => trans('auth.failed'),
             ]);
+        }
+
+        if (is_null(auth()->user()->email_verified_at)) {
+            Auth::logout();
+            return redirect()->route('login')->with('error', 'You need to verify your email address before logging in.');
         }
 
         $request->session()->regenerate();

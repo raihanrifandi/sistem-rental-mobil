@@ -9,7 +9,7 @@ class AdminController extends Controller
 {
     public function index()
     {
-        $products = Product::all();
+        $products = Product::paginate(10); // Menampilkan 10 item per halaman
         return view('admin.daftar-mobil', compact('products'));
     }
 
@@ -55,7 +55,18 @@ class AdminController extends Controller
     }
 
     public function update(Request $request, $id)
-    {
+    {   
+        $request->validate([
+            'merk' => 'required',
+            'model' => 'required',
+            'tahun' => 'required|integer',
+            'plat' => 'required',
+            'kapasitas' => 'required',
+            'transmisi' => 'required',
+            'harga_sewa' => 'required|numeric',
+            'status' => 'required|in:available,rented,maintenance',
+        ]);
+
         $product = Product::findOrFail($id);
 
         // Cek apakah ada file gambar yang diupload
@@ -72,15 +83,7 @@ class AdminController extends Controller
         }
 
         // Update kolom-kolom lain di produk
-        $product->merk = $request->input('merk');
-        $product->model = $request->input('model');
-        $product->tahun = $request->input('tahun');
-        $product->plat = $request->input('plat');
-        $product->harga_sewa = $request->input('harga_sewa');
-        $product->deskripsi = $request->input('deskripsi');
-        $product->transmisi = $request->input('transmisi');
-        $product->kapasitas = $request->input('kapasitas');
-
+        $product->update($request->all());
         $product->save();
 
         return redirect()->route('products.index')->with('success', 'Produk berhasil diperbarui');

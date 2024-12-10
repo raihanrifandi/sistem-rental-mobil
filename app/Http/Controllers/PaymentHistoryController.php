@@ -19,7 +19,7 @@ class PaymentHistoryController extends Controller
         // Mengambil data penyewaan berdasarkan status
         $transactions = Penyewaan::with('mobil') // Mengambil relasi mobil
             ->where('user_id', $userId) // Filter berdasarkan user yang sedang login
-            ->whereIn('status_penyewaan', ['completed', 'canceled', 'on-going', 'confirmed', 'pending']) // Status transaksi
+            ->whereIn('status_penyewaan', ['completed', 'canceled', 'rejected', 'on-going', 'confirmed', 'pending']) // Status transaksi
             ->get();
         
         return view('user.riwayat-transaksi', compact('transactions'));

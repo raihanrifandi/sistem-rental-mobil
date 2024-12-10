@@ -16,9 +16,8 @@
     <script src="{{ asset('js/home.js') }}"></script>
     <script src="{{ asset('js/payment.js') }}"></script>
     <script src="{{ asset('js/confirmation.js') }}"></script>
-   
+    <script src="{{ asset('js/uploadFile.js') }}"></script>
 </head>
-
 <body>
     <!-- Navbar Component -->
     <header>

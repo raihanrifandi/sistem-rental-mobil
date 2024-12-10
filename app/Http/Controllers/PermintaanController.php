@@ -75,4 +75,17 @@ class PermintaanController extends Controller
         return redirect()->route('admin.permintaan')->with('error', 'Status penyewaan tidak dapat diverifikasi!');
     }
 
+    public function reject($id)
+    {
+        // Cari permintaan berdasarkan ID
+        $request = Penyewaan::findOrFail($id);
+
+        // Ubah status menjadi "rejected"
+        $request->status_penyewaan = 'rejected';
+        $request->save();
+
+        // Redirect dengan pesan sukses
+        return redirect()->route('admin.permintaan')->with('success', 'Permintaan berhasil ditolak.');
+    }
+
 }
